@@ -396,6 +396,12 @@ ol.type li a:hover {
     color: #E87E04;
 }
 
+#portfolio .portfolio-item img{
+    width: auto!important;
+    height: 100%!important;
+    max-width: none;
+}
+
 /* Contact Section */
 #contact {
     padding: 120px 0 60px 0;
