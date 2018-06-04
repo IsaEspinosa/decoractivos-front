@@ -1,0 +1,46 @@
+header {
+  background: url(../../../../assets/img/intro-bg.jpg) no-repeat center top;
+  background-color: #e5e5e5;
+  background-size: cover;
+  text-align: center;
+  color: #333;
+
+  .intro {
+    h1 {
+      font-size: 60px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: #333;
+      line-height: 66px;
+    }
+
+    .intro-text {
+      padding-top: 35px;
+      padding-bottom: 200px;
+
+      img {
+        width: 175px;
+      }
+
+      h1 {
+        /*    text-shadow: -1px -1px 0 #000000,
+            1px -1px 0 #000000,
+            -1px 1px 0 #000000,
+            1px 1px 0 #000000;*/
+        margin-top: 30px;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.5);
+        width: auto;
+        display: inline-block;
+        padding: 0 32px;
+      }
+
+      a {
+        line-height: 21.4px;
+      }
+    }
+  }
+
+}

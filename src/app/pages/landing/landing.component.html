@@ -1,0 +1,17 @@
+<ng-scrollbar #scrollRef>
+
+  <!-- Header -->
+  <app-landing-header></app-landing-header>
+  <!-- Navigation -->
+  <app-landing-nav sticky [position]="600"></app-landing-nav>
+  <!-- About Section -->
+  <app-landing-about id="about"></app-landing-about>
+
+  <!-- Portfolio Section -->
+  <div class="portfolio">
+    <app-landing-portfolio id="simulator"></app-landing-portfolio>
+    <!-- Contact Section -->
+    <app-landing-contact id="contact"></app-landing-contact>
+    <app-footer></app-footer>
+  </div>
+</ng-scrollbar>

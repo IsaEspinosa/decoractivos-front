@@ -1,0 +1,40 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $next: breakpoint-next($breakpoint, $grid-breakpoints);
+  $infix: breakpoint-infix($next, $grid-breakpoints);
+
+  .visible {
+    &#{$infix} {
+      visibility: hidden;
+      @include media-breakpoint-up($next) {
+        visibility: visible;
+      }
+    }
+  }
+
+  .invisible {
+    &#{$infix} {
+      visibility: visible;
+      @include media-breakpoint-up($next) {
+        visibility: hidden;
+      }
+    }
+  }
+
+  .hide {
+    &#{$infix} {
+      display: block;
+      @include media-breakpoint-up($next) {
+        display: none;
+      }
+    }
+  }
+
+  .show {
+    &#{$infix} {
+      display: none;
+      @include media-breakpoint-up($next) {
+        display: block;
+      }
+    }
+  }
+}
