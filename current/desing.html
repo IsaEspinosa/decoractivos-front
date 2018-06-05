@@ -28,8 +28,21 @@
 <script type="text/javascript" src="web_template/js/jqBootstrapValidation.js"></script>
 
 <style>
+    @font-face {
+        font-family: mouseDeco;
+        src: url(Mouse_Deco.ttf);
+    }
+
     .font {
-        font-family: "Merriweather", Times, serif;;
+        font-family: "Merriweather", Times, serif;
+    }
+
+    .font-mouse-deco {
+        font-family: "mouseDeco", Times, serif;
+    }
+
+    * {
+        font-family: "mouseDeco", Times, serif;
     }
 
     body {
@@ -46,7 +59,7 @@
     }
 
     #simulator .control-panel {
-        margin-left: -4px;
+        margin-left: -8px;
         padding: 15px 30px;
     }
 
@@ -149,7 +162,7 @@
                 <a href="index.html">
                     <img src="web_template/logo.png" style="width: 62px; margin-top: 10px;">
                 </a>
-                <h3 class="font">Simulador</h3>
+                <h3 class="font-mouse-deco">Simulador</h3>
             </div>
         </div>
         <hr/>
@@ -168,7 +181,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="height: 300px;overflow-y: scroll;">
                         <div class="row">
                             <div class="col item col-sm-6">
                                 <a href="#" onclick="changeImagePiso('images/piso1.png');">
@@ -222,7 +235,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="height: 300px;overflow-y: scroll;">
                         <div class="row">
                             <div class="col item col-sm-6">
                                 <a href="#" onclick="changeImagePared('images/pared1.png');">
@@ -275,8 +288,8 @@
 <div id="footer">
     <div class="container text-center">
         <div class="fnav">
-            <p>Copyright &copy; 2018 Decoractivos. Designed by <a href="#" rel="nofollow">vespinosa</a> & <a
-                    href="#" rel="nofollow">cortexinc</a>
+            <p class="font">Copyright &copy; 2018 Decoractivos. Designed by <a href="#" rel="nofollow" class="font">vespinosa</a> & <a
+                    href="#" class="font" rel="nofollow">cortexinc</a>
             </p>
         </div>
     </div>
