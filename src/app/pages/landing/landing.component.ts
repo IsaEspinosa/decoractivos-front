@@ -28,6 +28,7 @@ export class LandingComponent implements OnInit, OnDestroy {
 }
 
 export const LandingInternalComponents = [
+  LandingComponent,
   LandingHeaderComponent,
   LandingNavComponent,
   LandingPortfolioComponent,

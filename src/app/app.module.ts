@@ -7,9 +7,6 @@ import {PagesComponents} from './pages';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ScrollbarModule} from "ngx-scrollbar";
 import {StickyDirective} from "./common/directives/sticky";
-import { LandingAboutComponent } from './pages/landing/landing-about/landing-about.component';
-import { LandingPortfolioComponent } from './pages/landing/landing-portfolio/landing-portfolio.component';
-import { LandingContactComponent } from './pages/landing/landing-contact/landing-contact.component';
 import { FooterComponent } from './common/components/footer/footer.component';
 import {GoToDirective} from "./common/directives/goTo";
 
@@ -19,8 +16,8 @@ import {GoToDirective} from "./common/directives/goTo";
     AppComponent,
     StickyDirective,
     GoToDirective,
-    ...PagesComponents,
     FooterComponent,
+    ...PagesComponents,
   ],
   imports: [
     BrowserModule,
