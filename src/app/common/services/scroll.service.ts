@@ -18,6 +18,10 @@ export class ScrollService {
     this.scrollRef = scroll;
   }
 
+  get instance(): ScrollbarComponent {
+    return this.scrollRef;
+  }
+
   subscribe(fn: Function) {
     this.scrollRef.scrollState.subscribe(fn);
   }

@@ -7,16 +7,16 @@ import {PagesComponents} from './pages';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ScrollbarModule} from "ngx-scrollbar";
 import {StickyDirective} from "./common/directives/sticky";
-import { FooterComponent } from './common/components/footer/footer.component';
-import {GoToDirective} from "./common/directives/goTo";
+import {FooterComponent } from './common/components/footer/footer.component';
+import {GoToDeclarations} from "./common/directives/GoTo/index";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     StickyDirective,
-    GoToDirective,
     FooterComponent,
+    ...GoToDeclarations,
     ...PagesComponents,
   ],
   imports: [
