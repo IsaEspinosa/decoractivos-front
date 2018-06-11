@@ -7,8 +7,10 @@ import {PagesComponents} from './pages';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ScrollbarModule} from "ngx-scrollbar";
 import {StickyDirective} from "./common/directives/sticky";
-import {FooterComponent } from './common/components/footer/footer.component';
-import {GoToDeclarations} from "./common/directives/GoTo/index";
+import {FooterComponent} from './common/components/footer/footer.component';
+import {GoToDeclarations} from "./common/directives/GoTo";
+import {BackendInterceptors} from "./interceptors/backend/index";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -23,9 +25,11 @@ import {GoToDeclarations} from "./common/directives/GoTo/index";
     BrowserModule,
     AppRoutingModule,
     ScrollbarModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    HttpClientModule
   ],
   providers: [
+    BackendInterceptors
   ],
   bootstrap: [AppComponent]
 })

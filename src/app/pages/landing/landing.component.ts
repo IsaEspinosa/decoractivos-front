@@ -22,7 +22,7 @@ export class LandingComponent implements OnInit, OnDestroy {
     this.scrollService.instance = this.scrollRef;
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.scrollService.instance = null;
   }
 }

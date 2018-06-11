@@ -16,7 +16,7 @@
     </ol>
   </div>
   <div class="row">
-    <div class="col-sm-6 col-md-3 col-lg-3 sala">
+    <div *ngFor="let environment of environments | async" class="col-sm-6 col-md-3 col-lg-3">
       <div class="portfolio-item">
         <div class="hover-bg">
           <a routerLink="/simulator" title="Project Title"
@@ -24,54 +24,7 @@
             <div class="hover-text">
               <h4>Project Title</h4>
             </div>
-            <img src="assets/img/simulator/ambiente1.png" class="img-responsive" alt="Project Title"> </a></div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 sala">
-      <div class="portfolio-item">
-        <div class="hover-bg">
-          <a routerLink="/simulator" title="Project Title"
-             data-lightbox-gallery="gallery1">
-            <div class="hover-text">
-              <h4>Project Title</h4>
-            </div>
-            <img src="assets/img/simulator/ambiente2.png" class="img-responsive" alt="Project Title"> </a></div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 sala">
-      <div class="portfolio-item">
-        <div class="hover-bg">
-          <a routerLink="/simulator" title="Project Title"
-             data-lightbox-gallery="gallery1">
-            <div class="hover-text">
-              <h4>Project Title</h4>
-            </div>
-            <img src="assets/img/portfolio/amb2.jpeg" class="img-responsive" alt="Project Title">
-          </a></div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 sala">
-      <div class="portfolio-item">
-        <div class="hover-bg">
-          <a routerLink="/simulator" title="Project Title"
-             data-lightbox-gallery="gallery1">
-            <div class="hover-text">
-              <h4>Project Title</h4>
-            </div>
-            <img src="assets/img/portfolio/amb3.jpeg" class="img-responsive" alt="Project Title">
-          </a></div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 banio">
-      <div class="portfolio-item">
-        <div class="hover-bg">
-          <a routerLink="/simulator" title="Project Title"
-             data-lightbox-gallery="gallery1">
-            <div class="hover-text">
-              <h4>Project Title</h4>
-            </div>
-            <img src="assets/img/portfolio/amb4.jpg" class="img-responsive" alt="Project Title">
-          </a></div>
+            <img [src]="environment.preview" class="img-responsive" alt="Project Title"> </a></div>
       </div>
     </div>
   </div>

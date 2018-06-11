@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {EnvironmentService} from "../../../common/services/environment.service";
+import {Observable} from "rxjs/index";
+import {Environment} from "../../../common/models/environment";
 
 @Component({
   selector: 'app-landing-portfolio',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPortfolioComponent implements OnInit {
 
-  constructor() { }
+  private environments: Observable<Array<Environment>>;
+
+  constructor(private environmentService: EnvironmentService) {
+  }
 
   ngOnInit() {
+    this.environments = this.environmentService.getList();
   }
 
 }
