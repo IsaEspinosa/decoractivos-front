@@ -1,6 +1,7 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from "@angular/common/http";
 import {Observable} from 'rxjs/index';
 import {delay} from "rxjs/operators";
+import {chain} from 'lodash'
 
 
 /**
@@ -13,5 +14,17 @@ export abstract class FakeBackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const observable: Observable<HttpEvent<any>> = this.requestInterceptor(request, next);
     return observable ? observable.pipe(delay(500)) : next.handle(request);
+  }
+
+  static filterList(list, query: HttpParams) {
+    const where = query.get('where');
+    const page: number = <any>query.get('page');
+    const limit: number = <any>query.get('limit');
+    const offset: number = (page - 1) * limit;
+
+    return chain(list)
+      .filter(where)
+      .slice(offset, offset + limit)
+      .value()
   }
 }

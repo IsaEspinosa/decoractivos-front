@@ -1,6 +1,8 @@
+@import "../../../styles/variables.scss";
+
 .portfolio {
   padding-top: 120px;
-  background: #f6f6f6;
+  background: $background-1;
 }
 
 .btn:active, .btn.active {

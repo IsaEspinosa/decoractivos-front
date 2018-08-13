@@ -8,9 +8,14 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ScrollbarModule} from "ngx-scrollbar";
 import {StickyDirective} from "./common/directives/sticky";
 import {FooterComponent} from './common/components/footer/footer.component';
+import {MinFooterComponent} from './common/components/min-footer/min-footer.component';
 import {GoToDeclarations} from "./common/directives/GoTo";
 import {BackendInterceptors} from "./interceptors/backend/index";
 import {HttpClientModule} from "@angular/common/http";
+import { EnvironmentsComponent } from './pages/environments/environments.component';
+import { SidebarComponent } from './pages/environments/sidebar/sidebar.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { EnvironmentListComponent } from './pages/environments/environment-list/environment-list.component';
 
 
 @NgModule({
@@ -18,6 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
     AppComponent,
     StickyDirective,
     FooterComponent,
+    MinFooterComponent,
     ...GoToDeclarations,
     ...PagesComponents,
   ],
@@ -26,7 +32,8 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     ScrollbarModule,
     NgbModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     BackendInterceptors

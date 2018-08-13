@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="sidebar col-md-3">
+      <app-sidebar [environmentTypes]="environmentTypes" (selected)="selectEnvironmentType($event)"></app-sidebar>
+    </div>
+    <div class="page offset-md-3 col-md-9">
+      <app-environment-list [environments]="environments" [isLoading]="isLoading"></app-environment-list>
+    </div>
+  </div>
+</div>

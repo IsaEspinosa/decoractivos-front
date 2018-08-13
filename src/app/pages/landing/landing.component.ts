@@ -6,6 +6,7 @@ import {LandingPortfolioComponent} from "./landing-portfolio/landing-portfolio.c
 import {LandingContactComponent} from "./landing-contact/landing-contact.component";
 import {ScrollbarComponent} from "ngx-scrollbar";
 import {ScrollService} from "../../common/services/scroll.service";
+import {LandingEnvironmentCardComponent} from "./landing-environment-card/landing-environment-card.component";
 
 @Component({
   selector: 'app-landing',
@@ -32,6 +33,7 @@ export const LandingInternalComponents = [
   LandingHeaderComponent,
   LandingNavComponent,
   LandingPortfolioComponent,
+  LandingEnvironmentCardComponent,
   LandingContactComponent,
   LandingAboutComponent
 ];

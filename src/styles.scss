@@ -128,6 +128,43 @@ hr {
   }
 }
 
+.institution-red-color {
+  color: $institution-red !important;
+}
+
 textarea.form-control {
   resize: none;
+}
+
+@mixin animation() {
+  transition-duration: $standard-transition-duration;
+  transition-timing-function: ease-in;
+  &.delay {
+    transition-duration: $delayed-transition-duration;
+    transition-delay: $delayed-transition-delay;
+  }
+  &.inverted-delay {
+    transition-duration: $delayed-inverted-transition-delay;
+  }
+  &.transition {
+    transition-timing-function: ease-out;
+    @content
+  }
+}
+
+.reducible {
+  transition-property: width, flex, margin, padding;
+  @include animation() {
+    width: 0;
+    flex: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.displayable {
+  transition-property: opacity;
+  @include animation() {
+    opacity: 0;
+  }
 }

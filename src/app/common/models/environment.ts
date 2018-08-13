@@ -4,6 +4,7 @@
 
 export interface Environment {
   environment_id: number,
+  environment_type_id: number,
   base_image: string,
   preview: string,
   name: string,

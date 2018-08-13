@@ -1,19 +1,17 @@
 import {HttpEvent, HttpHandler, HttpRequest, HttpResponse} from "@angular/common/http";
-import {delay} from "rxjs/operators";
 import {of} from "rxjs/internal/observable/of";
 import {FakeBackendInterceptor} from "./FakeBackendInterceptor";
 import {Observable} from "rxjs";
-import {environmentList} from "../../common/mocks/environments";
-import {Environment} from "../../common/models/environment";
+import {environmentTypeList} from "../../common/mocks/environment_types";
 
 
 /**
  * Created by garusis on 8/06/18.
  */
-export class EnvironmentFakeBackendInterceptor extends FakeBackendInterceptor {
+export class EnvironmentTypeFakeBackendInterceptor extends FakeBackendInterceptor {
 
-  private environmentList = environmentList;
-  private requestPath: string = "\\/api\\/\\d+\\.\\d+\\.\\d+\\/environments";
+  private environmentTypeList = environmentTypeList;
+  private requestPath: string = "\\/api\\/\\d+\\.\\d+\\.\\d+\\/environment_types";
 
 
   protected requestInterceptor(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,10 +20,7 @@ export class EnvironmentFakeBackendInterceptor extends FakeBackendInterceptor {
     }
 
     if (new RegExp(`${this.requestPath}($|\/)`) && request.method === 'GET') {
-      return of(new HttpResponse({
-        status: 200,
-        body: FakeBackendInterceptor.filterList(this.environmentList, request.params)
-      }))
+      return of(new HttpResponse({status: 200, body: this.environmentTypeList}))
     }
   }
 
