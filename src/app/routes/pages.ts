@@ -8,5 +8,5 @@ import {EnvironmentsComponent} from "../pages/environments/environments.componen
 export const PagesRoutes = [
   {path: '', component: LandingComponent, pathMatch: 'full'},
   {path: 'ambientes', component: EnvironmentsComponent, pathMatch: 'full'},
-  {path: 'simulator', component: SimulatorComponent, pathMatch: 'full'}
+  {path: 'simulador/:environment_slug', component: SimulatorComponent, pathMatch: 'full'}
 ];
