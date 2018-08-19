@@ -10,7 +10,7 @@ import {EnvironmentType} from "../../../common/models/environment-type";
 export class LandingPortfolioComponent extends EnvironmentsComponent {
 
   ngOnInit() {
-    this.environmentTypes = this.environmentService.getTypes();
+    this.environmentTypes = this.environmentService.getTypes({limit: 4});
     this.selectEnvironmentType(null)
   }
 

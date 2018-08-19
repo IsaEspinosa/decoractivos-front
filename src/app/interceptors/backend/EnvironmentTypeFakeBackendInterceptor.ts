@@ -20,7 +20,10 @@ export class EnvironmentTypeFakeBackendInterceptor extends FakeBackendIntercepto
     }
 
     if (new RegExp(`${this.requestPath}($|\/)`) && request.method === 'GET') {
-      return of(new HttpResponse({status: 200, body: this.environmentTypeList}))
+      return of(new HttpResponse({
+        status: 200,
+        body: FakeBackendInterceptor.filterList(this.environmentTypeList, request.params)
+      }))
     }
   }
 

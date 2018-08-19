@@ -21,8 +21,8 @@ export class EnvironmentService {
     return this.http.get<Array<Environment>>(EnvironmentService.apiEnvironmentResource, {params: query});
   }
 
-  getTypes(): Observable<Array<EnvironmentType>> {
-    return this.http.get<Array<EnvironmentType>>(EnvironmentService.apiEnvironmentTypeResource);
+  getTypes(query = {}): Observable<Array<EnvironmentType>> {
+    return this.http.get<Array<EnvironmentType>>(EnvironmentService.apiEnvironmentTypeResource, {params: query});
   }
 
 }
