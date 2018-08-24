@@ -1,6 +1,7 @@
 import {HTTP_INTERCEPTORS, HttpInterceptor} from "@angular/common/http";
 import {EnvironmentFakeBackendInterceptor} from "./EnvironmentFakeBackendInterceptor";
 import {EnvironmentTypeFakeBackendInterceptor} from "./EnvironmentTypeFakeBackendInterceptor";
+import {UserFakeBackendInterceptor} from "./UserFakeBackendInterceptor";
 /**
  * Created by garusis on 8/06/18.
  */
@@ -15,5 +16,10 @@ export const BackendInterceptors = [
     provide: HTTP_INTERCEPTORS,
     multi: true,
     useClass: EnvironmentTypeFakeBackendInterceptor
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    multi: true,
+    useClass: UserFakeBackendInterceptor
   }
 ];
