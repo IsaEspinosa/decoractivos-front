@@ -20,6 +20,10 @@ export class EnvironmentService {
     return this.http.get<Array<Environment>>(EnvironmentService.API_ENVIRONMENT_RESOURCE, {params: query});
   }
 
+  getOne(environment_id) {
+    return this.http.get<Environment>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}`);
+  }
+
   getTypes(query = {}): Observable<Array<EnvironmentType>> {
     return this.http.get<Array<EnvironmentType>>(EnvironmentService.API_ENVIRONMENT_TYPE_RESOURCE, {params: query});
   }

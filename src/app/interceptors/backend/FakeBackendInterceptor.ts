@@ -16,6 +16,10 @@ export abstract class FakeBackendInterceptor implements HttpInterceptor {
     return observable ? observable.pipe(delay(500)) : next.handle(request);
   }
 
+  static find(list, field, value) {
+    return list.find((item) => item[field] === parseInt(value))
+  }
+
   static filterList(list, query: HttpParams) {
     const where = query.get('where') || {};
     const page: number = <any>query.get('page') || 1;

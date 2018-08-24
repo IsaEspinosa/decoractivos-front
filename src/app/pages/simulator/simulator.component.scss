@@ -1,0 +1,12 @@
+@import "../../../styles/variables.scss";
+
+.sidebar {
+  background: $background-1;
+  position: fixed;
+  height: 100%;
+}
+
+.page {
+  position: fixed;
+  height: 100%;
+}
