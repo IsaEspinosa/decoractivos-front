@@ -1,20 +1,24 @@
-@import "../../../../styles/variables.scss";
+@import "../../../../styles/utils.scss";
 
-.logo {
-  margin-top: 50px;
-  img {
-    width: 100%;
+@include sidebar() {
+  .simulator-controls {
+    margin-top: 50px;
+    height: 250px;
+    .category-filter {
+      margin-top: 30px;
+    }
+
+    .product-list {
+      margin-top: 30px;
+      height: 250px;
+      .product {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        .image {
+          height: 80px;
+          background-size: cover;
+        }
+      }
+    }
   }
-}
-
-.simulator-controls {
-  margin-top: 50px;
-  height: 250px;
-}
-
-app-min-footer {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
 }

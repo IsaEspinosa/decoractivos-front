@@ -20,15 +20,20 @@ export abstract class FakeBackendInterceptor implements HttpInterceptor {
     return list.find((item) => item[field] === parseInt(value))
   }
 
-  static filterList(list, query: HttpParams) {
-    const where = query.get('where') || {};
-    const page: number = <any>query.get('page') || 1;
-    const limit: number = <any>query.get('limit') || list.length;
+  static filter(list, where = {}, page = 1, limit = list.length) {
     const offset: number = (page - 1) * limit;
 
     return chain(list)
       .filter(where)
       .slice(offset, offset + limit)
       .value()
+  }
+
+  static filterList(list, query: HttpParams) {
+    const where = query.get('where');
+    const page: number = <any>query.get('page');
+    const limit: number = <any>query.get('limit');
+
+    return FakeBackendInterceptor.filter(list, where, page, limit)
   }
 }

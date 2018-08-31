@@ -4,6 +4,7 @@ import {Environment} from "../models/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {EnvironmentType} from "../models/environment-type";
+import {Layer} from "../models/layer";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class EnvironmentService {
 
   getOne(environment_id) {
     return this.http.get<Environment>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}`);
+  }
+
+  getLayers(environment_id){
+    return this.http.get<Array<Layer>>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}/layers`);
   }
 
   getTypes(query = {}): Observable<Array<EnvironmentType>> {

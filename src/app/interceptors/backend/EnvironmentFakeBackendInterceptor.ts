@@ -4,7 +4,6 @@ import {of} from "rxjs/internal/observable/of";
 import {FakeBackendInterceptor} from "./FakeBackendInterceptor";
 import {Observable} from "rxjs";
 import {environmentList} from "../../common/mocks/environments";
-import {Environment} from "../../common/models/environment";
 
 
 /**
@@ -20,19 +19,20 @@ export class EnvironmentFakeBackendInterceptor extends FakeBackendInterceptor {
 
 
   protected requestInterceptor(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!new RegExp(`${this.requestPath}($|\/)`).test(request.url)) {
+    const url: string = request.url;
+    if (!new RegExp(`${this.requestPath}($|\/)`).test(url)) {
       return null;
     }
 
-    if (this.requestList.test(request.url) && request.method === 'GET') {
+    if (this.requestList.test(url) && request.method === 'GET') {
       return of(new HttpResponse({
         status: 200,
         body: FakeBackendInterceptor.filterList(this.environmentList, request.params)
       }))
     }
 
-    if (this.requestGetOne.test(request.url) && request.method === 'GET') {
-      const id = request.url.replace(this.requestGetOne, "$1").replace(environment.apiDomain, "");
+    if (this.requestGetOne.test(url) && request.method === 'GET') {
+      const id = url.replace(this.requestGetOne, "$1").replace(environment.apiDomain, "");
       return of(new HttpResponse({
         status: 200,
         body: FakeBackendInterceptor.find(this.environmentList, 'environment_id', id)

@@ -1,3 +1,12 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+
 $node-modules-path: '../node_modules';
 
 $fa-path: '#{$node-modules-path}/font-awesome';
@@ -8,5 +17,6 @@ $delayed-transition-duration: 100ms;
 $delayed-transition-delay: 400ms;
 $delayed-inverted-transition-delay: 100ms;
 
-$background-1: #f6f6f6;
+$background-1: #d4d2d4;
+$background-footer-1: $background-1;
 $institution-red: #761718;

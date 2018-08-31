@@ -6,7 +6,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ScrollbarModule} from "ngx-scrollbar";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
 
 import {AppComponent} from './app.component';
@@ -41,7 +41,8 @@ import {AuthInterceptor} from "./interceptors/AuthInterceptor";
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [
     [

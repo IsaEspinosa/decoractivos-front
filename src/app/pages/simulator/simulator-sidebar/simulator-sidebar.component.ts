@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import {Observable} from "rxjs/index";
-import {EnvironmentType} from "../../../common/models/environment-type";
+import {Layer} from "../../../common/models/layer";
+import {LayerItem} from "../../../common/models/layer-item";
+import {ItemCategory} from "../../../common/models/item-category";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-simulator-sidebar',
@@ -9,23 +12,47 @@ import {EnvironmentType} from "../../../common/models/environment-type";
 })
 export class SimulatorSidebarComponent implements OnInit {
 
-  @Input() environmentTypes: Observable<Array<EnvironmentType>>;
-  @Output() selected = new EventEmitter<EnvironmentType>();
-  private selectedEnvType: EnvironmentType = null;
+  @Output() updateLayer = new EventEmitter<LayerItem>();
 
-  constructor() {
+  private selectedLayer: Layer;
+  private selectedCategory: ItemCategory;
+  private filteredProducts: Array<LayerItem>;
+  private _layers: Array<Layer>;
+
+  @Input()
+  set layers(layers: Array<Layer>) {
+    this._layers = layers;
+    this.changeLayer(this._layers[0]);
+  }
+
+  get layers() {
+    return this._layers || []
+  }
+
+  constructor(private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
   }
 
-  selectEnvironmentType(selected: EnvironmentType) {
-    this.selectedEnvType = selected
-    this.selected.emit(selected)
+  changeLayer(layer: Layer) {
+    if (!layer) return;
+    this.selectedLayer = layer;
+    this.changeCategory(this.selectedLayer, this.selectedLayer.categories[0])
   }
 
-  isCategoryActive(type: EnvironmentType) {
-    return this.selectedEnvType === type
+  changeCategory(layer: Layer, category: ItemCategory) {
+    if (!category) {
+      this.filteredProducts = layer.items;
+      return
+    }
+    this.selectedCategory = category;
+    debugger
+    this.filteredProducts = layer.items.filter((item) => item.category_id === category.category_id);
+  }
+
+  selectProduct(product) {
+    this.updateLayer.emit(product)
   }
 
 }

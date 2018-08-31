@@ -30,11 +30,9 @@ export class LoginComponent implements OnInit {
       .login({username: this.user.username, password: this.user.password})
       .subscribe(
         () => {
-          throw new Error()
-          // @ts-ignore
           this.route
             .queryParams
-            //.subscribe((params: any) => this.router.navigate([params.redirect_url]));
+            .subscribe((params: any) => this.router.navigate([params.redirect_url]));
         },
         this.loginError
       )

@@ -5,9 +5,40 @@
     </a>
   </div>
 </div>
-<div class="simulator-controls row">
-  <div class="col-md">
-
+<div class="simulator-controls row justify-content-center">
+  <div class="col-md-11">
+    <div class="row  justify-content-center product-selector">
+      <mat-form-field class="col-md-10">
+        <mat-select placeholder="Seleccione un Producto" [value]="selectedLayer"
+                    (selectionChange)="changeLayer($event.value)">
+          <mat-option *ngFor="let layer of layers" [value]="layer">
+            {{layer.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row  justify-content-center category-filter"
+         *ngIf="selectedLayer && selectedLayer.categories.length > 0">
+      <mat-form-field class="col-md-10">
+        <mat-select placeholder="Seleccione una Categoria" [value]="selectedCategory"
+                    (selectionChange)="changeCategory(selectedLayer, $event.value)">
+          <mat-option *ngFor="let category of selectedLayer.categories" [value]="category">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row product-list">
+      <div class="col-md-12">
+        <ng-scrollbar>
+          <div class="row  align-items-center justify-content-around">
+            <div class="col-md-4 product" *ngFor="let product of filteredProducts" (click)="selectProduct(product)">
+              <div class="image" [style.backgroundImage]="'url('+product.preview+')'"></div>
+            </div>
+          </div>
+        </ng-scrollbar>
+      </div>
+    </div>
   </div>
 </div>
 <app-min-footer></app-min-footer>
