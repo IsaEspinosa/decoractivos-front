@@ -26,14 +26,14 @@ export abstract class FakeBackendInterceptor implements HttpInterceptor {
     return chain(list)
       .filter(where)
       .slice(offset, offset + limit)
-      .value()
+      .value();
   }
 
   static filterList(list, query: HttpParams) {
-    const where = query.get('where');
-    const page: number = <any>query.get('page');
-    const limit: number = <any>query.get('limit');
+    const where = query.get('where') || undefined;
+    const page: number = <any>query.get('page') || undefined;
+    const limit: number = <any>query.get('limit') || undefined;
 
-    return FakeBackendInterceptor.filter(list, where, page, limit)
+    return FakeBackendInterceptor.filter(list, where, page, limit);
   }
 }
