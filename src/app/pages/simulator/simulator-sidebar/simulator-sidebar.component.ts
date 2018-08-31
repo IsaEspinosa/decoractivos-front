@@ -47,7 +47,6 @@ export class SimulatorSidebarComponent implements OnInit {
       return
     }
     this.selectedCategory = category;
-    debugger
     this.filteredProducts = layer.items.filter((item) => item.category_id === category.category_id);
   }
 

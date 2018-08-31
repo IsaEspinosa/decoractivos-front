@@ -144,7 +144,7 @@ export const layerList: Array<Layer> = [
   {
     environment_id: 3,
     layer_id: 4,
-    layer_index: 3,
+    layer_index: 4,
     name: "Cocina Base",
     customizable: false,
     default_item: 1,
@@ -163,7 +163,7 @@ export const layerList: Array<Layer> = [
   {
     environment_id: 3,
     layer_id: 5,
-    layer_index: 4,
+    layer_index: 3,
     name: "Pared",
     customizable: true,
     default_item: 15,
@@ -305,6 +305,182 @@ export const layerList: Array<Layer> = [
         name: "",
         preview: "assets/images/layers/environment-3/5/30-pw.png",
         image_simulator: "assets/images/layers/environment-3/5/30.png"
+      },
+      {
+              item_id: 31,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/31-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/31.png"
+      },
+      {
+              item_id: 32,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/32-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/32.png"
+      },
+      {
+              item_id: 33,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/33-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/33.png"
+      },
+      {
+              item_id: 34,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/34-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/34.png"
+      },
+      {
+              item_id: 35,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/35-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/35.png"
+      },
+      {
+              item_id: 36,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/36-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/36.png"
+      },
+      {
+              item_id: 37,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/37-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/37.png"
+      },
+      {
+              item_id: 38,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/38-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/38.png"
+      },
+      {
+              item_id: 39,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/39-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/39.png"
+      },
+      {
+              item_id: 40,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/40-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/40.png"
+      },
+      {
+              item_id: 41,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/41-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/41.png"
+      },
+      {
+              item_id: 42,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/42-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/42.png"
+      },
+      {
+              item_id: 43,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/43-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/43.png"
+      },
+      {
+              item_id: 44,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/44-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/44.png"
+      },
+      {
+              item_id: 45,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/45-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/45.png"
+      },
+      {
+              item_id: 46,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/46-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/46.png"
+      },
+      {
+              item_id: 47,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/47-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/47.png"
+      },
+      {
+              item_id: 48,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/48-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/48.png"
+      },
+      {
+              item_id: 49,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/49-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/49.png"
+      },
+      {
+              item_id: 50,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/50-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/50.png"
+      },
+      {
+              item_id: 51,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/51-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/51.png"
+      },
+      {
+              item_id: 52,
+              layer_id: 5,
+              category_id: 2,
+              name: "",
+              preview: "assets/images/layers/environment-3/5/52-pw.png",
+              image_simulator: "assets/images/layers/environment-3/5/52.png"
       }
     ]
   }
