@@ -143,6 +143,25 @@ export const environment3: Array<Layer> = [
   },
   {
     environment_id: 3,
+    layer_id: 4,
+    layer_index: 4,
+    name: "Cocina Base",
+    customizable: false,
+    default_item: 1,
+    categories: [],
+    items: [
+      {
+        item_id: 1,
+        layer_id: 4,
+        category_id: null,
+        name: "Cocina Base",
+        preview: null,
+        image_simulator: "assets/images/layers/environment-3/4/1.png"
+      }
+    ]
+  },
+  {
+    environment_id: 3,
     layer_id: 5,
     layer_index: 3,
     name: "Pared",
@@ -462,25 +481,6 @@ export const environment3: Array<Layer> = [
         name: "",
         preview: "assets/images/layers/environment-3/5/52-pw.png",
         image_simulator: "assets/images/layers/environment-3/5/52.png"
-      }
-    ]
-  },
-  {
-    environment_id: 3,
-    layer_id: 4,
-    layer_index: 4,
-    name: "Cocina Base",
-    customizable: false,
-    default_item: 1,
-    categories: [],
-    items: [
-      {
-        item_id: 1,
-        layer_id: 4,
-        category_id: null,
-        name: "Cocina Base",
-        preview: null,
-        image_simulator: "assets/images/layers/environment-3/4/1.png"
       }
     ]
   }
