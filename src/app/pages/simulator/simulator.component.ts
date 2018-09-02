@@ -64,6 +64,7 @@ export class SimulatorComponent implements OnInit {
   updateLayer(item: LayerItem) {
     const layer = this.layersInSimulator.find((layer)=>layer.layer_id === item.layer_id);
     layer.currentItem = item;
+    this.layersInSimulator = this.layersInSimulator.slice();
   }
 
 }

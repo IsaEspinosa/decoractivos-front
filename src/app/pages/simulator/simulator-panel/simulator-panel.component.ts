@@ -9,8 +9,18 @@ import {Environment} from "../../../common/models/environment";
 })
 export class SimulatorPanelComponent implements OnInit {
 
-  @Input() layers: Array<any>;
   @Input() environment: Environment;
+  private _layers: Array<any>;
+
+
+  @Input() set layers(layers: Array<any>) {
+    if (!layers) return;
+    this._layers = layers.filter(layer => layer.currentItem);
+  }
+
+  get layers(): Array<any> {
+    return this._layers;
+  }
 
   constructor() {
   }
