@@ -18,10 +18,10 @@ import {LayerItem} from "../../common/models/layer-item";
 })
 export class SimulatorComponent implements OnInit {
 
-  private environment: Environment = new Environment();
-  private _layers: Array<Layer> = [];
-  private layersInSimulator: Array<any> = [];
-  private layersInSidebar: Array<Layer> = [];
+  public environment: Environment = new Environment();
+  public _layers: Array<Layer> = [];
+  public layersInSimulator: Array<any> = [];
+  public layersInSidebar: Array<Layer> = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,

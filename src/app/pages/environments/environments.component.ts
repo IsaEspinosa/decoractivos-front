@@ -13,11 +13,11 @@ import {EnvironmentListComponent} from "./environment-list/environment-list.comp
 })
 export class EnvironmentsComponent implements OnInit {
 
-  protected environments: Observable<Array<Environment>>;
-  protected environmentTypes: Observable<Array<EnvironmentType>>;
-  protected selectedEnvType: EnvironmentType = null;
-  protected query = {limit: 10, page: 1, where: {environment_type_id: null}}
-  protected isLoading: boolean = false
+  public environments: Observable<Array<Environment>>;
+  public environmentTypes: Observable<Array<EnvironmentType>>;
+  public selectedEnvType: EnvironmentType = null;
+  public query = {limit: 10, page: 1, where: {environment_type_id: null}};
+  public isLoading: boolean = false;
 
 
   constructor(protected environmentService: EnvironmentService) {

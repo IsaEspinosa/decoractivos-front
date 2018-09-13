@@ -14,10 +14,10 @@ export class SimulatorSidebarComponent implements OnInit {
 
   @Output() updateLayer = new EventEmitter<LayerItem>();
 
-  private selectedLayer: Layer;
-  private selectedCategory: ItemCategory;
-  private filteredProducts: Array<LayerItem>;
-  private _layers: Array<Layer>;
+  public selectedLayer: Layer;
+  public selectedCategory: ItemCategory;
+  public filteredProducts: Array<LayerItem>;
+  public _layers: Array<Layer>;
 
   @Input()
   set layers(layers: Array<Layer>) {
