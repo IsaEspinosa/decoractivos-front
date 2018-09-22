@@ -5,7 +5,6 @@ import {FakeBackendInterceptor} from "./FakeBackendInterceptor";
 import {Observable} from "rxjs";
 import {environmentList} from "../../common/mocks/environments";
 
-
 /**
  * Created by garusis on 8/06/18.
  */
