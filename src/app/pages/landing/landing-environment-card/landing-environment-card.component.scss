@@ -1,0 +1,59 @@
+.portfolio-item {
+  margin: 15px 0;
+  transition: all 0.5s ease-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  img {
+    width: auto !important;
+    height: 100% !important;
+    max-width: none;
+  }
+
+  .hover-bg {
+    height: 195px;
+    overflow: hidden;
+    position: relative;
+
+    .hover-text {
+      position: absolute;
+      text-align: center;
+      margin: 0 auto;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.66);
+      padding: 30% 0 0 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: all 0.5s;
+
+      > h4 {
+        text-transform: uppercase;
+        opacity: 0;
+        color: #fff;
+        transform: translateY(100%);
+        transition: all 0.3s;
+      }
+
+      > i {
+        opacity: 0;
+        transform: translateY(0);
+        transition: all 0.3s;
+      }
+    }
+
+    &:hover .hover-text {
+      opacity: 1;
+      > h4 {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      > i {
+        opacity: 1;
+        transform: translateY(100%);
+      }
+    }
+  }
+}

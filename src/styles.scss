@@ -1,0 +1,171 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "styles/variables";
+@import "styles/imports";
+@import "styles/utils";
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Open Sans', sans-serif;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  color: #777;
+  width: 100% !important;
+  height: 100% !important;
+  font-size: 14px;
+}
+
+h2 {
+  margin: 0 0 20px 0;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+h3, h4 {
+  color: #222;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+h5 {
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+p.intro {
+  font-size: 16px;
+  margin: 12px 0 0;
+  line-height: 24px;
+}
+
+a {
+  color: #555;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+ul, ol {
+  list-style: none;
+}
+
+.clearfix {
+  padding: 0;
+  height: 1%;
+  display: block;
+
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+hr {
+  height: 1px;
+  width: 70px;
+  text-align: center;
+  position: relative;
+  background: #666;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  border: 0;
+}
+
+.sticky {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+}
+
+.btn-default {
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #121d1f;
+  border-color: #777;
+  padding: 14px 20px;
+  margin: 0;
+  font-size: 16px;
+  border-radius: 0;
+  margin-top: 20px;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active {
+  color: #555;
+  background-color: #deddd26b;
+  border-color: #121d1f;
+}
+
+/* Header Section */
+.section-title.center {
+  padding: 10px 0 40px 0;
+}
+
+.form-control {
+  &::-webkit-input-placeholder {
+    color: #2c3e50;
+  }
+  ::-moz-placeholder {
+    color: #2c3e50;
+  }
+  ::-moz-placeholder {
+    color: #2c3e50;
+  }
+  :-ms-input-placeholder {
+    color: #2c3e50;
+  }
+}
+
+.institution-red-color {
+  color: $institution-red !important;
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+@mixin animation() {
+  transition-duration: $standard-transition-duration;
+  transition-timing-function: ease-in;
+  &.delay {
+    transition-duration: $delayed-transition-duration;
+    transition-delay: $delayed-transition-delay;
+  }
+  &.inverted-delay {
+    transition-duration: $delayed-inverted-transition-delay;
+  }
+  &.transition {
+    transition-timing-function: ease-out;
+    @content
+  }
+}
+
+.reducible {
+  transition-property: width, flex, margin, padding;
+  @include animation() {
+    width: 0;
+    flex: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.displayable {
+  transition-property: opacity;
+  @include animation() {
+    opacity: 0;
+  }
+}

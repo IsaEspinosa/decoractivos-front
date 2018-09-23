@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="landing-navbar">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div class="d-md-flex d-block flex-row mx-auto" [ngbCollapse]="isCollapsed" id="landing-navbar">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" go-to="about">¿Quiénes somos?</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" go-to="simulador">Simulador</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" go-to="contact">Contáctanos</a>
+      </li>
+    </ul>
+  </div>
+</nav>

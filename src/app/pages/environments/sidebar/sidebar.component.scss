@@ -1,0 +1,37 @@
+@import "../../../../styles/utils.scss";
+
+@include sidebar() {
+  .item-list {
+    margin-top: 50px;
+    height: 250px;
+    li {
+      text-align: center;
+      padding: 5px 0;
+      a {
+        text-transform: uppercase;
+        font-size: 15px;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          height: 2px;
+          bottom: -3px;
+          left: 0;
+          width: 100%;
+          background-color: $institution-red;
+          visibility: hidden;
+          transform: scaleX(0);
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+        }
+        &.active {
+          color: #000000;
+          &::after {
+            visibility: visible;
+            transform: scaleX(1);
+          }
+        }
+      }
+    }
+  }
+}
+

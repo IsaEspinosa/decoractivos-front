@@ -1,0 +1,36 @@
+@import "../../../../styles/utils.scss";
+
+header {
+  margin-top: 30px;
+  font-weight: bolder;
+  h2 {
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      right: 0;
+      background: #000000;
+      width: 200px;
+      height: 1px;
+    }
+  }
+}
+
+figure {
+  margin-top: 50px;
+  position: relative;
+  img {
+    &:first-child{
+      position: relative;
+    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  figcaption{
+    margin-top: 15px;
+    font-size: 10px;
+  }
+}

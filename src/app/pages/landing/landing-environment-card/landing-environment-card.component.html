@@ -1,0 +1,10 @@
+<div class="portfolio-item">
+  <div class="hover-bg">
+    <a [routerLink]="['/simulador', environment.slug]" [title]="environment.name">
+      <div class="hover-text">
+        <h4>{{environment.name}}</h4>
+      </div>
+      <img [src]="environment.preview" class="img-responsive" [alt]="environment.name">
+    </a>
+  </div>
+</div>

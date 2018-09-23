@@ -1,0 +1,55 @@
+.gallery {
+  padding: 60px 0;
+  .gallery-item {
+    padding: 20px;
+    a {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      height: 194px;
+      img {
+        height: 100%;
+        transform: scale(1.2);
+        transition: 0.9s;
+      }
+      .overlay {
+        &:before {
+          position: absolute;
+          content: "";
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #000000;
+          opacity: 0;
+          transition: opacity .9s ease;
+        }
+        h2 {
+          position: absolute;
+          width: 100%;
+          text-align: center;
+          left: 0;
+          top: 50%;
+          margin-top: -20px;
+          color: #FFF;
+          opacity: 0;
+          transition: opacity .9s ease;
+        }
+      }
+      &:hover {
+        img {
+          transform: scale(1);
+        }
+
+        .overlay {
+          h2 {
+            opacity: 1;
+          }
+          &:before {
+            opacity: .5;
+          }
+        }
+      }
+    }
+  }
+}

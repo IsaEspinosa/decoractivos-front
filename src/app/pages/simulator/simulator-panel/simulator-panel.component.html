@@ -1,0 +1,15 @@
+<header class="row justify-content-center">
+  <div class="col-md-10">
+    <h2 class="text-right">Ambiente: {{environment.name}}</h2>
+  </div>
+</header>
+<section class="row justify-content-center">
+  <div class="col-md-10">
+    <figure>
+      <img *ngFor="let layer of layers" [src]="layer.currentItem.image_simulator">
+      <figcaption class="text-center">
+        *En algunos casos la tonalidad de la cerámica podría variar levemente de acuerdo al lote de producción.
+      </figcaption>
+    </figure>
+  </div>
+</section>

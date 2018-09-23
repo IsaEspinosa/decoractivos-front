@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-4 col-sm-8">
+      <mat-card class="example-card">
+        <div class="text-center img">
+          <a routerLink="/">
+            <img mat-card-image src="assets/img/logo.png" alt="Photo of a Shiba Inu">
+          </a>
+        </div>
+        <form (ngSubmit)="login()" #formLogin="ngForm">
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput placeholder="Ingrese su Usuario" type="text" [(ngModel)]="user.username" required
+                     name="username" #username="ngModel">
+              <div *ngIf="(formLogin.submitted || username.touched) && username.invalid ">
+                <mat-error *ngIf="username.errors.required">Este campo es requerido</mat-error>
+              </div>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Ingrese su Contraseña" type="password" [(ngModel)]="user.password"
+                     required name="password" #password="ngModel">
+              <div *ngIf="(formLogin.submitted || password.touched) && password.invalid ">
+                <mat-error *ngIf="password.errors.required">Este campo es requerido</mat-error>
+              </div>
+            </mat-form-field>
+            <!--<button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>-->
+            <!--<button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>-->
+
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" type="submit">Ingresar</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

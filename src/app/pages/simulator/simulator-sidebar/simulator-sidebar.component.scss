@@ -1,0 +1,24 @@
+@import "../../../../styles/utils.scss";
+
+@include sidebar() {
+  .simulator-controls {
+    margin-top: 60px;
+    height: 250px;
+    .category-filter {
+      margin-top: 30px;
+    }
+
+    .product-list {
+      margin-top: 30px;
+      height: 250px;
+      .product {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        .image {
+          height: 80px;
+          background-size: cover;
+        }
+      }
+    }
+  }
+}
