@@ -394,7 +394,7 @@ export const layerList: Array<any> = [
     "layer_id": 11,
     "layer_index": 3,
     "name": "Decorado",
-    "default_item": null,
+    "default_item": 36,
     "customizable": true,
     "categories": [],
     "items": [
@@ -1314,6 +1314,7 @@ export const layerList: Array<any> = [
         "layer_id": 17,
         "category_id": null,
         "name": "MACERATA WENGUE 30X60",
+        "preview": "assets/images/simulator/previews/139-pw.png",
         "image_simulator": "assets/images/simulator/layer/139.png"
       },
       {
