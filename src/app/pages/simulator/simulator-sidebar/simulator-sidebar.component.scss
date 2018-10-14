@@ -1,8 +1,12 @@
 @import "../../../../styles/utils.scss";
 
 @include sidebar() {
+  .main-controls {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
   .simulator-controls {
-    margin-top: 60px;
     height: 250px;
     .category-filter {
       margin-top: 30px;

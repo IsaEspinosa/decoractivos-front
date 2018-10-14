@@ -42,7 +42,7 @@
   }
 }
 
-@mixin page-with-sidebar(){
+@mixin page-with-sidebar() {
   .sidebar {
     background: $background-1;
     position: fixed;
@@ -58,9 +58,20 @@
 
 @mixin sidebar() {
   .logo {
-    margin-top: 40px;
-    img {
-      width: 100%;
+    margin-top: 20px;
+    a {
+      display: inline-block;
+      i.back {
+        position: absolute;
+        top: calc(50% - 18px);
+        left: -30px;
+        margin-left: -6px;
+        transform: rotate(180deg);
+        font-size: 36px;
+      }
+      img {
+        width: 100%;
+      }
     }
   }
 

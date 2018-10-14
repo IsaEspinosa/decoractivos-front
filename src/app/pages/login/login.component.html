@@ -12,16 +12,17 @@
             <mat-form-field>
               <input matInput placeholder="Ingrese su Usuario" type="text" [(ngModel)]="user.username" required
                      name="username" #username="ngModel">
-              <div *ngIf="(formLogin.submitted || username.touched) && username.invalid ">
-                <mat-error *ngIf="username.errors.required">Este campo es requerido</mat-error>
-              </div>
+              <mat-error
+                *ngIf="(formLogin.submitted || username.touched) && username.invalid">
+                <div *ngIf="username.errors.required">Este campo es requerido</div>
+              </mat-error>
             </mat-form-field>
             <mat-form-field>
               <input matInput placeholder="Ingrese su Contraseña" type="password" [(ngModel)]="user.password"
                      required name="password" #password="ngModel">
-              <div *ngIf="(formLogin.submitted || password.touched) && password.invalid ">
-                <mat-error *ngIf="password.errors.required">Este campo es requerido</mat-error>
-              </div>
+              <mat-error *ngIf="(formLogin.submitted || password.touched) && password.invalid ">
+                <div *ngIf="password.errors.required">Este campo es requerido</div>
+              </mat-error>
             </mat-form-field>
             <!--<button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>-->
             <!--<button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>-->

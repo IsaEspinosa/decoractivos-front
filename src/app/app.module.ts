@@ -6,13 +6,17 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ScrollbarModule} from "ngx-scrollbar";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
+import {
+  MatButtonModule, MatFormFieldModule, MatInputModule,
+  MatSelectModule, MatIconModule, MatTooltipModule
+} from "@angular/material";
 import {FormsModule} from "@angular/forms";
 
 import {AppComponent} from './app.component';
 import {StickyDirective} from "./common/directives/sticky";
 import {PagesComponents} from './pages';
 import {FooterComponent} from './common/components/footer/footer.component';
+import {IconComponent} from './common/components/icon/icon.component';
 import {MinFooterComponent} from './common/components/min-footer/min-footer.component';
 
 import {GoToDeclarations} from "./common/directives/GoTo";
@@ -27,6 +31,7 @@ import {AuthInterceptor} from "./interceptors/AuthInterceptor";
     StickyDirective,
     FooterComponent,
     MinFooterComponent,
+    IconComponent,
     ...GoToDeclarations,
     ...PagesComponents,
   ],
@@ -42,7 +47,9 @@ import {AuthInterceptor} from "./interceptors/AuthInterceptor";
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   providers: [
     [

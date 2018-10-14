@@ -1,14 +1,16 @@
 @import "../../../../styles/utils.scss";
 
 header {
-  margin-top: 30px;
+  margin-top: 5px;
   font-weight: bolder;
   h2 {
+    margin-top: 5px;
     position: relative;
+    font-size: 17px;
     &:after {
       content: "";
       position: absolute;
-      bottom: -15px;
+      bottom: -5px;
       right: 0;
       background: #000000;
       width: 200px;
@@ -18,19 +20,25 @@ header {
 }
 
 figure {
-  margin-top: 50px;
   position: relative;
+  max-width: 95%;
+  max-height: 85vh;
+  margin: 5px auto 0;
   img {
-    &:first-child{
+    &:first-child {
       position: relative;
     }
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    max-height: 100%;
   }
-  figcaption{
-    margin-top: 15px;
+  figcaption {
     font-size: 10px;
+    position: absolute;
+    left: 0;
+    bottom: -25px;
+    width: 100%;
   }
 }

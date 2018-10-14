@@ -169,3 +169,48 @@ textarea.form-control {
     opacity: 0;
   }
 }
+
+mat-form-field {
+  &.ng-invalid {
+    margin-bottom: 5px !important;
+  }
+  &.ng-untouched {
+    .mat-form-field-wrapper {
+      padding-bottom: 5px !important;
+      .mat-form-field-underline {
+        bottom: 5px !important;
+      }
+    }
+  }
+  input {
+    margin-bottom: 0 !important;
+    line-height: 16px !important;
+  }
+  label {
+    line-height: 16px !important;
+  }
+}
+
+i.dec-icon {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  line-height: inherit;
+  &:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &.broom:after {
+    background-image: url("assets/img/icons/broom.png");
+  }
+  &.back:after {
+    background-image: url("assets/img/icons/back.png");
+  }
+}

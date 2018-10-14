@@ -1,8 +1,20 @@
 <div class="row justify-content-center">
-  <div class="logo col-md-5">
+  <div class="logo col-md-4">
     <a routerLink="/">
-      <img src="assets/img/logo.png">
+      <img src="assets/img/logo_no_title.png">
     </a>
+  </div>
+</div>
+<div class="main-controls row justify-content-center">
+  <div class="col-5">
+    <div class="row justify-content-between">
+      <div class="col-auto back">
+        <a routerLink="/ambientes"><app-icon matTooltip="Volver" icon="back"></app-icon></a>
+      </div>
+      <div class="col-auto clean">
+        <a routerLink="/"><app-icon matTooltip="Limpiar" icon="broom"></app-icon></a>
+      </div>
+    </div>
   </div>
 </div>
 <div class="simulator-controls row justify-content-center">
