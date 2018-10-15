@@ -259,7 +259,7 @@ function migrateImages () {
   writeFileSync('src/app/common/mocks/layers.ts', `export const layerList: Array<any> = ${JSON.stringify(layers, null, 2)};`)
   writeFileSync('src/app/common/mocks/environment_types.ts', `export const environmentTypeList: Array<any> = ${JSON.stringify(environmentTypesArray, null, 2)};`)
 
-  writeFileSync('.migrator_sources/environments.json', JSON.stringify(environments, null, 2))
+  writeFileSync('.migrator_sources/environments.json', JSON.stringify(environments.map(environment => omit(environment, ['slug'])), null, 2))
   writeFileSync('.migrator_sources/environment_types.json', JSON.stringify(environmentTypesArray, null, 2))
   writeFileSync('.migrator_sources/layers.json', JSON.stringify(layers.map(layer => omit(layer, ['categories', 'items'])), null, 2))
   writeFileSync('.migrator_sources/item_categories.json', JSON.stringify(categories, null, 2))
