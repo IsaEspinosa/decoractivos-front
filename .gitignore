@@ -39,3 +39,4 @@ testem.log
 Thumbs.db
 
 .original_images
+.migrator_sources

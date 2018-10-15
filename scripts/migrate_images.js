@@ -3,7 +3,7 @@
  */
 const {readdirSync, writeFileSync, copyFile} = require('fs')
 const {join, extname} = require('path')
-const {chain} = require('lodash')
+const {chain, omit} = require('lodash')
 const imagemin = require('imagemin-keep-folder')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
@@ -27,6 +27,32 @@ function debug (obj) {
   console.log(JSON.stringify(obj, null, 2))
 }
 
+const environmentTypesArray = [
+  {
+    environment_type_id: 1,
+    name: 'Salas'
+  },
+  {
+    environment_type_id: 2,
+    name: 'Comedores'
+  },
+  {
+    environment_type_id: 3,
+    name: 'Cocinas'
+  },
+  {
+    environment_type_id: 4,
+    name: 'Baños'
+  },
+  {
+    environment_type_id: 5,
+    name: 'Exteriores'
+  },
+  {
+    environment_type_id: 6,
+    name: 'Locales'
+  }
+]
 const environments = []
 const layers = []
 const categories = []
@@ -231,4 +257,11 @@ function migrateImages () {
   }
   writeFileSync('src/app/common/mocks/environments.ts', `export const environmentList: Array<any> = ${JSON.stringify(environments, null, 2)};`)
   writeFileSync('src/app/common/mocks/layers.ts', `export const layerList: Array<any> = ${JSON.stringify(layers, null, 2)};`)
+  writeFileSync('src/app/common/mocks/environment_types.ts', `export const environmentTypeList: Array<any> = ${JSON.stringify(environmentTypesArray, null, 2)};`)
+
+  writeFileSync('.migrator_sources/environments.json', JSON.stringify(environments, null, 2))
+  writeFileSync('.migrator_sources/environment_types.json', JSON.stringify(environmentTypesArray, null, 2))
+  writeFileSync('.migrator_sources/layers.json', JSON.stringify(layers.map(layer => omit(layer, ['categories', 'items'])), null, 2))
+  writeFileSync('.migrator_sources/item_categories.json', JSON.stringify(categories, null, 2))
+  writeFileSync('.migrator_sources/layer_items.json', JSON.stringify(items, null, 2))
 })()

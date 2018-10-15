@@ -636,7 +636,7 @@ export const layerList: Array<any> = [
         "layer_id": 14,
         "category_id": null,
         "name": "ARGO TERRA 25X75",
-        "preview": "assets/images/simulator/previews/61-pw.jpg",
+        "preview": "assets/images/simulator/previews/61-pw.png",
         "image_simulator": "assets/images/simulator/layer/61.png"
       },
       {

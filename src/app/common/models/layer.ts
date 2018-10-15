@@ -5,8 +5,8 @@ import {ItemCategory} from "./item-category";
  */
 
 export interface Layer {
-  environment_id: number;
   layer_id: number;
+  environment_id: number;
   layer_index: number;
   name: string;
   default_item: number;

@@ -4,5 +4,6 @@
 
 export interface ItemCategory {
   category_id: number;
+  layer_id: number;
   name: string;
 }
