@@ -45,16 +45,20 @@ export class SimulatorComponent implements OnInit {
       });
   }
 
-  set layers(layers) {
-    layers = layers.sort((prev, next) => prev.layer_index - next.layer_index);
-    this.layersInSimulator = layers.map((layer) => {
+  resetLayers() {
+    this.layersInSimulator = this.layers.map((layer) => {
       const newLayer = <any>omit(layer, ["items", "default_item", "customizable"]);
       newLayer.currentItem = layer.items.find(item => item.item_id === layer.default_item);
       return newLayer
     });
+  }
+
+  set layers(layers) {
+    layers = layers.sort((prev, next) => prev.layer_index - next.layer_index);
+    this._layers = layers;
 
     this.layersInSidebar = layers.filter((layer) => layer.customizable);
-    this._layers = layers
+    this.resetLayers()
   }
 
   get layers() {
@@ -62,7 +66,7 @@ export class SimulatorComponent implements OnInit {
   }
 
   updateLayer(item: LayerItem) {
-    const layer = this.layersInSimulator.find((layer)=>layer.layer_id === item.layer_id);
+    const layer = this.layersInSimulator.find((layer) => layer.layer_id === item.layer_id);
     layer.currentItem = item;
     this.layersInSimulator = this.layersInSimulator.slice();
   }
