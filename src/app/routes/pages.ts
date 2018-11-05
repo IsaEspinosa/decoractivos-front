@@ -8,8 +8,20 @@ import {LoginComponent} from "../pages/login/login.component";
  */
 
 export const PagesRoutes = [
-  {path: '', component: LandingComponent, pathMatch: 'full'},
-  {path: 'ambientes', component: EnvironmentsComponent, pathMatch: 'full'},
-  {path: 'simulador/:environment_slug', canActivate: [AuthGuard], component: SimulatorComponent, pathMatch: 'full'},
-  {path: 'login', component: LoginComponent, pathMatch: 'full'}
+  {path: '', data: {role: "all"}, component: LandingComponent, pathMatch: 'full'},
+  {path: 'login', component: LoginComponent, canActivate: [AuthGuard], data: {role: "guest"}, pathMatch: 'full'},
+  {
+    path: 'ambientes',
+    canActivate: [AuthGuard],
+    data: {roles: ["admin", "client"]},
+    component: EnvironmentsComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'simulador/:environment_slug',
+    canActivate: [AuthGuard],
+    data: {roles: ["admin", "client"]},
+    component: SimulatorComponent,
+    pathMatch: 'full'
+  }
 ];

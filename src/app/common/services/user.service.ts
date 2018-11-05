@@ -31,8 +31,7 @@ export class UserService {
       .pipe(
         map((userLogin: UserLoginResponse) => {
           if (!userLogin) return;
-
-          this.authService.accessToken = userLogin.token
+          this.authService.accessToken = userLogin.access_token
           this.authService.currentUser = userLogin.user
           return userLogin.user
         })

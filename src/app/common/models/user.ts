@@ -15,6 +15,6 @@ export class SystemUser implements User {
 }
 
 export interface UserLoginResponse {
-  token: string;
+  access_token: string;
   user: User;
 }

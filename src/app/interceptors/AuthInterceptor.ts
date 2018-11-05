@@ -1,6 +1,9 @@
 import {HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {Location} from '@angular/common';
 import {AuthService} from "../common/services/auth.service";
 import {Injectable} from "@angular/core";
+import {throwError, of} from 'rxjs';
+import {catchError} from "rxjs/operators";
 
 
 /**
@@ -8,19 +11,32 @@ import {Injectable} from "@angular/core";
  */
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  constructor(private authService: AuthService, private location: Location) {
+  }
 
-  constructor(private authService: AuthService) {
+  interceptResponse(next, req) {
+
+    //noinspection TypeScriptValidateTypes
+    return next.handle(req)
+      .pipe(
+        catchError(response => {
+          if (response.status === 401) {
+            this.authService.redirectLogin(this.location.path())
+          }
+          return throwError(response);
+        })
+      )
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (!this.authService.isLoggedIn()) {
-      return next.handle(req);
+      return this.interceptResponse(next, req);
     }
 
     const authReq = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${this.authService.accessToken}`)
     });
 
-    return next.handle(authReq);
+    return this.interceptResponse(next, authReq);
   }
 }

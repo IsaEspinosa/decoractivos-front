@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiDomain: 'http://www.decoractivos.com',
-  apiUrl: 'http://www.decoractivos.com/api/1.0.0'
+  apiUrl: 'http://localhost:8000/api/1.0.0'
 };
 
 /*

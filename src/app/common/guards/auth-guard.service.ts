@@ -8,28 +8,32 @@ import {AuthService} from "../services/auth.service";
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let url: string = state.url;
+    const url: string = state.url;
+    const routeData: any = route.data;
+    const role = routeData.role;
+    const requiredRoles = role ? [role] : routeData.roles;
 
-    return this.checkLogin(url);
-  }
+    if (!requiredRoles) return this.redirectMainAndReturn();
 
-  checkLogin(url: string): boolean {
+    if (requiredRoles.includes('all')) return true;
+
     if (this.authService.isLoggedIn()) {
-      return true;
+      if (requiredRoles.some(role => this.authService.hasRole(role))) return true;
+      return this.redirectMainAndReturn();
     }
 
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        redirect_url: url
-      }
-    };
+    if (/^\/login/.test(url)) return true;
 
-    // Navigate to the login page with extras
-    this.router.navigate(['/login'], navigationExtras);
+    this.authService.redirectLogin(url);
+    return false;
+  }
+
+  redirectMainAndReturn() {
+    this.authService.redirectMain();
     return false;
   }
 }

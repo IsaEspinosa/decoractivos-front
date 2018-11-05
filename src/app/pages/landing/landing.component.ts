@@ -7,6 +7,7 @@ import {LandingContactComponent} from "./landing-contact/landing-contact.compone
 import {ScrollbarComponent} from "ngx-scrollbar";
 import {ScrollService} from "../../common/services/scroll.service";
 import {LandingEnvironmentCardComponent} from "./landing-environment-card/landing-environment-card.component";
+import {AuthService} from "../../common/services/auth.service";
 
 @Component({
   selector: 'app-landing',
@@ -16,10 +17,13 @@ import {LandingEnvironmentCardComponent} from "./landing-environment-card/landin
 export class LandingComponent implements OnInit, OnDestroy {
   @ViewChild(ScrollbarComponent) scrollRef: ScrollbarComponent;
 
-  constructor(private scrollService: ScrollService) {
+  constructor(private scrollService: ScrollService, private authService: AuthService) {
   }
 
   ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+
+    }
     this.scrollService.instance = this.scrollRef;
   }
 

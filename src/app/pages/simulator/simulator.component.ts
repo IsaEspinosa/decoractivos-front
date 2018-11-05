@@ -32,7 +32,7 @@ export class SimulatorComponent implements OnInit {
     this.route.params
       .pipe(
         flatMap(params => {
-          const id = params.environment_slug.replace(/^[a-zA-Z\-\d]+\-(\d+)$/, "$1");
+          const id = params.environment_slug.replace(/^[a-zA-ZñÑ\-\d]+\-(\d+)$/, "$1");
           return forkJoin([
             this.environmentService.getOne(id),
             this.environmentService.getLayers(id)
