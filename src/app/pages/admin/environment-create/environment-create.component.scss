@@ -1,0 +1,40 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/utils";
+
+header {
+  margin-top: 15px;
+  font-weight: bolder;
+  .logo {
+    height: 90px;
+  }
+  h2 {
+    position: relative;
+    margin: 0 22px 6px;
+    font-size: 22px;
+    display: inline-block;
+    vertical-align: bottom;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      background: #000000;
+      width: 200px;
+      height: 1px;
+    }
+  }
+}
+
+.create-form {
+  position: relative;
+  margin-top: 30px;
+  mat-card-content{
+    > div{
+      width: 80%;
+      margin: 5px auto;
+      mat-form-field{
+        width: 100%;
+      }
+    }
+  }
+}

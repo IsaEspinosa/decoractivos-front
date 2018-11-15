@@ -71,7 +71,7 @@ export class AuthService {
     if (this.roles.includes("client")) {
       this.router.navigate(['/ambientes']);
     } else if (this.roles.includes("admin")) {
-      this.router.navigate(['/admin']);
+      this.router.navigate(['/admin/lista']);
     } else {
       this.router.navigate(['/']);
     }

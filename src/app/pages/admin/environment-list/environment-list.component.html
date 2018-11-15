@@ -1,0 +1,30 @@
+<header class="row justify-content-center">
+  <div class="col-md-11">
+    <a routerLink="/"  matTooltip="Ir al Inicio">
+      <img class="logo" src="./assets/img/logo_no_title.png">
+    </a>
+    <h2 class="text-left">Lista de Ambientes</h2>
+  </div>
+</header>
+<div class="row gallery justify-content-center">
+  <div class="col-md-9">
+    <div class="row displayable" [ngClass]="{transition: isLoading}">
+      <div class="col-md-3 gallery-item add">
+        <button mat-stroked-button color="primary" routerLink="/admin/crear" matTooltip="Agregar Nuevo Ambiente">
+          <i class="material-icons">
+            add
+          </i>
+        </button>
+      </div>
+      <div class="col-md-3 gallery-item" *ngFor="let environment of environments | async"
+           [ngClass]="{'transition delay': isLoading, 'inverted-delay': !isLoading}">
+        <a [routerLink]="['/simulador', environment.slug]" [title]="environment.name">
+          <div class="image-container">
+            <img [src]="environment.preview" [alt]="environment.name">
+          </div>
+          <div class="name">{{environment.name}}</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

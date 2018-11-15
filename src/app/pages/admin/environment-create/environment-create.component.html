@@ -1,0 +1,86 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Crear Tipo de Ambiente</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+                 #dp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<header class="row justify-content-center">
+  <div class="col-md-11">
+    <a routerLink="/" matTooltip="Ir al Inicio">
+      <img class="logo" src="./assets/img/logo_no_title.png">
+    </a>
+    <h2 class="text-left">Crear Ambiente</h2>
+  </div>
+</header>
+<div class="row create-form justify-content-center">
+  <button class="back-button" mat-fab color="primary" routerLink="/admin/lista" matTooltip="Ir al listado de Ambientes">
+    <i class="material-icons">
+      arrow_back
+    </i>
+  </button>
+  <div class="col-md-5">
+    <mat-card class="example-card">
+      <form [formGroup]="environmentForm" (ngSubmit)="onSubmit()">
+        <mat-card-content>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Nombre de Ambiente" type="text" formControlName="name" required>
+              <mat-error *ngIf="fs.checkValidity('name')">
+                <div *ngIf="f.name.errors.required">El ambiente requiere un nombre</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input type="text" placeholder="Tipo de Ambiente" aria-label="Number" matInput
+                     formControlName="environment_type_id"
+                     (keydown)="filterTypes($event.target)"
+                     [matAutocomplete]="auto" required>
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="getTypeName">
+                <mat-option [value]="{action:'add'}">
+                  Agregar Nuevo
+                </mat-option>
+                <mat-option *ngFor="let option of environmentTypesFiltered" [value]="option">
+                  {{option.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="fs.checkValidity('environment_type_id')">
+                <div *ngIf="f.name.errors.required">Debe seleccionar un tipo de ambiente</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <input type="file" (change)="onFileChange($event)" #fileInput accept=".png,.jpg">
+            <mat-error *ngIf="fs.checkValidity('preview')">
+              <div *ngIf="f.preview.errors.required">El ambiente requiere una imagen preliminar</div>
+            </mat-error>
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-raised-button color="primary" type="submit">Guardar</button>
+          <button mat-raised-button color="warn">Cancelar</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</div>

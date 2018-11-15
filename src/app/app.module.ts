@@ -8,9 +8,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule} from '@angular/material/card';
 import {
   MatButtonModule, MatFormFieldModule, MatInputModule,
-  MatSelectModule, MatIconModule, MatTooltipModule
+  MatSelectModule, MatIconModule, MatTooltipModule,
+  MatAutocompleteModule
 } from "@angular/material";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {AppComponent} from './app.component';
 import {StickyDirective} from "./common/directives/sticky";
@@ -40,12 +41,14 @@ import {AuthInterceptor} from "./interceptors/AuthInterceptor";
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     ScrollbarModule,
     NgbModule.forRoot(),
     HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatAutocompleteModule,
     MatInputModule,
     MatSelectModule,
     MatIconModule,
