@@ -1,12 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {map, last} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EnvironmentType} from '../../../common/models/environment-type';
 import {EnvironmentService} from '../../../common/services/environment.service';
 import {FormService} from '../../../common/services/forms.service';
-import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-create-environment-type-component',
@@ -47,7 +47,9 @@ export class CreateEnvironmentTypeComponent implements OnInit {
     const input = new FormData();
     input.append('name', this.environmentForm.get('name').value);
 
-
-    this.modal.close(input);
+    this.environmentService.postType(input)
+      .toPromise()
+      .then(response => this.modal.close(response))
+      .catch(response => this.fs.manageErrors(response));
   }
 }

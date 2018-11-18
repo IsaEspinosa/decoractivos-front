@@ -1,9 +1,9 @@
-import {HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Location} from '@angular/common';
-import {AuthService} from "../common/services/auth.service";
-import {Injectable} from "@angular/core";
+import {AuthService} from '../common/services/auth.service';
+import {Injectable} from '@angular/core';
 import {throwError, of} from 'rxjs';
-import {catchError} from "rxjs/operators";
+import {catchError} from 'rxjs/operators';
 
 
 /**
@@ -21,11 +21,11 @@ export class AuthInterceptor implements HttpInterceptor {
       .pipe(
         catchError(response => {
           if (response.status === 401) {
-            this.authService.redirectLogin(this.location.path())
+            this.authService.redirectLogin(this.location.path());
           }
           return throwError(response);
         })
-      )
+      );
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {

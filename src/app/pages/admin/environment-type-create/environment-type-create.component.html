@@ -14,7 +14,8 @@
           <mat-form-field>
             <input matInput placeholder="Nombre de Ambiente" type="text" formControlName="name" required>
             <mat-error *ngIf="fs.checkValidity('name')">
-              <div *ngIf="f.name.errors.required">El ambiente requiere un nombre</div>
+              <div *ngIf="f.name.errors.required">El Tipo de Ambiente requiere un nombre</div>
+              <div *ngIf="f.name.errors.unique">El Tipo de Ambiente ya existe</div>
             </mat-error>
           </mat-form-field>
         </div>

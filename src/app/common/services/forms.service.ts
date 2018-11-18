@@ -1,4 +1,4 @@
-import {FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl} from '@angular/forms';
 
 export class FormService {
 
@@ -6,7 +6,7 @@ export class FormService {
   }
 
   markFormGroupTouched(formGroup?: FormGroup) {
-    const form = formGroup || this.formGroup
+    const form = formGroup || this.formGroup;
     if (form.controls) {
       const keys = Object.keys(form.controls);
       for (let i = 0; i < keys.length; i++) {
@@ -25,8 +25,26 @@ export class FormService {
     return this.formGroup.controls;
   }
 
-
   checkValidity(field) {
-    return (this.additionalFormInfo.submitted || this.f[field].touched) && this.f[field].invalid
+    return (this.additionalFormInfo.submitted || this.f[field].touched) && this.f[field].invalid;
+  }
+
+  populateErrorForms(errors) {
+    Object.keys(errors)
+      .forEach(error => {
+        this.f[error].setErrors(
+          errors[error].reduce((accum, validation) => {
+            return {
+              ...accum,
+              [validation]: true
+            };
+          }, {}));
+      });
+  }
+
+  manageErrors(response) {
+    if (response.status === 422) {
+      this.populateErrorForms(response.error);
+    }
   }
 }

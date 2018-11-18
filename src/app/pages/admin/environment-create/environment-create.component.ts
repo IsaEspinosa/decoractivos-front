@@ -32,9 +32,7 @@ export class CreateEnvironmentPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.environmentService.getTypes().subscribe(environmentTypes => {
-      this.environmentTypesFiltered = this.environmentTypes = environmentTypes;
-    });
+    this.loadEnvironmentTypes();
     this.environmentForm = this.fb.group({
       name: ['', Validators.required],
       preview: [null, Validators.required],
@@ -51,6 +49,16 @@ export class CreateEnvironmentPageComponent implements OnInit {
     this.openAddModal(CreateEnvironmentTypeComponent);
 
     this.fs = new FormService(this.environmentForm, this);
+  }
+
+  loadEnvironmentTypes() {
+    this.environmentService.getTypes({
+      orderBy: [
+        ['name', 'asc']
+      ]
+    }).subscribe(environmentTypes => {
+      this.environmentTypesFiltered = this.environmentTypes = environmentTypes;
+    });
   }
 
   get f() {
@@ -72,12 +80,7 @@ export class CreateEnvironmentPageComponent implements OnInit {
         centered: true
       })
       .result
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((reason) => {
-        console.log(reason);
-      });
+      .then(result => this.loadEnvironmentTypes());
   }
 
   getTypeName(type) {

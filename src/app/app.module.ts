@@ -9,7 +9,7 @@ import {MatCardModule} from '@angular/material/card';
 import {
   MatButtonModule, MatFormFieldModule, MatInputModule,
   MatSelectModule, MatIconModule, MatTooltipModule,
-  MatAutocompleteModule
+  MatAutocompleteModule, MatSnackBarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -24,6 +24,8 @@ import {GoToDeclarations} from './common/directives/GoTo';
 import {BackendInterceptors} from './interceptors/backend/index';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './interceptors/AuthInterceptor';
+import {ErrorInterceptor} from './interceptors/ErrorInterceptor';
+import {ResponseTransformInterceptor} from './interceptors/ResponseTransformInterceptor';
 
 
 @NgModule({
@@ -56,11 +58,14 @@ import {AuthInterceptor} from './interceptors/AuthInterceptor';
     MatInputModule,
     MatSelectModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [
     [
       {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+      {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+      {provide: HTTP_INTERCEPTORS, useClass: ResponseTransformInterceptor, multi: true},
     ],
     BackendInterceptors
   ],
