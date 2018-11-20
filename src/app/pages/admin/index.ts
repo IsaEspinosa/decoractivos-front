@@ -1,5 +1,6 @@
 import {EnvironmentListInternalComponents} from './environment-list/environment-list.component';
 import {CreateEnvironmentInternalComponents} from './environment-create/environment-create.component';
+import {EditEnvironmentInternalComponents} from './environment-create/environment-edit.component';
 import {CreateEnvironmentTypeComponent} from './environment-type-create/environment-type-create.component';
 
 /**
@@ -9,6 +10,7 @@ import {CreateEnvironmentTypeComponent} from './environment-type-create/environm
 export const AdminPagesComponents = [
   ...EnvironmentListInternalComponents,
   ...CreateEnvironmentInternalComponents,
+  ...EditEnvironmentInternalComponents,
 ];
 
 export const AdminEntryComponents = [

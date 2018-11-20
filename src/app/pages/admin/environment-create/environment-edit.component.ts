@@ -6,8 +6,10 @@ import {EnvironmentService} from '../../../common/services/environment.service';
 import {CreateEnvironmentTypeComponent} from '../environment-type-create/environment-type-create.component';
 import {FormService} from '../../../common/services/forms.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Router} from '@angular/router';
-import {tap} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
+import {forkJoin} from 'rxjs';
+import {flatMap, tap, first} from 'rxjs/operators';
+import {Layer} from '../../../common/models/layer';
 
 
 @Component({
@@ -15,9 +17,9 @@ import {tap} from 'rxjs/operators';
   templateUrl: './environment-create.component.html',
   styleUrls: ['./environment-create.component.scss']
 })
-export class CreateEnvironmentPageComponent implements OnInit {
+export class EditEnvironmentPageComponent implements OnInit {
 
-  public environment: Environment = new Environment();
+  public environment: Environment;
   public environmentForm: FormGroup;
   public environmentTypes: Array<EnvironmentType>;
   public environmentTypesFiltered: Array<EnvironmentType> = [];
@@ -31,14 +33,14 @@ export class CreateEnvironmentPageComponent implements OnInit {
   constructor(protected environmentService: EnvironmentService,
               private fb: FormBuilder,
               private modalService: NgbModal,
+              private route: ActivatedRoute,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.loadEnvironmentTypes();
     this.environmentForm = this.fb.group({
       name: ['', Validators.required],
-      preview: [null, Validators.required],
+      preview: [null],
       environment_type_id: [null, Validators.required]
     });
 
@@ -50,6 +52,15 @@ export class CreateEnvironmentPageComponent implements OnInit {
       });
 
     this.fs = new FormService(this.environmentForm, this);
+
+    forkJoin(
+      this.loadEnvironmentTypes(),
+      this.loadEnvironment()
+    )
+      .subscribe(([types, environment]) => {
+        const currentType = types.find(type => type.environment_type_id === environment.environment_type_id);
+        this.f.environment_type_id.setValue(currentType);
+      });
   }
 
   loadEnvironmentTypes() {
@@ -61,8 +72,22 @@ export class CreateEnvironmentPageComponent implements OnInit {
       })
       .pipe(
         tap(environmentTypes => this.environmentTypesFiltered = this.environmentTypes = environmentTypes)
-      )
-      .subscribe();
+      );
+  }
+
+  loadEnvironment() {
+    return this.route.params
+      .pipe(
+        first(),
+        flatMap(params => {
+          const id = this.environmentService.extractIdFromSlug(params.environment_slug);
+          return this.environmentService.getOne(id);
+        }),
+        tap(environment => {
+          this.environment = <Environment>environment;
+          this.f.name.setValue(environment.name);
+        })
+      );
   }
 
   get f() {
@@ -110,6 +135,7 @@ export class CreateEnvironmentPageComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+
     this.fs.markFormGroupTouched();
     if (this.environmentForm.invalid) {
       return;
@@ -117,15 +143,18 @@ export class CreateEnvironmentPageComponent implements OnInit {
 
     const input = new FormData();
     input.append('name', this.environmentForm.get('name').value);
-    input.append('preview', this.environmentForm.get('preview').value);
     input.append('environment_type_id', this.environmentForm.get('environment_type_id').value.environment_type_id);
 
-    return this.environmentService.post(input).toPromise()
-      .then(environment => this.router.navigate([`/admin/ambientes/${environment.slug}`]))
+    if (this.environmentForm.get('preview').dirty) {
+      input.append('preview', this.environmentForm.get('preview').value);
+    }
+
+    return this.environmentService.put(this.environment.environment_id, input).toPromise()
+      .then(environment => this.router.navigate([`/admin/ambientes`]))
       .catch(response => this.fs.manageErrors(response));
   }
 }
 
-export const CreateEnvironmentInternalComponents = [
-  CreateEnvironmentPageComponent,
+export const EditEnvironmentInternalComponents = [
+  EditEnvironmentPageComponent,
 ];

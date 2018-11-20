@@ -19,8 +19,20 @@ export class EnvironmentService extends BaseService {
     super();
   }
 
+  extractIdFromSlug(slug: string) {
+    return slug.replace(/^[a-zA-ZñÑ\-\d]+\-(\d+)$/, '$1');
+  }
+
   getList(query = {}): Observable<Array<Environment>> {
     return this.http.get<Array<Environment>>(EnvironmentService.API_ENVIRONMENT_RESOURCE, {params: query});
+  }
+
+  post(nEnvironment: FormData): Observable<Environment> {
+    return this.http.post<Environment>(EnvironmentService.API_ENVIRONMENT_RESOURCE, nEnvironment);
+  }
+
+  put(environment_id, nEnvironment: FormData): Observable<Environment> {
+    return this.http.post<Environment>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}/update`, nEnvironment);
   }
 
   getOne(environment_id) {

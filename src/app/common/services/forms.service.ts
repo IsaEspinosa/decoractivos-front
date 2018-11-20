@@ -5,7 +5,7 @@ export class FormService {
   constructor(private formGroup: FormGroup, private additionalFormInfo: any) {
   }
 
-  markFormGroupTouched(formGroup?: FormGroup) {
+  markFormGroup(markAs: string, formGroup?: FormGroup) {
     const form = formGroup || this.formGroup;
     if (form.controls) {
       const keys = Object.keys(form.controls);
@@ -13,12 +13,16 @@ export class FormService {
         const control = form.controls[keys[i]];
 
         if (control instanceof FormControl) {
-          control.markAsTouched();
+          control[`markAs${markAs}`]();
         } else if (control instanceof FormGroup) {
-          this.markFormGroupTouched(control);
+          this.markFormGroup(markAs, control);
         }
       }
     }
+  }
+
+  markFormGroupTouched(formGroup?: FormGroup) {
+    this.markFormGroup('Touched', formGroup);
   }
 
   get f() {
@@ -46,5 +50,6 @@ export class FormService {
     if (response.status === 422) {
       this.populateErrorForms(response.error);
     }
+    this.additionalFormInfo.submitted = false;
   }
 }

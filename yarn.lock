@@ -5264,6 +5264,12 @@ next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
+ngx-image-cropper@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/ngx-image-cropper/-/ngx-image-cropper-1.2.2.tgz#50855a82cd59069225001ee3c3f4958af2291ab9"
+  dependencies:
+    tslib "^1.9.0"
+
 ngx-scrollbar@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ngx-scrollbar/-/ngx-scrollbar-2.1.0.tgz#72dfb6f3cde0cd52ce67ed42b76fee70c10df99c"

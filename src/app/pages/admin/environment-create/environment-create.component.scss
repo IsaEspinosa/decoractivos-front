@@ -29,11 +29,67 @@ header.main {
   position: relative;
   margin-top: 30px;
   mat-card-content {
-    > div {
+    .input {
       width: 80%;
-      margin: 5px auto;
+      margin: 10px auto;
       mat-form-field {
         width: 100%;
+      }
+      #environment-previewer {
+        position: relative;
+        img{
+          width: 100%;
+        }
+        button {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 12px;
+          i {
+            font-size: 19px;
+          }
+        }
+      }
+      #environment-preview-uploader {
+        margin-top: 15px;
+        width: 100%;
+        border: 1px solid #cfcfcf;
+        border-radius: 3px;
+        background: #c8dadf;
+        text-align: center;
+        position: relative;
+        padding: 20px 0;
+        transition: all .3s;
+        &:before {
+          border: 1px dashed #6e6e6e;
+          border-radius: 5px;
+          position: absolute;
+          top: 5px;
+          left: 5px;
+          width: calc(100% - 10px);
+          height: calc(100% - 10px);
+          transition: all .3s;
+          content: "";
+        }
+        input[type=file] {
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        &:not(.disabled){
+          &:hover, &:focus, &.dragging {
+            background: #FFF;
+            &:before {
+              top: 10px;
+              left: 10px;
+              width: calc(100% - 20px);
+              height: calc(100% - 20px);
+            }
+          }
+        }
       }
     }
   }

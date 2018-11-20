@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Observable, Observer, Subject} from "rxjs";
-import {NavigationExtras, Router} from "@angular/router";
-import {authTokenKey, roleKey} from "../constants";
-import {User} from "../models/user";
+import {Observable, Observer, Subject} from 'rxjs';
+import {NavigationExtras, Router} from '@angular/router';
+import {authTokenKey, roleKey} from '../constants';
+import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,18 +17,18 @@ export class AuthService {
   }
 
   get currentUser() {
-    return this._currentUser.asObservable()
+    return this._currentUser.asObservable();
   }
 
   set currentUser(user: any) {
     if (user) {
       this.roles = user.roles.map(role => role.identifier);
     }
-    this._currentUser.next(user)
+    this._currentUser.next(user);
   }
 
   get roles() {
-    return this._roles
+    return this._roles;
   }
 
   set roles(roles) {
@@ -37,22 +37,22 @@ export class AuthService {
   }
 
   get accessToken() {
-    return this._token
+    return this._token;
   }
 
   set accessToken(token: string) {
     if (token) {
       this.pendingLogin = false;
-      localStorage[authTokenKey] = this._token = token
+      localStorage[authTokenKey] = this._token = token;
     } else {
       delete localStorage[authTokenKey];
-      this.roles = ["guest"];
-      this.currentUser = null
+      this.roles = ['guest'];
+      this.currentUser = null;
     }
   }
 
   isLoggedIn(): boolean {
-    return !!this.accessToken
+    return !!this.accessToken;
   }
 
   redirectLogin(redirect_url) {
@@ -68,10 +68,10 @@ export class AuthService {
   }
 
   redirectMain() {
-    if (this.roles.includes("client")) {
+    if (this.roles.includes('client')) {
       this.router.navigate(['/ambientes']);
-    } else if (this.roles.includes("admin")) {
-      this.router.navigate(['/admin/lista']);
+    } else if (this.roles.includes('admin')) {
+      this.router.navigate(['/admin/ambientes']);
     } else {
       this.router.navigate(['/']);
     }
