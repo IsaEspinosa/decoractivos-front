@@ -1859,7 +1859,7 @@ export const layerList: Array<any> = [
     "environment_id": 5,
     "layer_id": 20,
     "layer_index": 0,
-    "name": "Piso",
+    "name": "Pared",
     "default_item": 202,
     "customizable": false,
     "categories": [],
@@ -1868,7 +1868,7 @@ export const layerList: Array<any> = [
         "item_id": 202,
         "layer_id": 20,
         "category_id": null,
-        "name": "Piso",
+        "name": "Pared",
         "preview": null,
         "image_simulator": "assets/images/simulator/layer/202.png"
       }
@@ -1878,344 +1878,306 @@ export const layerList: Array<any> = [
     "environment_id": 5,
     "layer_id": 21,
     "layer_index": 1,
-    "name": "Muebles",
-    "default_item": 203,
-    "customizable": false,
-    "categories": [],
-    "items": [
-      {
-        "item_id": 203,
-        "layer_id": 21,
-        "category_id": null,
-        "name": "Muebles",
-        "preview": null,
-        "image_simulator": "assets/images/simulator/layer/203.png"
-      }
-    ]
-  },
-  {
-    "environment_id": 6,
-    "layer_id": 22,
-    "layer_index": 0,
-    "name": "Pared",
-    "default_item": 204,
-    "customizable": false,
-    "categories": [],
-    "items": [
-      {
-        "item_id": 204,
-        "layer_id": 22,
-        "category_id": null,
-        "name": "Pared",
-        "preview": null,
-        "image_simulator": "assets/images/simulator/layer/204.png"
-      }
-    ]
-  },
-  {
-    "environment_id": 6,
-    "layer_id": 23,
-    "layer_index": 1,
     "name": "Piso",
-    "default_item": 205,
+    "default_item": 203,
     "customizable": true,
     "categories": [
       {
         "category_id": 8,
-        "layer_id": 23,
+        "layer_id": 21,
         "name": "Brillantes"
       },
       {
         "category_id": 9,
-        "layer_id": 23,
+        "layer_id": 21,
         "name": "Diamantes"
       },
       {
         "category_id": 10,
-        "layer_id": 23,
+        "layer_id": 21,
         "name": "Maderas"
       },
       {
         "category_id": 11,
-        "layer_id": 23,
+        "layer_id": 21,
         "name": "Satinados Y Mates"
       }
     ],
     "items": [
       {
-        "item_id": 205,
-        "layer_id": 23,
+        "item_id": 203,
+        "layer_id": 21,
         "category_id": 8,
         "name": "DAKAR BEIGE 55X55",
+        "preview": "assets/images/simulator/previews/203-pw.png",
+        "image_simulator": "assets/images/simulator/layer/203.png"
+      },
+      {
+        "item_id": 204,
+        "layer_id": 21,
+        "category_id": 8,
+        "name": "MADERA REAL 55X55",
+        "preview": "assets/images/simulator/previews/204-pw.png",
+        "image_simulator": "assets/images/simulator/layer/204.png"
+      },
+      {
+        "item_id": 205,
+        "layer_id": 21,
+        "category_id": 8,
+        "name": "MADERA ROSETTI 55X55",
         "preview": "assets/images/simulator/previews/205-pw.png",
         "image_simulator": "assets/images/simulator/layer/205.png"
       },
       {
         "item_id": 206,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 8,
-        "name": "MADERA REAL 55X55",
+        "name": "MADERA SABINO 55X55",
         "preview": "assets/images/simulator/previews/206-pw.png",
         "image_simulator": "assets/images/simulator/layer/206.png"
       },
       {
         "item_id": 207,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 8,
-        "name": "MADERA ROSETTI 55X55",
+        "name": "MARMOL CAVANA 60X60",
         "preview": "assets/images/simulator/previews/207-pw.png",
         "image_simulator": "assets/images/simulator/layer/207.png"
       },
       {
         "item_id": 208,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 8,
-        "name": "MADERA SABINO 55X55",
+        "name": "MARMOL SENESI 60X60",
         "preview": "assets/images/simulator/previews/208-pw.png",
         "image_simulator": "assets/images/simulator/layer/208.png"
       },
       {
         "item_id": 209,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 8,
-        "name": "MARMOL CAVANA 60X60",
-        "preview": "assets/images/simulator/previews/209-pw.png",
+        "name": "MAZZINI NATURE 55X55",
+        "preview": "assets/images/simulator/previews/209-pw.jpg",
         "image_simulator": "assets/images/simulator/layer/209.png"
       },
       {
         "item_id": 210,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 8,
-        "name": "MARMOL SENESI 60X60",
+        "name": "MAZZINI TERRA 55X55",
         "preview": "assets/images/simulator/previews/210-pw.png",
         "image_simulator": "assets/images/simulator/layer/210.png"
       },
       {
         "item_id": 211,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 8,
-        "name": "MAZZINI NATURE 55X55",
-        "preview": "assets/images/simulator/previews/211-pw.jpg",
+        "name": "SAN PIETRO BEIGE 55X55",
+        "preview": "assets/images/simulator/previews/211-pw.png",
         "image_simulator": "assets/images/simulator/layer/211.png"
       },
       {
         "item_id": 212,
-        "layer_id": 23,
-        "category_id": 8,
-        "name": "MAZZINI TERRA 55X55",
-        "preview": "assets/images/simulator/previews/212-pw.png",
+        "layer_id": 21,
+        "category_id": 9,
+        "name": "DIAMANTE CELESTINI 60X60",
+        "preview": "assets/images/simulator/previews/212-pw.jpg",
         "image_simulator": "assets/images/simulator/layer/212.png"
       },
       {
         "item_id": 213,
-        "layer_id": 23,
-        "category_id": 8,
-        "name": "SAN PIETRO BEIGE 55X55",
+        "layer_id": 21,
+        "category_id": 9,
+        "name": "DIAMANTE DINAMO 60X60",
         "preview": "assets/images/simulator/previews/213-pw.png",
         "image_simulator": "assets/images/simulator/layer/213.png"
       },
       {
         "item_id": 214,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 9,
-        "name": "DIAMANTE CELESTINI 60X60",
-        "preview": "assets/images/simulator/previews/214-pw.jpg",
+        "name": "DIAMANTE HORTENSIA 60X60",
+        "preview": "assets/images/simulator/previews/214-pw.png",
         "image_simulator": "assets/images/simulator/layer/214.png"
       },
       {
         "item_id": 215,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 9,
-        "name": "DIAMANTE DINAMO 60X60",
-        "preview": "assets/images/simulator/previews/215-pw.png",
+        "name": "DIAMANTE MILAZZO 60X60",
+        "preview": "assets/images/simulator/previews/215-pw.jpg",
         "image_simulator": "assets/images/simulator/layer/215.png"
       },
       {
         "item_id": 216,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 9,
-        "name": "DIAMANTE HORTENSIA 60X60",
-        "preview": "assets/images/simulator/previews/216-pw.png",
+        "name": "DIAMANTE PERLADO 60X60",
+        "preview": "assets/images/simulator/previews/216-pw.jpg",
         "image_simulator": "assets/images/simulator/layer/216.png"
       },
       {
         "item_id": 217,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 9,
-        "name": "DIAMANTE MILAZZO 60X60",
-        "preview": "assets/images/simulator/previews/217-pw.jpg",
+        "name": "DIAMANTE ROYAL BLANCO 60X60",
+        "preview": "assets/images/simulator/previews/217-pw.png",
         "image_simulator": "assets/images/simulator/layer/217.png"
       },
       {
         "item_id": 218,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 9,
-        "name": "DIAMANTE PERLADO 60X60",
-        "preview": "assets/images/simulator/previews/218-pw.jpg",
+        "name": "DIAMANTE VEZZIO BEIGE 60X60",
+        "preview": "assets/images/simulator/previews/218-pw.png",
         "image_simulator": "assets/images/simulator/layer/218.png"
       },
       {
         "item_id": 219,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 9,
-        "name": "DIAMANTE ROYAL BLANCO 60X60",
+        "name": "DIAMANTE VEZZIO TERRA 60X60",
         "preview": "assets/images/simulator/previews/219-pw.png",
         "image_simulator": "assets/images/simulator/layer/219.png"
       },
       {
         "item_id": 220,
-        "layer_id": 23,
-        "category_id": 9,
-        "name": "DIAMANTE VEZZIO BEIGE 60X60",
+        "layer_id": 21,
+        "category_id": 10,
+        "name": "CASANO ALMENDRA 45X90",
         "preview": "assets/images/simulator/previews/220-pw.png",
         "image_simulator": "assets/images/simulator/layer/220.png"
       },
       {
         "item_id": 221,
-        "layer_id": 23,
-        "category_id": 9,
-        "name": "DIAMANTE VEZZIO TERRA 60X60",
+        "layer_id": 21,
+        "category_id": 10,
+        "name": "CASANO CREMA 45X90",
         "preview": "assets/images/simulator/previews/221-pw.png",
         "image_simulator": "assets/images/simulator/layer/221.png"
       },
       {
         "item_id": 222,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 10,
-        "name": "CASANO ALMENDRA 45X90",
+        "name": "MACERATA ALMENDRA 30X60",
         "preview": "assets/images/simulator/previews/222-pw.png",
         "image_simulator": "assets/images/simulator/layer/222.png"
       },
       {
         "item_id": 223,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 10,
-        "name": "CASANO CREMA 45X90",
+        "name": "MACERATA AVELLANA 30X60",
         "preview": "assets/images/simulator/previews/223-pw.png",
         "image_simulator": "assets/images/simulator/layer/223.png"
       },
       {
         "item_id": 224,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 10,
-        "name": "MACERATA ALMENDRA 30X60",
+        "name": "MACERATA MARFIL 30X60",
         "preview": "assets/images/simulator/previews/224-pw.png",
         "image_simulator": "assets/images/simulator/layer/224.png"
       },
       {
         "item_id": 225,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 10,
-        "name": "MACERATA AVELLANA 30X60",
+        "name": "MACERATA WENGUE 30X60",
         "preview": "assets/images/simulator/previews/225-pw.png",
         "image_simulator": "assets/images/simulator/layer/225.png"
       },
       {
         "item_id": 226,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 10,
-        "name": "MACERATA MARFIL 30X60",
+        "name": "MADERA LUGANO CENIZO 60X60",
         "preview": "assets/images/simulator/previews/226-pw.png",
         "image_simulator": "assets/images/simulator/layer/226.png"
       },
       {
         "item_id": 227,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 10,
-        "name": "MACERATA WENGUE 30X60",
-        "preview": "assets/images/simulator/previews/227-pw.png",
+        "name": "MADERA LUGANO CREMA 60X60",
+        "preview": "assets/images/simulator/previews/227-pw.jpg",
         "image_simulator": "assets/images/simulator/layer/227.png"
       },
       {
         "item_id": 228,
-        "layer_id": 23,
-        "category_id": 10,
-        "name": "MADERA LUGANO CENIZO 60X60",
-        "preview": "assets/images/simulator/previews/228-pw.png",
+        "layer_id": 21,
+        "category_id": 11,
+        "name": "CANDIA BEIGE 30X60",
+        "preview": "assets/images/simulator/previews/228-pw.jpg",
         "image_simulator": "assets/images/simulator/layer/228.png"
       },
       {
         "item_id": 229,
-        "layer_id": 23,
-        "category_id": 10,
-        "name": "MADERA LUGANO CREMA 60X60",
-        "preview": "assets/images/simulator/previews/229-pw.jpg",
+        "layer_id": 21,
+        "category_id": 11,
+        "name": "CANDIA TERRA 30X60",
+        "preview": "assets/images/simulator/previews/229-pw.png",
         "image_simulator": "assets/images/simulator/layer/229.png"
       },
       {
         "item_id": 230,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 11,
-        "name": "CANDIA BEIGE 30X60",
-        "preview": "assets/images/simulator/previews/230-pw.jpg",
+        "name": "FERRARA GRIS 45X90",
+        "preview": "assets/images/simulator/previews/230-pw.png",
         "image_simulator": "assets/images/simulator/layer/230.png"
       },
       {
         "item_id": 231,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 11,
-        "name": "CANDIA TERRA 30X60",
+        "name": "MATINELLA BEIGE 45X90",
         "preview": "assets/images/simulator/previews/231-pw.png",
         "image_simulator": "assets/images/simulator/layer/231.png"
       },
       {
         "item_id": 232,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 11,
-        "name": "FERRARA GRIS 45X90",
+        "name": "SPADA BLANCO 60X60",
         "preview": "assets/images/simulator/previews/232-pw.png",
         "image_simulator": "assets/images/simulator/layer/232.png"
       },
       {
         "item_id": 233,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 11,
-        "name": "MATINELLA BEIGE 45X90",
+        "name": "SPADA NEGRO 60X60",
         "preview": "assets/images/simulator/previews/233-pw.png",
         "image_simulator": "assets/images/simulator/layer/233.png"
       },
       {
         "item_id": 234,
-        "layer_id": 23,
-        "category_id": 11,
-        "name": "SPADA BLANCO 60X60",
-        "preview": "assets/images/simulator/previews/234-pw.png",
-        "image_simulator": "assets/images/simulator/layer/234.png"
-      },
-      {
-        "item_id": 235,
-        "layer_id": 23,
-        "category_id": 11,
-        "name": "SPADA NEGRO 60X60",
-        "preview": "assets/images/simulator/previews/235-pw.png",
-        "image_simulator": "assets/images/simulator/layer/235.png"
-      },
-      {
-        "item_id": 236,
-        "layer_id": 23,
+        "layer_id": 21,
         "category_id": 11,
         "name": "ZABLE BLANCO 60X60",
-        "preview": "assets/images/simulator/previews/236-pw.png",
-        "image_simulator": "assets/images/simulator/layer/236.png"
+        "preview": "assets/images/simulator/previews/234-pw.png",
+        "image_simulator": "assets/images/simulator/layer/234.png"
       }
     ]
   },
   {
-    "environment_id": 6,
-    "layer_id": 24,
+    "environment_id": 5,
+    "layer_id": 22,
     "layer_index": 2,
     "name": "Mueble",
-    "default_item": 237,
+    "default_item": 235,
     "customizable": false,
     "categories": [],
     "items": [
       {
-        "item_id": 237,
-        "layer_id": 24,
+        "item_id": 235,
+        "layer_id": 22,
         "category_id": null,
         "name": "Mueble",
         "preview": null,
-        "image_simulator": "assets/images/simulator/layer/237.png"
+        "image_simulator": "assets/images/simulator/layer/235.png"
       }
     ]
   }

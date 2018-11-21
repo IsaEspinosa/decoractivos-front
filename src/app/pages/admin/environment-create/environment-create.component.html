@@ -72,20 +72,15 @@
                 format="jpeg"
                 (imageCropped)="imageCropped($event)"
               ></image-cropper>
-              <button mat-mini-fab color="primary" (click)="imageChangedEvent = null">
-                <i class="material-icons">
-                  delete_forever
-                </i>
-              </button>
             </label>
             <label *ngIf="environment.preview" id="environment-previewer">
               <img [src]="environment.preview">
-              <button mat-mini-fab color="primary" (click)="environment.preview = null">
-                <i class="material-icons">
-                  delete_forever
-                </i>
-              </button>
             </label>
+            <button class="remove" *ngIf="imageChangedEvent || environment.preview" mat-mini-fab color="primary" (click)="imageChangedEvent = null">
+              <i class="material-icons">
+                delete_forever
+              </i>
+            </button>
             <mat-error *ngIf="fs.checkValidity('preview')">
               <div *ngIf="f.preview.errors.required">El ambiente requiere una imagen preliminar</div>
             </mat-error>

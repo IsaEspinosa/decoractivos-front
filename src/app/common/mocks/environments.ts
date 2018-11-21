@@ -33,18 +33,10 @@ export const environmentList: Array<any> = [
   },
   {
     "environment_id": 5,
-    "environment_type_id": 6,
-    "base_image": "",
-    "preview": "assets/images/environments/local-1-5.png",
-    "name": "Local 1",
-    "slug": "local-1-5"
-  },
-  {
-    "environment_id": 6,
     "environment_type_id": 1,
     "base_image": "",
-    "preview": "assets/images/environments/sala-1-6.png",
+    "preview": "assets/images/environments/sala-1-5.png",
     "name": "Sala 1",
-    "slug": "sala-1-6"
+    "slug": "sala-1-5"
   }
 ];
