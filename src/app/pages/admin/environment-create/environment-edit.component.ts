@@ -138,6 +138,7 @@ export class EditEnvironmentPageComponent implements OnInit {
 
     this.fs.markFormGroupTouched();
     if (this.environmentForm.invalid) {
+      this.submitted = false;
       return;
     }
 

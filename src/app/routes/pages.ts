@@ -4,6 +4,7 @@ import {EnvironmentsComponent} from '../pages/environments/environments.componen
 import {EnvironmentListPageComponent} from '../pages/admin/environment-list/environment-list.component';
 import {CreateEnvironmentPageComponent} from '../pages/admin/environment-create/environment-create.component';
 import {EditEnvironmentPageComponent} from '../pages/admin/environment-create/environment-edit.component';
+import {SimulatorEditorPageComponent} from '../pages/admin/simulator/simulator-editor/simulator-editor.component';
 import {AuthGuard} from '../common/guards/auth-guard.service';
 import {LoginComponent} from '../pages/login/login.component';
 
@@ -39,7 +40,16 @@ export const PagesRoutes = [
           },
           {
             path: ':environment_slug',
-            component: EditEnvironmentPageComponent
+            children: [
+              {
+                path: '',
+                component: SimulatorEditorPageComponent,
+              },
+              {
+                path: 'editar',
+                component: EditEnvironmentPageComponent
+              }
+            ]
           }
         ]
       }

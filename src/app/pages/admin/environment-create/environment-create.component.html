@@ -3,19 +3,19 @@
     <a routerLink="/" matTooltip="Ir al Inicio">
       <img class="logo" src="./assets/img/logo_no_title.png">
     </a>
-    <h2 class="text-left" *ngIf="!environment.environment_id">Crear Ambiente</h2>
-    <h2 class="text-left" *ngIf="environment.environment_id">Modificar Ambiente</h2>
+    <h2 class="text-left" *ngIf="environment && !environment.environment_id">Crear Ambiente</h2>
+    <h2 class="text-left" *ngIf="environment && environment.environment_id">Modificar Ambiente</h2>
   </div>
 </header>
 <div class="row create-form justify-content-center">
   <button class="back-button" mat-fab color="primary" routerLink="/admin/ambientes"
-          *ngIf="!environment.environment_id" matTooltip="Ir al listado de Ambientes">
+          *ngIf="environment && !environment.environment_id" matTooltip="Ir al listado de Ambientes">
     <i class="material-icons">
       arrow_back
     </i>
   </button>
   <button class="back-button" mat-fab color="primary" routerLink="/admin/ambientes"
-          *ngIf="environment.environment_id"
+          *ngIf="environment && environment.environment_id"
           matTooltip="Ir al detalle del ambiente">
     <i class="material-icons">
       arrow_back
@@ -55,11 +55,11 @@
             </mat-form-field>
           </div>
           <div class="input">
-            <label *ngIf="!imageChangedEvent && !environment.preview" for="environment-preview-upload"
+            <label *ngIf="!imageChangedEvent && environment && !environment.preview" for="environment-preview-upload"
                    id="environment-preview-uploader"
                    [ngClass]="{'dragging':isDragging, 'disabled':!environment}" (dragexit)="isDragging = false"
                    (dragenter)="isDragging = true">
-              Haz click <br /> O <br /> Arrastra una imagen
+              Haz click <br/> O <br/> Arrastra una imagen
               <input id="environment-preview-upload" type="file" [attr.readonly]="!environment?'':null"
                      [disabled]="!environment" (change)="imageChangedEvent = $event" #fileInput accept=".png,.jpg">
             </label>
@@ -73,10 +73,11 @@
                 (imageCropped)="imageCropped($event)"
               ></image-cropper>
             </label>
-            <label *ngIf="environment.preview" id="environment-previewer">
+            <label *ngIf="environment && environment.preview" id="environment-previewer">
               <img [src]="environment.preview">
             </label>
-            <button class="remove" *ngIf="imageChangedEvent || environment.preview" mat-mini-fab color="primary" (click)="imageChangedEvent = null">
+            <button class="remove" *ngIf="imageChangedEvent || (environment && environment.preview)" mat-mini-fab color="primary"
+                    (click)="imageChangedEvent = null">
               <i class="material-icons">
                 delete_forever
               </i>
@@ -86,16 +87,32 @@
             </mat-error>
           </div>
         </mat-card-content>
-        <mat-card-actions align="end">
-          <button mat-raised-button color="primary"
-                  [disabled]="submitted || !environment || (environment.environment_id && environmentForm.pristine)"
-                  type="submit">Guardar
-          </button>
-          <button mat-raised-button *ngIf="!environment.environment_id" [disabled]="submitted || !environment"
-                  routerLink="/admin/ambientes" type="button">Cancelar</button>
-          <button mat-raised-button *ngIf="environment.environment_id" [disabled]="submitted || !environment"
-                  routerLink="/admin/ambientes" type="button">Cancelar</button>
-        </mat-card-actions>
+        <div class="row create-form justify-content-center">
+          <div class="col-md-5">
+            <mat-card-actions *ngIf="environment && environment.environment_id">
+              <button mat-raised-button color="primary"
+                      [routerLink]="['/admin/ambientes', environment.slug]"
+                      [disabled]="submitted || !environment || (environment.environment_id && !environmentForm.pristine)"
+                      type="button">
+                Editar Simulador
+              </button>
+            </mat-card-actions>
+          </div>
+          <div class="col-md-5">
+            <mat-card-actions align="end">
+              <button mat-raised-button color="primary"
+                      [disabled]="submitted || !environment || (environment.environment_id && environmentForm.pristine)"
+                      type="submit">Guardar
+              </button>
+              <button mat-raised-button *ngIf="environment && !environment.environment_id" [disabled]="submitted || !environment"
+                      routerLink="/admin/ambientes" type="button">Cancelar
+              </button>
+              <button mat-raised-button *ngIf="environment && environment.environment_id" [disabled]="submitted || !environment"
+                      routerLink="/admin/ambientes" type="button">Cancelar
+              </button>
+            </mat-card-actions>
+          </div>
+        </div>
       </form>
     </mat-card>
   </div>

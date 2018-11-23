@@ -11,8 +11,9 @@ import {
   MatSelectModule, MatIconModule, MatTooltipModule,
   MatAutocompleteModule, MatSnackBarModule
 } from '@angular/material';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { ImageCropperModule } from 'ngx-image-cropper';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 import {AppComponent} from './app.component';
 import {StickyDirective} from './common/directives/sticky';
@@ -61,6 +62,7 @@ import {ResponseTransformInterceptor} from './interceptors/ResponseTransformInte
     MatIconModule,
     MatTooltipModule,
     MatSnackBarModule,
+    DragDropModule,
     ImageCropperModule,
   ],
   providers: [

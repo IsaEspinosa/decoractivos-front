@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
-import {Observable} from "rxjs/index";
-import {Layer} from "../../../common/models/layer";
-import {LayerItem} from "../../../common/models/layer-item";
-import {ItemCategory} from "../../../common/models/item-category";
-import {DomSanitizer} from "@angular/platform-browser";
+import {Observable} from 'rxjs/index';
+import {Layer} from '../../../common/models/layer';
+import {LayerItem} from '../../../common/models/layer-item';
+import {ItemCategory} from '../../../common/models/item-category';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-simulator-sidebar',
@@ -12,8 +12,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class SimulatorSidebarComponent implements OnInit {
 
-  @Output("updateLayer") updateLayerEmitter = new EventEmitter<LayerItem>();
-  @Output("resetLayers") resetLayersEmitter = new EventEmitter<any>();
+  @Output('updateLayer') updateLayerEmitter = new EventEmitter<LayerItem>();
+  @Output('resetLayers') resetLayersEmitter = new EventEmitter<any>();
 
   public selectedLayer: Layer;
   public selectedCategory: ItemCategory;
@@ -27,7 +27,7 @@ export class SimulatorSidebarComponent implements OnInit {
   }
 
   get layers() {
-    return this._layers || []
+    return this._layers || [];
   }
 
   constructor(private sanitizer: DomSanitizer) {
@@ -39,24 +39,24 @@ export class SimulatorSidebarComponent implements OnInit {
   changeLayer(layer: Layer) {
     if (!layer) return;
     this.selectedLayer = layer;
-    this.changeCategory(this.selectedLayer, this.selectedLayer.categories[0])
+    this.changeCategory(this.selectedLayer, this.selectedLayer.categories[0]);
   }
 
   changeCategory(layer: Layer, category: ItemCategory) {
     if (!category) {
       this.filteredProducts = layer.items;
-      return
+      return;
     }
     this.selectedCategory = category;
     this.filteredProducts = layer.items.filter((item) => item.category_id === category.category_id);
   }
 
-  resetLayers(){
-    this.resetLayersEmitter.emit()
+  resetLayers() {
+    this.resetLayersEmitter.emit();
   }
 
   selectProduct(product) {
-    this.updateLayerEmitter.emit(product)
+    this.updateLayerEmitter.emit(product);
   }
 
 }

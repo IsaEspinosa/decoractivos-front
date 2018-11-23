@@ -41,6 +41,7 @@ export class CreateEnvironmentTypeComponent implements OnInit {
     this.submitted = true;
     this.fs.markFormGroupTouched();
     if (this.environmentForm.invalid) {
+      this.submitted = false;
       return;
     }
 

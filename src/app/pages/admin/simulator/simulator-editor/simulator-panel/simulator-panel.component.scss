@@ -1,0 +1,16 @@
+figure {
+  position: relative;
+  margin: 5px auto 0;
+  display: inline-block;
+  text-align: left;
+  img {
+    &:first-child {
+      position: relative;
+    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 98%;
+    max-height: calc(100vh - 150px);
+  }
+}

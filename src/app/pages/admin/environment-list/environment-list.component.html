@@ -18,7 +18,7 @@
       </div>
       <div class="col-md-3 gallery-item" *ngFor="let environment of environments | async"
            [ngClass]="{'transition delay': isLoading, 'inverted-delay': !isLoading}">
-        <a [routerLink]="['/admin/ambientes', environment.slug]" [title]="environment.name">
+        <a [routerLink]="['/admin/ambientes', environment.slug, 'editar']" [title]="environment.name">
           <div class="image-container">
             <img [src]="environment.preview" [alt]="environment.name">
           </div>

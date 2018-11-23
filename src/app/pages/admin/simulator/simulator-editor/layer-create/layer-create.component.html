@@ -1,0 +1,45 @@
+<mat-card class="create-envtype-modal">
+  <mat-card-header>
+    <mat-card-title id="modal-basic-title">Crear Capa</mat-card-title>
+    <button mat-mini-fab color="warn" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <i class="material-icons" aria-hidden="true">
+        close
+      </i>
+    </button>
+  </mat-card-header>
+  <form [formGroup]="layerForm" (ngSubmit)="!submitted && onSubmit()">
+    <mat-card-content>
+      <div class="row inputs justify-content-center">
+        <div class="col-md-8">
+          <mat-form-field>
+            <input matInput placeholder="Nombre de la Capa" type="text" formControlName="name" required>
+            <mat-error *ngIf="fs.checkValidity('name')">
+              <div *ngIf="f.name.errors.required">La Capa requiere un nombre</div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select disableOptionCentering formControlName="customizable" placeholder="Tipo de Capa" required>
+              <mat-option [value]="true">
+                Capa con productos
+              </mat-option>
+              <mat-option [value]="false">
+                Capa con imagen de fondo
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="fs.checkValidity('customizable')">
+              <div *ngIf="f.customizable.errors.required">Debe seleccionar un tipo de Capa</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row buttons justify-content-center">
+        <div class="col-md-4">
+          <button mat-raised-button color="primary" [disabled]="submitted" type="submit">Guardar</button>
+        </div>
+        <div class="col-md-4">
+          <button mat-raised-button type="button" [disabled]="submitted" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </form>
+</mat-card>

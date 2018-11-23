@@ -1,0 +1,26 @@
+<header class="row justify-content-center">
+  <div class="col-md-11">
+    <a routerLink="/" matTooltip="Ir al Inicio">
+      <img class="logo" src="./assets/img/logo_no_title.png">
+    </a>
+    <h2 class="text-left">Editor de Simulador: {{environment.name}}</h2>
+  </div>
+</header>
+<div class="row simulator mt-4 justify-content-center">
+  <div class="panel" [ngClass]="{'col-md-9':!selectedLayer, 'col-md-6':selectedLayer}">
+    <app-admin-simulator-panel [environment]="environment" [layers]="layersInSimulator"></app-admin-simulator-panel>
+  </div>
+  <div [ngClass]="{'col-md-3':!selectedLayer, 'col-md-6':selectedLayer}">
+    <app-admin-simulator-layers-handler
+      *ngIf="!selectedLayer" [layers]="layers" (reorderLayers)="reorderLayers($event)"
+      [disabled]="updatingLayers" (selectLayers)="selectedLayer = $event" (openAddLayer)="openAddLayerModal()"
+    >
+    </app-admin-simulator-layers-handler>
+  </div>
+  <button class="back-button" mat-fab color="primary" [routerLink]="['/admin/ambientes', environment.slug, 'editar']"
+          matTooltip="Volver al Ambiente">
+    <i class="material-icons">
+      arrow_back
+    </i>
+  </button>
+</div>

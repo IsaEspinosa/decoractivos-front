@@ -1,0 +1,45 @@
+.layer-handler, header{
+  width: 90%;
+}
+
+header{
+  margin-bottom: 40px;
+  h3{
+    font-size: 20px;
+    position: relative;
+    &:after{
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      right: 0;
+      background: #000000;
+      width: 100px;
+      height: 1px;
+    }
+  }
+}
+
+.add-button {
+  padding: 9px 10px;
+  cursor: pointer;
+  * {
+    cursor: pointer;
+  }
+  button {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    box-shadow: none;
+    i {
+      margin-top: -12px;
+    }
+    vertical-align: middle;
+  }
+  span {
+    margin-top: -4px;
+    vertical-align: middle;
+  }
+  &:hover{
+    background: #eef1f3;
+  }
+}

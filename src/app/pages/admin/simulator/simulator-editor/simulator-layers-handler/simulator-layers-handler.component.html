@@ -1,0 +1,24 @@
+<header>
+  <h3 class="text-right">Lista de Capas</h3>
+</header>
+<div class="layer-handler">
+  <div cdkDropList class="layer-list" [cdkDropListDisabled]="disabled" (cdkDropListDropped)="moveLayer($event)">
+    <div class="layer-box" (click)="selectLayers.emit(layer)" *ngFor="let layer of layers" cdkDrag
+         [cdkDragDisabled]="disabled">
+      {{layer.name}}
+      <div class="handle" cdkDragHandle matTooltip="Reorganizar">
+        <i class="material-icons">
+          zoom_out_map
+        </i>
+      </div>
+    </div>
+    <div class="layer-box add-button" (click)="openAddLayer.emit()">
+      <button mat-mini-fab color="primary">
+        <i class="material-icons">
+          add
+        </i>
+      </button>
+      <span>Agregar Capa</span>
+    </div>
+  </div>
+</div>

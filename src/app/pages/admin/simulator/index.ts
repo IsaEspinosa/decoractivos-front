@@ -1,5 +1,11 @@
+import {SimulatorEditorInternalComponents} from './simulator-editor/simulator-editor.component';
+import {LayerCreateComponent} from './simulator-editor/layer-create/layer-create.component';
 
+export const AdminSimulatorComponents = [
+  ...SimulatorEditorInternalComponents,
+  LayerCreateComponent,
+];
 
-export const AdminSimulatorComponents = [];
-
-export const AdminSimulatorEntryComponents = [];
+export const AdminSimulatorEntryComponents = [
+  LayerCreateComponent
+];

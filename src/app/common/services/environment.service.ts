@@ -43,6 +43,14 @@ export class EnvironmentService extends BaseService {
     return this.http.get<Array<Layer>>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}/layers`);
   }
 
+  postLayer(environment_id, layer: FormData) {
+    return this.http.post<Layer>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}/layers`, layer);
+  }
+
+  reorderLayers(environment_id, layers: any): Observable<Array<Layer>> {
+    return this.http.post<Array<Layer>>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}/layers/reorder`, {layers});
+  }
+
   getTypes(query = {}): Observable<Array<EnvironmentType>> {
     return this.http
       .get<Array<EnvironmentType>>(
