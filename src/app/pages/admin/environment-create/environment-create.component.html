@@ -1,6 +1,6 @@
 <header class="row justify-content-center main">
   <div class="col-md-11">
-    <a routerLink="/" matTooltip="Ir al Inicio">
+    <a routerLink="/admin" matTooltip="Ir al Admin">
       <img class="logo" src="./assets/img/logo_no_title.png">
     </a>
     <h2 class="text-left" *ngIf="environment && !environment.environment_id">Crear Ambiente</h2>
@@ -76,8 +76,9 @@
             <label *ngIf="environment && environment.preview" id="environment-previewer">
               <img [src]="environment.preview">
             </label>
-            <button class="remove" *ngIf="imageChangedEvent || (environment && environment.preview)" mat-mini-fab color="primary"
-                    (click)="imageChangedEvent = null">
+            <button class="remove" type="button" *ngIf="imageChangedEvent || (environment && environment.preview)"
+                    mat-mini-fab color="primary"
+                    (click)="removeImage()">
               <i class="material-icons">
                 delete_forever
               </i>
@@ -94,7 +95,7 @@
                       [routerLink]="['/admin/ambientes', environment.slug]"
                       [disabled]="submitted || !environment || (environment.environment_id && !environmentForm.pristine)"
                       type="button">
-                Editar Simulador
+                Ver Productos
               </button>
             </mat-card-actions>
           </div>
@@ -104,11 +105,14 @@
                       [disabled]="submitted || !environment || (environment.environment_id && environmentForm.pristine)"
                       type="submit">Guardar
               </button>
-              <button mat-raised-button *ngIf="environment && !environment.environment_id" [disabled]="submitted || !environment"
-                      routerLink="/admin/ambientes" type="button">Cancelar
+              <button mat-raised-button *ngIf="environment && !environment.environment_id"
+                      [disabled]="submitted || !environment"
+                      routerLink="/admin/ambientes" type="button">
+                Cancelar
               </button>
-              <button mat-raised-button *ngIf="environment && environment.environment_id" [disabled]="submitted || !environment"
-                      routerLink="/admin/ambientes" type="button">Cancelar
+              <button mat-raised-button *ngIf="environment && environment.environment_id"
+                      [disabled]="submitted || !environment" (click)="reload()" type="button">
+                Cancelar
               </button>
             </mat-card-actions>
           </div>

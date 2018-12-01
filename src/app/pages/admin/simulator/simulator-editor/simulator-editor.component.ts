@@ -13,6 +13,8 @@ import {LayerItem} from '../../../../common/models/layer-item';
 
 import {SimulatorPanelComponent} from './simulator-panel/simulator-panel.component';
 import {SimulatorLayersHandlerComponent} from './simulator-layers-handler/simulator-layers-handler.component';
+import {LayerWithoutProductsComponent} from './layer-edit/layer-without-products.component';
+import {LayerWithProductsComponent} from './layer-edit/layer-with-products.component';
 import {LayerCreateComponent} from './layer-create/layer-create.component';
 
 @Component({
@@ -25,7 +27,8 @@ export class SimulatorEditorPageComponent implements OnInit {
   public _layers: Array<Layer> = [];
   public layersInSimulator: Array<any> = [];
   public layersInSidebar: Array<Layer> = [];
-  public selectedLayer: Layer = null;
+  public __selectedLayer: Layer = null;
+  public selectedLayerInSimulator: any = null;
   public updatingLayers = false;
 
   constructor(private route: ActivatedRoute,
@@ -49,6 +52,19 @@ export class SimulatorEditorPageComponent implements OnInit {
         this.environment = environment;
         this.layers = layers;
       });
+  }
+
+  set selectedLayer(layer) {
+    if (layer) {
+      this.__selectedLayer = layer;
+      this.selectedLayerInSimulator = this.layersInSimulator.find(layerIS => layerIS.layer_id === layer.layer_id);
+    } else {
+      this.selectedLayerInSimulator = this.__selectedLayer = layer;
+    }
+  }
+
+  get selectedLayer() {
+    return this.__selectedLayer;
   }
 
   reorderLayers($event) {
@@ -87,6 +103,7 @@ export class SimulatorEditorPageComponent implements OnInit {
     modalRef
       .result
       .then(result => {
+        this.selectedLayer = result;
         this.layers = [
           ...this.layers,
           result
@@ -94,12 +111,15 @@ export class SimulatorEditorPageComponent implements OnInit {
       });
   }
 
-  resetLayers() {
-    this.layersInSimulator = this.layers.map((layer) => {
-      const newLayer = <any>omit(layer, ['items', 'default_item', 'customizable']);
-      newLayer.currentItem = layer.items.find(item => item.item_id === layer.default_item);
-      return newLayer;
-    });
+  updateLayerData(layer: Layer) {
+    const newLayers = this.layers.slice();
+    newLayers.splice(layer.layer_index, 1, layer);
+    this.layers = newLayers;
+    this.selectedLayer = layer;
+  }
+
+  removeLayer(layers) {
+    this.layers = layers;
   }
 
   set layers(layers) {
@@ -114,6 +134,14 @@ export class SimulatorEditorPageComponent implements OnInit {
     return this._layers;
   }
 
+  resetLayers() {
+    this.layersInSimulator = this.layers.map((layer) => {
+      const newLayer = <any>omit(layer, ['items', 'default_item', 'customizable']);
+      newLayer.currentItem = layer.items.find(item => item.item_id === layer.default_item);
+      return newLayer;
+    });
+  }
+
   updateLayer(item: LayerItem) {
     const layer = this.layersInSimulator.find(layer => layer.layer_id === item.layer_id);
     layer.currentItem = item;
@@ -124,5 +152,7 @@ export class SimulatorEditorPageComponent implements OnInit {
 export const SimulatorEditorInternalComponents = [
   SimulatorEditorPageComponent,
   SimulatorPanelComponent,
-  SimulatorLayersHandlerComponent
+  SimulatorLayersHandlerComponent,
+  LayerWithoutProductsComponent,
+  LayerWithProductsComponent,
 ];

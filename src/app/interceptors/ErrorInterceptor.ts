@@ -2,8 +2,8 @@ import {HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-
 import {MatSnackBar} from '@angular/material';
+
 import {ErrorSnackComponent} from '../common/components/error-snack/error-snack.component';
 
 

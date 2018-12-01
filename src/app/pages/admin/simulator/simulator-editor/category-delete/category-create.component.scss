@@ -1,0 +1,51 @@
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/utils";
+
+mat-card-header {
+  mat-card-title {
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  mat-card-subtitle {
+    width: 80%;
+    text-align: justify;
+    i.warning {
+      color: #F00;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  button.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 8px;
+    i {
+      font-size: 16px;
+      color: #FFFFFF !important;
+    }
+    &:hover, &:active {
+      i {
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
+mat-card-content {
+  mat-form-field {
+    width: 100%;
+  }
+  .inputs {
+    margin: 40px 0 80px;
+  }
+  .buttons {
+    button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<header class="row justify-content-center">
+  <div class="col-md-11">
+    <a routerLink="/"  matTooltip="Ir al Inicio">
+      <img class="logo" src="./assets/img/logo_no_title.png">
+    </a>
+    <h2 class="text-left">Panel de Administracion</h2>
+  </div>
+</header>
+<div class="row gallery justify-content-center">
+  <div class="col-md-9">
+    <div class="row displayable" [ngClass]="{transition: isLoading}">
+      <div class="col-md-3 gallery-item transition inverted-delay" *ngFor="let page of pages">
+        <a [routerLink]="page.link" [title]="page.name">
+          <div class="image-container">
+            <img [src]="page.icon" [alt]="page.name">
+          </div>
+          <div class="name">{{page.name}}</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

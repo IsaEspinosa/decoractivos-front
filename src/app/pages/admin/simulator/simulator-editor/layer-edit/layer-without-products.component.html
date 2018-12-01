@@ -1,0 +1,59 @@
+<header class="main">
+  <div class="row justify-content-between">
+    <h3 class="col-7 text-left">Capa: {{layer.name}}</h3>
+    <div class="col text-right">
+      <button mat-mini-fab matTooltip="Volver a la lista de capas" (click)="close.emit()" color="warn">
+        <i class="material-icons">
+          close
+        </i>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="layer-handler">
+  <form [formGroup]="layerForm" (ngSubmit)="!submitted && onSubmit()">
+    <div class="input">
+      <mat-form-field>
+        <input matInput placeholder="Nombre de la Capa" type="text" formControlName="name" required>
+        <mat-error *ngIf="fs.checkValidity('name')">
+          <div *ngIf="f.name.errors.required">El ambiente requiere un nombre</div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="input image-handler">
+      <label *ngIf="!imageChangedEvent && !image" for="layer-image-upload"
+             id="layer-image-uploader" [ngClass]="{'dragging':isDragging}" (dragexit)="isDragging = false"
+             (dragenter)="isDragging = true">
+        Haz click <br/> O <br/> Arrastra una imagen
+        <input id="layer-image-upload" type="file" (change)="imageCropped($event.target.files)" accept=".png">
+      </label>
+      <label *ngIf="image" id="layer-image" class="fill">
+        <img [src]="image">
+      </label>
+      <button class="remove" *ngIf="imageChangedEvent || image" mat-mini-fab color="primary"
+              (click)="removeImage()">
+        <i class="material-icons">
+          delete_forever
+        </i>
+      </button>
+      <mat-error *ngIf="fs.checkValidity('image')">
+        <div *ngIf="f.image.errors.required">La capa requiere una imagen de fondo</div>
+      </mat-error>
+    </div>
+    <div class="row justify-content-between">
+      <div class="col-auto">
+        <button mat-raised-button (click)="remove()" color="warn" type="button">
+          Eliminar Capa
+        </button>
+      </div>
+      <div class="col form-buttons text-right">
+        <button mat-raised-button color="primary" [disabled]="submitted || layerForm.pristine" type="submit">
+          Guardar Cambios
+        </button>
+        <button mat-raised-button (click)="ngOnChanges()" [disabled]="submitted || layerForm.pristine" type="button">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,26 +1,50 @@
-<header class="row justify-content-center">
-  <div class="col-md-11">
-    <a routerLink="/" matTooltip="Ir al Inicio">
-      <img class="logo" src="./assets/img/logo_no_title.png">
-    </a>
-    <h2 class="text-left">Editor de Simulador: {{environment.name}}</h2>
-  </div>
-</header>
-<div class="row simulator mt-4 justify-content-center">
-  <div class="panel" [ngClass]="{'col-md-9':!selectedLayer, 'col-md-6':selectedLayer}">
-    <app-admin-simulator-panel [environment]="environment" [layers]="layersInSimulator"></app-admin-simulator-panel>
-  </div>
-  <div [ngClass]="{'col-md-3':!selectedLayer, 'col-md-6':selectedLayer}">
-    <app-admin-simulator-layers-handler
-      *ngIf="!selectedLayer" [layers]="layers" (reorderLayers)="reorderLayers($event)"
-      [disabled]="updatingLayers" (selectLayers)="selectedLayer = $event" (openAddLayer)="openAddLayerModal()"
+<div class="container-fluid">
+  <div class="row simulator justify-content-center">
+    <div class="panel"
+         [ngClass]="{
+         'col-md-9':!selectedLayer,
+         'col-md-6':selectedLayer && selectedLayer.customizable,
+         'col-md-7':selectedLayer && !selectedLayer.customizable
+       }"
     >
-    </app-admin-simulator-layers-handler>
+      <header class="row">
+        <div class="col-auto">
+          <a routerLink="/admin" matTooltip="Ir al Admin">
+            <img class="logo" src="./assets/img/logo_no_title.png">
+          </a>
+          <h2 class="text-left">Editor de Simulador: {{environment.name}}</h2>
+        </div>
+      </header>
+      <div class="mt-4 position-relative">
+        <app-admin-simulator-panel [environment]="environment" [layers]="layersInSimulator"></app-admin-simulator-panel>
+        <button class="back-button" mat-fab color="primary" [routerLink]="['/admin/ambientes', environment.slug, 'editar']"
+                matTooltip="Volver al Ambiente">
+          <i class="material-icons">
+            arrow_back
+          </i>
+        </button>
+      </div>
+    </div>
+    <div [ngClass]="{
+    'col-md-3':!selectedLayer,
+    'col-md-6':selectedLayer && selectedLayer.customizable,
+    'col-md-5':selectedLayer && !selectedLayer.customizable
+  }">
+      <app-admin-simulator-layers-handler
+        *ngIf="!selectedLayer" [layers]="layers" (reorderLayers)="reorderLayers($event)"
+        [disabled]="updatingLayers" (selectLayers)="selectedLayer = $event" (openAddLayer)="openAddLayerModal()"
+      >
+      </app-admin-simulator-layers-handler>
+      <app-admin-layer-without-products
+        [layer]="selectedLayer" [environment]="environment" (close)="selectedLayer = null"
+        (update)="updateLayerData($event)" (removeLayer)="removeLayer($event)"
+        *ngIf="selectedLayer && !selectedLayer.customizable">
+      </app-admin-layer-without-products>
+      <app-admin-layer-with-products
+        [layer]="selectedLayer" [layerInSimulator]="selectedLayerInSimulator" [environment]="environment" (close)="selectedLayer = null"
+        (update)="updateLayerData($event)" (removeLayer)="removeLayer($event)" (updateSelectedProduct)="updateLayer($event)"
+        *ngIf="selectedLayer && selectedLayer.customizable">
+      </app-admin-layer-with-products>
+    </div>
   </div>
-  <button class="back-button" mat-fab color="primary" [routerLink]="['/admin/ambientes', environment.slug, 'editar']"
-          matTooltip="Volver al Ambiente">
-    <i class="material-icons">
-      arrow_back
-    </i>
-  </button>
 </div>

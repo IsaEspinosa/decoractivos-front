@@ -99,6 +99,13 @@ export class EditEnvironmentPageComponent implements OnInit {
     this.environmentForm.get('preview').markAsDirty();
   }
 
+  removeImage() {
+    this.imageChangedEvent = null;
+    this.environmentForm.get('preview').setValue(null);
+    this.environmentForm.get('preview').markAsPristine();
+    this.environment.preview = null;
+  }
+
   openAddModal(content) {
     this.modalService
       .open(content, {
@@ -151,8 +158,12 @@ export class EditEnvironmentPageComponent implements OnInit {
     }
 
     return this.environmentService.put(this.environment.environment_id, input).toPromise()
-      .then(environment => this.router.navigate([`/admin/ambientes`]))
+      .then(environment => this.reload())
       .catch(response => this.fs.manageErrors(response));
+  }
+
+  reload() {
+    this.ngOnInit();
   }
 }
 

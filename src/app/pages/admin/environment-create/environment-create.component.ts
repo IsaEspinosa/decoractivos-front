@@ -9,7 +9,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {tap} from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-create-environment-page',
   templateUrl: './environment-create.component.html',
@@ -88,6 +87,12 @@ export class CreateEnvironmentPageComponent implements OnInit {
       });
   }
 
+  removeImage() {
+    this.imageChangedEvent = null;
+    this.environmentForm.get('preview').setValue(null);
+    this.environmentForm.get('preview').markAsPristine();
+  }
+
   getTypeName(type) {
     return !type || type === 'add' ? '' : type.name;
   }
@@ -122,7 +127,7 @@ export class CreateEnvironmentPageComponent implements OnInit {
     input.append('environment_type_id', this.environmentForm.get('environment_type_id').value.environment_type_id);
 
     return this.environmentService.post(input).toPromise()
-      .then(environment => this.router.navigate([`/admin/ambientes/${environment.slug}`]))
+      .then(environment => this.router.navigate([`/admin/ambientes/${environment.slug}/editar`]))
       .catch(response => this.fs.manageErrors(response));
   }
 }

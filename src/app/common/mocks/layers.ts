@@ -27,8 +27,8 @@ export const layerList: Array<any> = [
         "layer_id": 1,
         "category_id": 1,
         "name": "CANDIA BEIGE 30X60",
-        "preview": "assets/images/simulator/previews/2-pw.png",
-        "image_simulator": "assets/images/simulator/layer/2.jpg"
+        "preview": "assets/images/simulator/previews/2-pw.jpg",
+        "image_simulator": "assets/images/simulator/layer/2.png"
       },
       {
         "item_id": 3,

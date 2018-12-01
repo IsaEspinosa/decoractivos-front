@@ -2,6 +2,7 @@ import {EnvironmentListInternalComponents} from './environment-list/environment-
 import {CreateEnvironmentInternalComponents} from './environment-create/environment-create.component';
 import {EditEnvironmentInternalComponents} from './environment-create/environment-edit.component';
 import {AdminSimulatorComponents, AdminSimulatorEntryComponents} from './simulator';
+import {AdminPageInternalComponents} from './admin.component';
 import {CreateEnvironmentTypeComponent} from './environment-type-create/environment-type-create.component';
 
 /**
@@ -13,6 +14,7 @@ export const AdminPagesComponents = [
   ...CreateEnvironmentInternalComponents,
   ...EditEnvironmentInternalComponents,
   ...AdminSimulatorComponents,
+  ...AdminPageInternalComponents,
 ];
 
 export const AdminEntryComponents = [

@@ -1,0 +1,92 @@
+<header class="main">
+  <div class="row justify-content-between">
+    <h3 class="col-7 text-left">Capa: {{layer.name}}</h3>
+    <div class="col text-right">
+      <button mat-mini-fab matTooltip="Volver a la lista de capas" (click)="close.emit()" color="warn">
+        <i class="material-icons">
+          close
+        </i>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="layer-handler">
+  <form [formGroup]="layerForm" (ngSubmit)="!submitted && onSubmit()">
+    <div class="row align-items-end justify-content-between">
+      <div class="col">
+        <mat-form-field>
+          <input matInput placeholder="Nombre de la Capa" type="text" formControlName="name" required>
+          <mat-error *ngIf="fs.checkValidity('name')">
+            <div *ngIf="f.name.errors.required">El ambiente requiere un nombre</div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-auto panel-buttons">
+        <div class="text-right">
+          <button mat-raised-button color="primary" [disabled]="submitted || layerForm.pristine" type="submit">
+            Guardar Cambios
+          </button>
+          <button mat-raised-button (click)="ngOnChanges()" [disabled]="submitted || layerForm.pristine" type="button">
+            Cancelar Cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="groups">
+    <div class="container-fluid">
+      <div *ngFor="let group of groups" [ngClass]="{'default':!group.category}">
+        <header>
+          <h6>
+            {{group.category ? group.category.name: 'General'}}
+            <i *ngIf="group.category" class="material-icons">
+              delete
+            </i>
+          </h6>
+        </header>
+        <div class="row group-list">
+          <div class="col-4 item-container" [ngClass]="{
+                  'is-default': item.item_id === layer.default_item,
+                  'is-selected': item.item_id === layerInSimulator.currentItem.item_id
+                }" *ngFor="let item of group.items"
+               (click)="updateSelected(item)"
+          >
+            <div>
+              <span class="principal-tag">Principal</span>
+              <div class="actions">
+                <i class="material-icons" *ngIf="item.item_id === layer.default_item"
+                   matTooltip="Desmarcar como producto inicial">
+                  remove_circle_outline
+                </i>
+                <i class="material-icons" *ngIf="item.item_id !== layer.default_item"
+                   matTooltip="Marcar como producto inicial">
+                  bookmark
+                </i>
+                <i class="material-icons" matTooltip="Editar producto">
+                  edit
+                </i>
+              </div>
+              <img [src]="item.preview">
+              <div class="name">
+                {{item.name}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row buttons justify-content-between">
+    <div class="col text-right">
+      <button mat-raised-button (click)="openCreateCategory()" color="primary" type="button">
+        Agregar Categoria
+      </button>
+      <button mat-raised-button type="button">
+        Agregar Producto
+      </button>
+      <button mat-raised-button (click)="remove()" color="warn" type="button">
+        Eliminar Capa
+      </button>
+    </div>
+  </div>
+</div>

@@ -7,11 +7,11 @@ import {EditEnvironmentPageComponent} from '../pages/admin/environment-create/en
 import {SimulatorEditorPageComponent} from '../pages/admin/simulator/simulator-editor/simulator-editor.component';
 import {AuthGuard} from '../common/guards/auth-guard.service';
 import {LoginComponent} from '../pages/login/login.component';
+import {AdminPageComponent} from '../pages/admin/admin.component';
 
 /**
  * Created by garusis on 2/06/18.
  */
-
 export const PagesRoutes = [
   {path: '', data: {role: 'all'}, component: LandingComponent, pathMatch: 'full'},
   {path: 'login', component: LoginComponent, canActivate: [AuthGuard], data: {role: 'guest'}, pathMatch: 'full'},
@@ -27,6 +27,10 @@ export const PagesRoutes = [
     canActivate: [AuthGuard],
     data: {roles: ['admin']},
     children: [
+      {
+        path: '',
+        component: AdminPageComponent
+      },
       {
         path: 'ambientes',
         children: [

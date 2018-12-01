@@ -21,8 +21,8 @@ export class LayerCreateComponent implements OnInit {
   public fs: FormService;
 
   constructor(protected environmentService: EnvironmentService,
-              private fb: FormBuilder,
-              private modal: NgbActiveModal) {
+              public fb: FormBuilder,
+              public modal: NgbActiveModal) {
   }
 
   ngOnInit() {

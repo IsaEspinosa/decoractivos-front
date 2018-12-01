@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {catchError, map} from "rxjs/internal/operators";
-import {UserService} from "../../common/services/user.service";
-import {SystemUser} from "../../common/models/user";
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormService} from "../../common/services/forms.service";
+import {catchError, map} from 'rxjs/internal/operators';
+import {UserService} from '../../common/services/user.service';
+import {SystemUser} from '../../common/models/user';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormService} from '../../common/services/forms.service';
+import {AuthService} from '../../common/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   public fs: FormService;
 
   constructor(private userService: UserService,
+              private authService: AuthService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginError(error) {
-    console.log(error)
+    console.log(error);
   }
 
   login() {
@@ -36,10 +38,16 @@ export class LoginComponent implements OnInit {
         () => {
           this.route
             .queryParams
-            .subscribe((params: any) => this.router.navigate([params.redirect_url]));
+            .subscribe((params: any) => {
+              if (params.redirect_url) {
+                this.router.navigate([params.redirect_url]);
+              } else {
+                this.authService.redirectMain();
+              }
+            });
         },
         this.loginError
-      )
+      );
   }
 
 }
