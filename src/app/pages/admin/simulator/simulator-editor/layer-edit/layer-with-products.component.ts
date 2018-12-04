@@ -12,6 +12,8 @@ import {SnackService} from '../../../../../common/services/snack.service';
 import {ItemCategory} from '../../../../../common/models/item-category';
 import {LayerItem} from '../../../../../common/models/layer-item';
 import {CreateCategoryComponent} from '../category-create/category-create.component';
+import {UpdateCategoryComponent} from '../category-create/category-update.component';
+import {DeleteCategoryComponent} from '../category-create/category-delete.component';
 
 
 @Component({
@@ -113,6 +115,20 @@ export class LayerWithProductsComponent implements OnChanges {
       .catch(response => this.fs.manageErrors(response));
   }
 
+  updateDefaultItemLayer(itemLayer: LayerItem) {
+    this.submitted = true;
+
+    const input = new FormData();
+    input.append('default_item', itemLayer.item_id.toString());
+
+    return this.environmentService.putLayer(this.environment.environment_id, this.layer.layer_id, input).toPromise()
+      .then(layer => {
+        this.submitted = false;
+        this.update.emit(layer);
+      })
+      .catch(response => this.fs.manageErrors(response));
+  }
+
   remove() {
     return this.environmentService.removeLayer(this.environment.environment_id, this.layer.layer_id).toPromise()
       .then(layers => {
@@ -135,6 +151,35 @@ export class LayerWithProductsComponent implements OnChanges {
     modalRef.componentInstance.environment = this.environment;
     modalRef.componentInstance.layer = this.layer;
     modalRef.componentInstance.hasGeneralItems = this.groupsIds.includes(null);
+
+    modalRef.result.then(layer => this.update.emit(layer));
+  }
+
+  openUpdateCategory(category: ItemCategory) {
+    const modalRef = this.modalService
+      .open(UpdateCategoryComponent, {
+        ariaLabelledBy: 'modal-basic-title',
+        backdrop: 'static',
+        centered: true
+      });
+    modalRef.componentInstance.environment = this.environment;
+    modalRef.componentInstance.layer = this.layer;
+    modalRef.componentInstance.hasGeneralItems = this.groupsIds.includes(null);
+    modalRef.componentInstance.category = category;
+
+    modalRef.result.then(layer => this.update.emit(layer));
+  }
+
+  openDeleteCategory(category: ItemCategory) {
+    const modalRef = this.modalService
+      .open(DeleteCategoryComponent, {
+        ariaLabelledBy: 'modal-basic-title',
+        backdrop: 'static',
+        centered: true
+      });
+    modalRef.componentInstance.environment = this.environment;
+    modalRef.componentInstance.layer = this.layer;
+    modalRef.componentInstance.category = category;
 
     modalRef.result.then(layer => this.update.emit(layer));
   }

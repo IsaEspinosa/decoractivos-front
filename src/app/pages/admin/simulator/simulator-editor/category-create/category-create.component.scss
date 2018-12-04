@@ -11,6 +11,7 @@ mat-card-header {
   mat-card-subtitle {
     width: 80%;
     text-align: justify;
+    margin: 0 auto;
     i.warning {
       color: #F00;
     }
@@ -47,5 +48,16 @@ mat-card-content {
     button {
       width: 100%;
     }
+    .delete-category-modal & {
+      margin-top: 20px;
+    }
   }
+
+  .delete-category-modal & {
+    p {
+      width: 80%;
+      margin: 0 auto 15px;
+    }
+  }
+
 }

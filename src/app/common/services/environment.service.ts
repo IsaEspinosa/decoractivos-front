@@ -72,6 +72,21 @@ export class EnvironmentService extends BaseService {
       .pipe(tap(() => this.snackBar.snackSuccess('La Categoria se ha creado exitosamente.')));
   }
 
+  putCategory(environment_id, layer_id, category_id, category: FormData) {
+    return this.http
+      .post<Layer>(
+        `${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}/layers/${layer_id}/categories/${category_id}/update`,
+        category
+      )
+      .pipe(tap(() => this.snackBar.snackSuccess('La Categoria ha sido actualizada exitosamente.')));
+  }
+
+  deleteCategory(environment_id, layer_id, category_id) {
+    return this.http
+      .delete<Layer>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}/layers/${layer_id}/categories/${category_id}`)
+      .pipe(tap(() => this.snackBar.snackSuccess('La Categoria ha sido eliminada.')));
+  }
+
   getTypes(query = {}): Observable<Array<EnvironmentType>> {
     return this.http
       .get<Array<EnvironmentType>>(

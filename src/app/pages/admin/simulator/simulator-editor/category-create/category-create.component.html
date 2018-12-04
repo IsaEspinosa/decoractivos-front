@@ -1,7 +1,8 @@
 <mat-card class="create-envtype-modal">
   <mat-card-header>
-    <mat-card-title id="modal-basic-title">Añadir Nueva Categoria a {{layer.name}}</mat-card-title>
-    <mat-card-subtitle *ngIf="hasGeneralItems">
+    <mat-card-title *ngIf="!category" id="modal-basic-title">Añadir Nueva Categoria a {{layer.name}}</mat-card-title>
+    <mat-card-title *ngIf="category" id="modal-basic-title">Cambiar nombre de Categoria</mat-card-title>
+    <mat-card-subtitle *ngIf="hasGeneralItems && !category">
       <p><i class="warning">*</i> Atencion: En esta capa ya existen productos y se encuentran en la
         Categoria <b>General</b>. Al crear la nueva Categoria, estos productos seran movidos immediatamente a dicha
         Categoria.</p>

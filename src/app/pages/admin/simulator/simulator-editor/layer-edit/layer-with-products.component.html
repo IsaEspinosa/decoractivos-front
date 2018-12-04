@@ -39,26 +39,34 @@
         <header>
           <h6>
             {{group.category ? group.category.name: 'General'}}
-            <i *ngIf="group.category" class="material-icons">
+            <i *ngIf="group.category" (click)="openUpdateCategory(group.category)"
+               matTooltip="Modificar nombre de Categoria" class="material-icons">
+              edit
+            </i>
+            <i *ngIf="group.category" (click)="openDeleteCategory(group.category)" matTooltip="Eliminar Categoria"
+               class="material-icons">
               delete
             </i>
           </h6>
         </header>
         <div class="row group-list">
           <div class="col-4 item-container" [ngClass]="{
-                  'is-default': item.item_id === layer.default_item,
-                  'is-selected': item.item_id === layerInSimulator.currentItem.item_id
+                  'is-default': item.item_id.toString() === layer.default_item.toString(),
+                  'is-selected': layerInSimulator.currentItem
+                      && item.item_id.toString() === layerInSimulator.currentItem.item_id.toString()
                 }" *ngFor="let item of group.items"
                (click)="updateSelected(item)"
           >
             <div>
               <span class="principal-tag">Principal</span>
               <div class="actions">
-                <i class="material-icons" *ngIf="item.item_id === layer.default_item"
+                <i class="material-icons" *ngIf="item.item_id.toString() === layer.default_item.toString()"
+                   (click)="updateDefaultItemLayer({item_id: -1})"
                    matTooltip="Desmarcar como producto inicial">
                   remove_circle_outline
                 </i>
-                <i class="material-icons" *ngIf="item.item_id !== layer.default_item"
+                <i class="material-icons" *ngIf="item.item_id.toString() !== layer.default_item.toString()"
+                   (click)="updateDefaultItemLayer(item)"
                    matTooltip="Marcar como producto inicial">
                   bookmark
                 </i>

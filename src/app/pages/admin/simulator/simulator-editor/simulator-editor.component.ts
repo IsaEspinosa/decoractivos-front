@@ -1,4 +1,4 @@
-import {omit} from 'lodash';
+import {omit, findIndex} from 'lodash';
 import {flatMap} from 'rxjs/operators';
 import {Component, OnInit} from '@angular/core';
 import {forkJoin, Observable} from 'rxjs/index';
@@ -112,8 +112,9 @@ export class SimulatorEditorPageComponent implements OnInit {
   }
 
   updateLayerData(layer: Layer) {
+    const index = findIndex(this.layers, {layer_id: layer.layer_id});
     const newLayers = this.layers.slice();
-    newLayers.splice(layer.layer_index, 1, layer);
+    newLayers.splice(index, 1, layer);
     this.layers = newLayers;
     this.selectedLayer = layer;
   }
@@ -137,7 +138,8 @@ export class SimulatorEditorPageComponent implements OnInit {
   resetLayers() {
     this.layersInSimulator = this.layers.map((layer) => {
       const newLayer = <any>omit(layer, ['items', 'default_item', 'customizable']);
-      newLayer.currentItem = layer.items.find(item => item.item_id === layer.default_item);
+      newLayer.currentItem = layer.items
+        .find(item => layer.default_item && item.item_id.toString() === layer.default_item.toString());
       return newLayer;
     });
   }

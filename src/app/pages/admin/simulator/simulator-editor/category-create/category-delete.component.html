@@ -1,0 +1,24 @@
+<mat-card class="delete-category-modal">
+  <mat-card-header>
+    <mat-card-title id="modal-basic-title">Eliminar Categoria</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Atencion: Al eliminar esta categoria, sus items no seran eliminados. En su lugar, seran movidos a la
+      Categoria <b>General</b>.
+    </p>
+    <p>
+      ¿Esta seguro de que desea eliminar la categoria <b>{{category.name}}</b>?
+    </p>
+    <div class="row buttons justify-content-center">
+      <div class="col-md-4">
+        <button mat-raised-button color="primary" [disabled]="submitted" (click)="onSubmit()" type="button">Si, estoy seguro</button>
+      </div>
+      <div class="col-md-4">
+        <button mat-raised-button type="button" [disabled]="submitted" (click)="modal.dismiss('Cross click')">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
