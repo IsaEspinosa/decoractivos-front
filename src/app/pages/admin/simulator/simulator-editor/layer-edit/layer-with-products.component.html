@@ -51,7 +51,7 @@
         </header>
         <div class="row group-list">
           <div class="col-4 item-container" [ngClass]="{
-                  'is-default': item.item_id.toString() === layer.default_item.toString(),
+                  'is-default': layer.default_item && item.item_id.toString() === layer.default_item.toString(),
                   'is-selected': layerInSimulator.currentItem
                       && item.item_id.toString() === layerInSimulator.currentItem.item_id.toString()
                 }" *ngFor="let item of group.items"
@@ -60,17 +60,17 @@
             <div>
               <span class="principal-tag">Principal</span>
               <div class="actions">
-                <i class="material-icons" *ngIf="item.item_id.toString() === layer.default_item.toString()"
+                <i class="material-icons" *ngIf="layer.default_item && item.item_id.toString() === layer.default_item.toString()"
                    (click)="updateDefaultItemLayer({item_id: -1})"
                    matTooltip="Desmarcar como producto inicial">
                   remove_circle_outline
                 </i>
-                <i class="material-icons" *ngIf="item.item_id.toString() !== layer.default_item.toString()"
+                <i class="material-icons" *ngIf="!layer.default_item || item.item_id.toString() !== layer.default_item.toString()"
                    (click)="updateDefaultItemLayer(item)"
                    matTooltip="Marcar como producto inicial">
                   bookmark
                 </i>
-                <i class="material-icons" matTooltip="Editar producto">
+                <i class="material-icons" (click)="openEditItem(item)" matTooltip="Editar producto">
                   edit
                 </i>
               </div>
@@ -89,7 +89,7 @@
       <button mat-raised-button (click)="openCreateCategory()" color="primary" type="button">
         Agregar Categoria
       </button>
-      <button mat-raised-button type="button">
+      <button mat-raised-button (click)="openCreateItem()" type="button">
         Agregar Producto
       </button>
       <button mat-raised-button (click)="remove()" color="warn" type="button">

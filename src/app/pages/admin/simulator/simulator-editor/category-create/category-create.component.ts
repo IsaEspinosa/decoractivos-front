@@ -7,9 +7,9 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {Component, OnInit} from '@angular/core';
 import {Environment} from '../../../../../common/models/environment';
 import {Layer} from '../../../../../common/models/layer';
+import {ItemCategory} from '../../../../../common/models/item-category';
 
 @Component({
-  selector: 'app-create-environment-type-component',
   templateUrl: './category-create.component.html',
   styleUrls: ['./category-create.component.scss']
 })
@@ -18,6 +18,7 @@ export class CreateCategoryComponent implements OnInit {
   public environment: Environment;
   public layer: Layer;
   public hasGeneralItems: boolean;
+  public category: ItemCategory = null;
 
   public categoryForm: FormGroup;
   public isLoading = false;

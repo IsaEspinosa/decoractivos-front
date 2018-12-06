@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Environment} from '../../../common/models/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EnvironmentType} from '../../../common/models/environment-type';
@@ -8,6 +8,7 @@ import {FormService} from '../../../common/services/forms.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {tap} from 'rxjs/operators';
+import {MatAutocomplete, MatAutocompleteTrigger} from '@angular/material';
 
 @Component({
   selector: 'app-create-environment-page',
@@ -26,6 +27,7 @@ export class CreateEnvironmentPageComponent implements OnInit {
   public fs: FormService;
   public imageChangedEvent: any = null;
 
+  @ViewChild(MatAutocompleteTrigger) autoTrigger: MatAutocompleteTrigger;
 
   constructor(protected environmentService: EnvironmentService,
               private fb: FormBuilder,
@@ -84,6 +86,7 @@ export class CreateEnvironmentPageComponent implements OnInit {
       .then(result => {
         this.loadEnvironmentTypes();
         this.environmentForm.get('environment_type_id').setValue(result);
+        this.autoTrigger.closePanel();
       });
   }
 

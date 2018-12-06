@@ -87,6 +87,17 @@ export class EnvironmentService extends BaseService {
       .pipe(tap(() => this.snackBar.snackSuccess('La Categoria ha sido eliminada.')));
   }
 
+  postItem(environment_id, layer_id, type: FormData) {
+    return this.http.post<Layer>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}/layers/${layer_id}/items`, type)
+      .pipe(tap(() => this.snackBar.snackSuccess('El Producto se ha creado exitosamente.')));
+  }
+
+  putItem(environment_id, layer_id, item_id, type: FormData) {
+    return this.http
+      .post<Layer>(`${EnvironmentService.API_ENVIRONMENT_RESOURCE}/${environment_id}/layers/${layer_id}/items/${item_id}/update`, type)
+      .pipe(tap(() => this.snackBar.snackSuccess('El Producto se ha creado exitosamente.')));
+  }
+
   getTypes(query = {}): Observable<Array<EnvironmentType>> {
     return this.http
       .get<Array<EnvironmentType>>(

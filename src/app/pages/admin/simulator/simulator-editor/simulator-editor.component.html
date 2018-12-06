@@ -17,7 +17,7 @@
       </header>
       <div class="mt-4 position-relative">
         <app-admin-simulator-panel [environment]="environment" [layers]="layersInSimulator"></app-admin-simulator-panel>
-        <button class="back-button" mat-fab color="primary" [routerLink]="['/admin/ambientes', environment.slug, 'editar']"
+        <button class="back-button" mat-mini-fab color="primary" [routerLink]="['/admin/ambientes', environment.slug, 'editar']"
                 matTooltip="Volver al Ambiente">
           <i class="material-icons">
             arrow_back

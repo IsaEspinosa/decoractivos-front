@@ -8,13 +8,13 @@
   </div>
 </header>
 <div class="row create-form justify-content-center">
-  <button class="back-button" mat-fab color="primary" routerLink="/admin/ambientes"
+  <button class="back-button" mat-mini-fab color="primary" routerLink="/admin/ambientes"
           *ngIf="environment && !environment.environment_id" matTooltip="Ir al listado de Ambientes">
     <i class="material-icons">
       arrow_back
     </i>
   </button>
-  <button class="back-button" mat-fab color="primary" routerLink="/admin/ambientes"
+  <button class="back-button" mat-mini-fab color="primary" routerLink="/admin/ambientes"
           *ngIf="environment && environment.environment_id"
           matTooltip="Ir al detalle del ambiente">
     <i class="material-icons">

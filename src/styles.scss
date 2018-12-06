@@ -223,3 +223,11 @@ i.dec-icon {
   left: 5%;
   top: 20px;
 }
+
+.mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+  background-color: #d5696e;
+}
+
+.mat-fab.mat-warn, .mat-flat-button.mat-warn, .mat-mini-fab.mat-warn, .mat-raised-button.mat-warn{
+  background-color: #761717;
+}

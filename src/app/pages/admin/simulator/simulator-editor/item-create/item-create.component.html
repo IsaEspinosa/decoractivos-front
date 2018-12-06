@@ -1,0 +1,92 @@
+<mat-card class="create-envtype-modal">
+  <mat-card-header>
+    <mat-card-title id="modal-basic-title">Crear Producto</mat-card-title>
+    <button mat-mini-fab color="warn" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <i class="material-icons" aria-hidden="true">
+        close
+      </i>
+    </button>
+  </mat-card-header>
+  <form [formGroup]="productForm" (ngSubmit)="!submitted && onSubmit()">
+    <mat-card-content>
+      <div class="input">
+        <mat-form-field>
+          <input matInput placeholder="Nombre del Producto" type="text" formControlName="name" required>
+          <mat-error *ngIf="fs.checkValidity('name')">
+            <div *ngIf="f.name.errors.required">El ambiente requiere un nombre</div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input" *ngIf="layer.categories.length">
+        <mat-form-field>
+          <input type="text" placeholder="Categoria del producto" aria-label="Number" matInput
+                 formControlName="category_id" (keydown)="filterTypes($event.target)"
+                 [matAutocomplete]="auto" required>
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="getTypeName">
+            <mat-option *ngFor="let option of categories" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="fs.checkValidity('category_id')">
+            <div *ngIf="f.category_id.errors.required || f.category_id.errors.unselected">Debe seleccionar una categoria</div>
+            <div *ngIf="f.category_id.errors.exists">El tipo de ambiente no es valido.</div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input">
+        <label *ngIf="!previewImage" for="item-preview-upload" id="item-preview-uploader"
+               [ngClass]="{'dragging':isDraggingPreview}" (dragleave)="isDraggingPreview = false"
+               (dragenter)="isDraggingPreview = true">
+          Haz click o Arrastra una imagen<br/>Para añadir la <b>vista previa del articulo</b>
+          <input id="item-preview-upload" type="file" (change)="imageCropped($event.target.files, 'preview', 200)" #fileInput
+                 accept=".png,.jpg">
+        </label>
+        <label *ngIf="previewImage" id="item-pw-previewer">
+          <img [src]="previewImage">
+        </label>
+        <button class="remove" type="button" *ngIf="previewImage" mat-mini-fab color="primary"
+                (click)="removeImage('preview')">
+          <i class="material-icons">
+            delete_forever
+          </i>
+        </button>
+        <mat-error *ngIf="fs.checkValidity('preview')">
+          <div *ngIf="f.preview.errors.required">El producto requiere una imagen preliminar</div>
+        </mat-error>
+      </div>
+      <div class="input">
+        <label *ngIf="!simulatorImage" for="item-image-upload" id="item-image-uploader"
+               [ngClass]="{'dragging':isDraggingImage}" (dragleave)="isDraggingImage = false"
+               (dragenter)="isDraggingImage = true">
+          Haz click o Arrastra una imagen para añadir<br/>la <b>imagen del simulador del articulo</b>
+          <input id="item-image-upload" type="file" accept=".png,.jpg"
+                 (change)="imageCropped($event.target.files, 'image_simulator', 1300, 'simulator')" #fileInput>
+        </label>
+        <label *ngIf="simulatorImage" id="item-image-previewer">
+          <img [src]="simulatorImage">
+        </label>
+        <button class="remove" type="button" *ngIf="simulatorImage" mat-mini-fab color="primary"
+                (click)="removeImage('image_simulator', 'simulator')">
+          <i class="material-icons">
+            delete_forever
+          </i>
+        </button>
+        <mat-error *ngIf="fs.checkValidity('image_simulator')">
+          <div *ngIf="f.image_simulator.errors.required">El producto requiere una imagen para el simulador</div>
+        </mat-error>
+      </div>
+    </mat-card-content>
+    <div class="row create-form justify-content-center">
+      <div class="col-md-10">
+        <mat-card-actions align="end">
+          <button mat-raised-button color="primary" [disabled]="submitted || productForm.pristine" type="submit">
+            Guardar
+          </button>
+          <button mat-raised-button [disabled]="submitted" (click)="modal.dismiss('Cross click')" type="button">
+            Cancelar
+          </button>
+        </mat-card-actions>
+      </div>
+    </div>
+  </form>
+</mat-card>
