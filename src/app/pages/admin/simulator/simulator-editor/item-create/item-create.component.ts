@@ -36,7 +36,7 @@ export class ItemCreateComponent implements OnInit {
               protected fb: FormBuilder,
               protected sanitizer: DomSanitizer,
               protected snackBar: SnackService,
-              protected modal: NgbActiveModal) {
+              public modal: NgbActiveModal) {
   }
 
   ngOnInit() {
