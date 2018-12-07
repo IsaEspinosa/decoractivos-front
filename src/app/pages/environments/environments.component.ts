@@ -32,7 +32,7 @@ export class EnvironmentsComponent implements OnInit {
     this.selectEnvironmentType(null);
   }
 
-  selectEnvironmentType(type: EnvironmentType) {
+  selectEnvironmentType(type: EnvironmentType = null) {
     if (!type) {
       delete this.query.where;
     } else {
