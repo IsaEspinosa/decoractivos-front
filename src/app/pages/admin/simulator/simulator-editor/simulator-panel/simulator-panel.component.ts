@@ -10,6 +10,8 @@ import {Environment} from '../../../../../common/models/environment';
 export class SimulatorPanelComponent implements OnInit {
 
   @Input() environment: Environment;
+  @Input() isLoading: boolean;
+  @Output() loadedLayer = new EventEmitter();
   private _layers: Array<any>;
 
 

@@ -16,8 +16,13 @@
         </div>
       </header>
       <div class="mt-4 position-relative">
-        <app-admin-simulator-panel [environment]="environment" [layers]="layersInSimulator"></app-admin-simulator-panel>
-        <button class="back-button" mat-mini-fab color="primary" [routerLink]="['/admin/ambientes', environment.slug, 'editar']"
+        <app-admin-simulator-panel
+          [environment]="environment" [layers]="layersInSimulator" [isLoading]="loaded !== layers.length"
+          (loadedLayer)="loadedLayer()">
+
+        </app-admin-simulator-panel>
+        <button class="back-button" mat-mini-fab color="primary"
+                [routerLink]="['/admin/ambientes', environment.slug, 'editar']"
                 matTooltip="Volver al Ambiente">
           <i class="material-icons">
             arrow_back
@@ -41,8 +46,10 @@
         *ngIf="selectedLayer && !selectedLayer.customizable">
       </app-admin-layer-without-products>
       <app-admin-layer-with-products
-        [layer]="selectedLayer" [layerInSimulator]="selectedLayerInSimulator" [environment]="environment" (close)="selectedLayer = null"
-        (update)="updateLayerData($event)" (removeLayer)="removeLayer($event)" (updateSelectedProduct)="updateLayer($event)"
+        [layer]="selectedLayer" [layerInSimulator]="selectedLayerInSimulator" [environment]="environment"
+        (close)="selectedLayer = null"
+        (update)="updateLayerData($event)" (removeLayer)="removeLayer($event)"
+        (updateSelectedProduct)="updateLayer($event)"
         *ngIf="selectedLayer && selectedLayer.customizable">
       </app-admin-layer-with-products>
     </div>

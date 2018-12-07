@@ -30,6 +30,7 @@ export class SimulatorEditorPageComponent implements OnInit {
   public __selectedLayer: Layer = null;
   public selectedLayerInSimulator: any = null;
   public updatingLayers = false;
+  public loaded = 0;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -145,9 +146,14 @@ export class SimulatorEditorPageComponent implements OnInit {
   }
 
   updateLayer(item: LayerItem) {
+    this.loaded--;
     const layer = this.layersInSimulator.find(layer => layer.layer_id === item.layer_id);
     layer.currentItem = item;
     this.layersInSimulator = this.layersInSimulator.slice();
+  }
+
+  loadedLayer() {
+    this.loaded++;
   }
 }
 

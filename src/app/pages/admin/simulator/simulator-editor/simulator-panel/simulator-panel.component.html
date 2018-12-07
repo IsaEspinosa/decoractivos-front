@@ -1,4 +1,13 @@
-<figure>
-  <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221300%22%20height%3D%22731%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201300%20731%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1678a716542%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A65pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1678a716542%22%3E%3Crect%20width%3D%221300%22%20height%3D%22731%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22457.2265625%22%20y%3D%22394.3%22%3E1300x731%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
-  <img *ngFor="let layer of layers" [src]="layer.currentItem.image_simulator">
+<figure [ngClass]="{loading: isLoading}">
+  <img
+    src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%221300%22%20height%3D%22731%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201300%20731%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1678a716542%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A65pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1678a716542%22%3E%3Crect%20width%3D%221300%22%20height%3D%22731%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22457.2265625%22%20y%3D%22394.3%22%3E1300x731%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+  <img *ngFor="let layer of layers" [src]="layer.currentItem.image_simulator" (load)="loadedLayer.emit()">
+  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+       preserveAspectRatio="xMidYMid" class="lds-eclipse">
+    <path stroke="none" d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50" transform="rotate(131.16 50 51)"
+          fill="rgba(20.999829580036522%,87.81334393026133%,95.29032258064515%,0.726)">
+      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 51;360 50 51"
+                        keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
 </figure>
