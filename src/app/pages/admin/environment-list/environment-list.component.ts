@@ -13,7 +13,11 @@ export class EnvironmentListPageComponent implements OnInit {
   public environments: Observable<Array<Environment>>;
   public environmentTypes: Observable<Array<EnvironmentType>>;
   public selectedEnvType: EnvironmentType = null;
-  public query = {limit: 10, page: 1, where: {environment_type_id: null}};
+  public query = {
+    limit: 10,
+    page: 1,
+    where: null
+  };
   public isLoading: boolean = false;
 
 
@@ -21,15 +25,19 @@ export class EnvironmentListPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.environmentTypes = this.environmentService.getTypes();
+    this.environmentTypes = this.environmentService.getTypes({
+      orderBy: [
+        ['name', 'asc']
+      ]
+    });
     this.selectEnvironmentType(null);
   }
 
   selectEnvironmentType(type: EnvironmentType) {
     if (!type) {
-      delete this.query.where.environment_type_id;
+      delete this.query.where;
     } else {
-      this.query.where.environment_type_id = type.environment_type_id;
+      this.query.where = ['environment_type_id', type.environment_type_id];
     }
     this.selectedEnvType = type;
     this.isLoading = true;

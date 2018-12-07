@@ -27,7 +27,9 @@ export class EnvironmentService extends BaseService {
   }
 
   getList(query = {}): Observable<Array<Environment>> {
-    return this.http.get<Array<Environment>>(EnvironmentService.API_ENVIRONMENT_RESOURCE, {params: query});
+    return this.http.get<Array<Environment>>(EnvironmentService.API_ENVIRONMENT_RESOURCE, {
+      params: this.parseParams(query)
+    });
   }
 
   post(nEnvironment: FormData): Observable<Environment> {
