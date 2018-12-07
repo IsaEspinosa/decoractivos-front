@@ -1,0 +1,26 @@
+@import "./variables";
+
+*::-webkit-scrollbar-thumb {
+  background: $scroll-base;
+  transition: all 300ms;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: $scroll-hover;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+@mixin display-scroll-only-hover() {
+  &:not(:hover) {
+    &::-webkit-scrollbar-thumb {
+      background: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+  }
+}

@@ -9,10 +9,14 @@
   <div class="col-5">
     <div class="row justify-content-between">
       <div class="col-auto back">
-        <a routerLink="/ambientes"><app-icon matTooltip="Volver" icon="back"></app-icon></a>
+        <a routerLink="/ambientes">
+          <app-icon matTooltip="Volver" icon="back"></app-icon>
+        </a>
       </div>
       <div class="col-auto clean">
-        <a (click)="resetLayers()"><app-icon matTooltip="Limpiar" icon="broom"></app-icon></a>
+        <a (click)="resetLayers()">
+          <app-icon matTooltip="Limpiar" icon="broom"></app-icon>
+        </a>
       </div>
     </div>
   </div>
@@ -42,13 +46,11 @@
     </div>
     <div class="row product-list">
       <div class="col-md-12">
-        <ng-scrollbar>
-          <div class="row  align-items-center justify-content-around">
-            <div class="col-md-4 product" *ngFor="let product of filteredProducts" (click)="selectProduct(product)">
-              <div class="image" [style.backgroundImage]="'url('+product.preview+')'"></div>
-            </div>
+        <div class="row  align-items-center justify-content-start">
+          <div class="col-md-4 product" *ngFor="let product of filteredProducts" (click)="selectProduct(product)">
+            <div class="image"><img [src]="product.preview"></div>
           </div>
-        </ng-scrollbar>
+        </div>
       </div>
     </div>
   </div>
