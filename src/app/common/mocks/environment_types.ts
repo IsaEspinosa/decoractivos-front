@@ -18,9 +18,5 @@ export const environmentTypeList: Array<any> = [
   {
     "environment_type_id": 5,
     "name": "Exteriores"
-  },
-  {
-    "environment_type_id": 6,
-    "name": "Locales"
   }
 ];
