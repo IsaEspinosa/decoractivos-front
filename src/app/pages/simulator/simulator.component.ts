@@ -22,6 +22,7 @@ export class SimulatorComponent implements OnInit {
   public _layers: Array<Layer> = [];
   public layersInSimulator: Array<any> = [];
   public layersInSidebar: Array<Layer> = [];
+  public loaded = 0;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -66,9 +67,14 @@ export class SimulatorComponent implements OnInit {
   }
 
   updateLayer(item: LayerItem) {
+    this.loaded--;
     const layer = this.layersInSimulator.find((layer) => layer.layer_id === item.layer_id);
     layer.currentItem = item;
     this.layersInSimulator = this.layersInSimulator.slice();
+  }
+
+  loadedLayer() {
+    this.loaded++;
   }
 
 }

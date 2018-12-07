@@ -5,8 +5,16 @@
 </header>
 <section class="row justify-content-center">
   <div class="col">
-    <figure>
-      <img *ngFor="let layer of layers" [src]="layer.currentItem.image_simulator">
+    <figure [ngClass]="{loading: isLoading}">
+      <img *ngFor="let layer of layers" [src]="layer.currentItem.image_simulator" (load)="loadedLayer.emit()">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+           preserveAspectRatio="xMidYMid" class="lds-eclipse">
+        <path stroke="none" d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50" transform="rotate(131.16 50 51)"
+              fill="rgba(20.999829580036522%,87.81334393026133%,95.29032258064515%,0.726)">
+          <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 51;360 50 51"
+                            keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform>
+        </path>
+      </svg>
       <figcaption class="text-center">
         *En algunos casos la tonalidad de la cerámica podría variar levemente de acuerdo al lote de producción.
       </figcaption>

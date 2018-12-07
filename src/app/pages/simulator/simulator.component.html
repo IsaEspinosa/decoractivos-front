@@ -1,10 +1,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="sidebar col-md-3">
-      <app-simulator-sidebar [layers]="layersInSidebar" (updateLayer)="updateLayer($event)" (resetLayers)="resetLayers()"></app-simulator-sidebar>
+      <app-simulator-sidebar [layers]="layersInSidebar" (updateLayer)="updateLayer($event)"
+                             (resetLayers)="resetLayers()"></app-simulator-sidebar>
     </div>
     <div class="page offset-md-3 col-md-9">
-      <app-simulator-panel [environment]="environment" [layers]="layersInSimulator"></app-simulator-panel>
+      <app-simulator-panel [environment]="environment" [layers]="layersInSimulator"
+                           [isLoading]="loaded !== layers.length" (loadedLayer)="loadedLayer()">
+
+      </app-simulator-panel>
     </div>
   </div>
 </div>
