@@ -1,25 +1,31 @@
-<header class="main">
-  <div class="row justify-content-between">
-    <h3 class="col-7 text-left">Capa: {{layer.name}}</h3>
-    <div class="col text-right">
-      <button mat-mini-fab matTooltip="Volver a la lista de capas" (click)="close.emit()" color="warn">
-        <i class="material-icons">
-          close
-        </i>
-      </button>
+<form [formGroup]="layerForm" (ngSubmit)="!submitted && onSubmit()">
+  <header class="main">
+    <div class="row justify-content-between">
+      <h3 class="col-auto text-left" [ngClass]="{'edit-mode': editMode}">
+        Capa:
+        <span *ngIf="!editMode">
+          {{layer.name}}
+          <i class="material-icons" matTooltip="Modificar Nombre" (click)="editMode = true">edit</i>
+        </span>
+      </h3>
+      <div *ngIf="editMode" class="col-auto">
+        <mat-form-field>
+          <input matInput type="text" formControlName="name" required>
+          <mat-error *ngIf="fs.checkValidity('name')">
+            <div *ngIf="f.name.errors.required">El ambiente requiere un nombre</div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col text-right">
+        <button mat-mini-fab matTooltip="Volver a la lista de capas" (click)="close.emit()" color="warn">
+          <i class="material-icons">
+            close
+          </i>
+        </button>
+      </div>
     </div>
-  </div>
-</header>
-<div class="layer-handler">
-  <form [formGroup]="layerForm" (ngSubmit)="!submitted && onSubmit()">
-    <div class="input">
-      <mat-form-field>
-        <input matInput placeholder="Nombre de la Capa" type="text" formControlName="name" required>
-        <mat-error *ngIf="fs.checkValidity('name')">
-          <div *ngIf="f.name.errors.required">El ambiente requiere un nombre</div>
-        </mat-error>
-      </mat-form-field>
-    </div>
+  </header>
+  <div class="layer-handler">
     <div class="input image-handler">
       <label *ngIf="!imageChangedEvent && !image" for="layer-image-upload"
              id="layer-image-uploader" [ngClass]="{'dragging':isDragging}" (dragexit)="isDragging = false"
@@ -55,5 +61,6 @@
         </button>
       </div>
     </div>
-  </form>
-</div>
+
+  </div>
+</form>

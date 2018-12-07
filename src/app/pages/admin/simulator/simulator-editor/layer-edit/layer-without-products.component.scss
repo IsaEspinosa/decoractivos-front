@@ -6,18 +6,36 @@
 
 header.main {
   margin-top: 70px;
-  margin-bottom: 35px;
+
+  margin-left: auto;
+  margin-right: auto;
   h3 {
     font-size: 20px;
     position: relative;
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 15px;
-      background: #000000;
-      width: 150px;
-      height: 1px;
+    margin: 0;
+    padding: 0;
+    &:not(.edit-mode) {
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        background: #000000;
+        width: 150px;
+        height: 1px;
+      }
+    }
+  }
+  i {
+    cursor: pointer;
+  }
+  mat-form-field {
+    margin-top: -15px;
+  }
+  .panel-buttons {
+    i {
+      display: inline-block;
+      margin-right: 15px;
     }
   }
   button {
@@ -28,7 +46,7 @@ header.main {
 
 .image-handler {
   position: relative;
-  margin: 15px auto;
+  margin: 50px auto 15px;
   #layer-image-uploader {
     margin-top: 15px;
     width: 100%;

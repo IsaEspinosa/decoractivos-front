@@ -31,6 +31,7 @@ export class LayerWithoutProductsComponent implements OnChanges {
   public isDragging = false;
   public submitted = false;
   public image: any;
+  public editMode = false;
 
   constructor(protected environmentService: EnvironmentService,
               private sanitizer: DomSanitizer,
@@ -39,6 +40,7 @@ export class LayerWithoutProductsComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    this.editMode = false;
     this.layer = {
       ...this.originalLayer,
       items: [...this.originalLayer.items]
@@ -106,6 +108,7 @@ export class LayerWithoutProductsComponent implements OnChanges {
     return this.environmentService.putLayer(this.environment.environment_id, this.layer.layer_id, input).toPromise()
       .then(layer => {
         this.submitted = false;
+        this.editMode = false;
         this.update.emit(layer);
       })
       .catch(response => this.fs.manageErrors(response));

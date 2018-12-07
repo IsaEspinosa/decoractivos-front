@@ -6,6 +6,8 @@ figure {
   img {
     &:first-child {
       position: relative;
+      width: auto!important;
+      height: auto!important;
     }
     position: absolute;
     top: 0;
@@ -13,4 +15,5 @@ figure {
     max-width: 98%;
     max-height: calc(100vh - 150px);
   }
+
 }

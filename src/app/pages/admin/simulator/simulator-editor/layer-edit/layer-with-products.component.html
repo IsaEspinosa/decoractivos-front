@@ -1,6 +1,30 @@
 <header class="main">
   <div class="row justify-content-between">
-    <h3 class="col-7 text-left">Capa: {{layer.name}}</h3>
+    <h3 class="col-auto text-left" [ngClass]="{'edit-mode': editMode}">
+      Capa: <span *ngIf="!editMode">{{layer.name}} <i class="material-icons"  matTooltip="Modificar Nombre" (click)="editMode = true">edit</i></span>
+    </h3>
+    <form *ngIf="editMode" class="col-auto" [formGroup]="layerForm" (ngSubmit)="false">
+      <div class="row align-items-start justify-content-between">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" formControlName="name" required>
+            <mat-error *ngIf="fs.checkValidity('name')">
+              <div *ngIf="f.name.errors.required">El ambiente requiere un nombre</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-auto panel-buttons">
+          <div class="text-right">
+            <i class="material-icons" (click)="!submitted && onSubmit()" matTooltip="Guardar Cambios">
+              done
+            </i>
+            <i class="material-icons" (click)="ngOnChanges()" matTooltip="Deshacer Cambios">
+              not_interested
+            </i>
+          </div>
+        </div>
+      </div>
+    </form>
     <div class="col text-right">
       <button mat-mini-fab matTooltip="Volver a la lista de capas" (click)="close.emit()" color="warn">
         <i class="material-icons">
@@ -11,28 +35,6 @@
   </div>
 </header>
 <div class="layer-handler">
-  <form [formGroup]="layerForm" (ngSubmit)="!submitted && onSubmit()">
-    <div class="row align-items-end justify-content-between">
-      <div class="col">
-        <mat-form-field>
-          <input matInput placeholder="Nombre de la Capa" type="text" formControlName="name" required>
-          <mat-error *ngIf="fs.checkValidity('name')">
-            <div *ngIf="f.name.errors.required">El ambiente requiere un nombre</div>
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="col-auto panel-buttons">
-        <div class="text-right">
-          <button mat-raised-button color="primary" [disabled]="submitted || layerForm.pristine" type="submit">
-            Guardar Cambios
-          </button>
-          <button mat-raised-button (click)="ngOnChanges()" [disabled]="submitted || layerForm.pristine" type="button">
-            Cancelar Cambios
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
   <div class="groups">
     <div class="container-fluid">
       <div *ngFor="let group of groups" [ngClass]="{'default':!group.category}">
@@ -60,12 +62,14 @@
             <div>
               <span class="principal-tag">Principal</span>
               <div class="actions">
-                <i class="material-icons" *ngIf="layer.default_item && item.item_id.toString() === layer.default_item.toString()"
+                <i class="material-icons"
+                   *ngIf="layer.default_item && item.item_id.toString() === layer.default_item.toString()"
                    (click)="updateDefaultItemLayer({item_id: -1})"
                    matTooltip="Desmarcar como producto inicial">
                   remove_circle_outline
                 </i>
-                <i class="material-icons" *ngIf="!layer.default_item || item.item_id.toString() !== layer.default_item.toString()"
+                <i class="material-icons"
+                   *ngIf="!layer.default_item || item.item_id.toString() !== layer.default_item.toString()"
                    (click)="updateDefaultItemLayer(item)"
                    matTooltip="Marcar como producto inicial">
                   bookmark

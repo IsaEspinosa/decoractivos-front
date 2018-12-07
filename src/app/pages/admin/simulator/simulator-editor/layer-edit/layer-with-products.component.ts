@@ -39,6 +39,7 @@ export class LayerWithProductsComponent implements OnChanges {
   public layer: Layer;
   public layerForm: FormGroup;
   public fs: FormService;
+  public editMode = false;
   public submitted = false;
   public image: any;
   public groups: any;
@@ -54,6 +55,7 @@ export class LayerWithProductsComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    this.editMode = false;
     this.layer = {
       ...this.originalLayer,
       items: [...this.originalLayer.items]
@@ -112,6 +114,7 @@ export class LayerWithProductsComponent implements OnChanges {
     return this.environmentService.putLayer(this.environment.environment_id, this.layer.layer_id, input).toPromise()
       .then(layer => {
         this.submitted = false;
+        this.editMode = false;
         this.update.emit(layer);
       })
       .catch(response => this.fs.manageErrors(response));
