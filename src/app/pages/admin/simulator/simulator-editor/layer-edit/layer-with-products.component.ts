@@ -14,6 +14,7 @@ import {LayerItem} from '../../../../../common/models/layer-item';
 import {CreateCategoryComponent} from '../category-create/category-create.component';
 import {UpdateCategoryComponent} from '../category-create/category-update.component';
 import {DeleteCategoryComponent} from '../category-create/category-delete.component';
+import {DeleteLayerComponent} from '../layer-delete/layer-delete.component';
 import {ItemCreateComponent} from '../item-create/item-create.component';
 import {ItemEditComponent} from '../item-create/item-edit.component';
 
@@ -187,6 +188,19 @@ export class LayerWithProductsComponent implements OnChanges {
     modalRef.componentInstance.category = category;
 
     modalRef.result.then(layer => this.update.emit(layer));
+  }
+
+  openDeleteLayer() {
+    const modalRef = this.modalService
+      .open(DeleteLayerComponent, {
+        ariaLabelledBy: 'modal-basic-title',
+        backdrop: 'static',
+        centered: true
+      });
+    modalRef.componentInstance.environment = this.environment;
+    modalRef.componentInstance.layer = this.layer;
+
+    modalRef.result.then(layer => this.remove());
   }
 
   openItem(ModalComponent) {

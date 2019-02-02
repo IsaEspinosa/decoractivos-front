@@ -3,6 +3,7 @@ import {LayerCreateComponent} from './simulator-editor/layer-create/layer-create
 import {CreateCategoryComponent} from './simulator-editor/category-create/category-create.component';
 import {UpdateCategoryComponent} from './simulator-editor/category-create/category-update.component';
 import {DeleteCategoryComponent} from './simulator-editor/category-create/category-delete.component';
+import {DeleteLayerComponent} from './simulator-editor/layer-delete/layer-delete.component';
 import {ItemCreateComponent} from './simulator-editor/item-create/item-create.component';
 import {ItemEditComponent} from './simulator-editor/item-create/item-edit.component';
 
@@ -13,7 +14,8 @@ export const AdminSimulatorComponents = [
   UpdateCategoryComponent,
   DeleteCategoryComponent,
   ItemCreateComponent,
-  ItemEditComponent
+  ItemEditComponent,
+  DeleteLayerComponent
 ];
 
 export const AdminSimulatorEntryComponents = [
@@ -22,5 +24,6 @@ export const AdminSimulatorEntryComponents = [
   UpdateCategoryComponent,
   DeleteCategoryComponent,
   ItemCreateComponent,
-  ItemEditComponent
+  ItemEditComponent,
+  DeleteLayerComponent
 ];

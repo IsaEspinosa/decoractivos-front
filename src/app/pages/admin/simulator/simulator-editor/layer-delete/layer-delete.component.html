@@ -1,0 +1,23 @@
+<mat-card class="delete-layer-modal">
+  <mat-card-header>
+    <mat-card-title id="modal-basic-title">Eliminar Capa</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Atencion: Al eliminar esta capa, sus items seran eliminados y <b>no podran ser recuperados</b>.
+    </p>
+    <p>
+      ¿Esta seguro de que desea eliminar la Capa <b>{{layer.name}}</b>?
+    </p>
+    <div class="row buttons justify-content-center">
+      <div class="col-md-4">
+        <button mat-raised-button color="primary" (click)="onSubmit()" type="button">Si, estoy seguro</button>
+      </div>
+      <div class="col-md-4">
+        <button mat-raised-button type="button" (click)="modal.dismiss('Cross click')">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
