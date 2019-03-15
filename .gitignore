@@ -41,3 +41,4 @@ Thumbs.db
 .original_images
 .migrator_sources
 src/assets/images/**/*
+dump.json

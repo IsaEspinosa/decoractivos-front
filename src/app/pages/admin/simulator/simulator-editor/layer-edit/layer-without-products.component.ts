@@ -103,7 +103,8 @@ export class LayerWithoutProductsComponent implements OnChanges {
 
     const input = new FormData();
     input.append('name', this.layerForm.get('name').value);
-    input.append('image', this.layerForm.get('image').value);
+    const image = this.layerForm.get('image').value;
+    if (image) input.append('image', image);
 
     return this.environmentService.putLayer(this.environment.environment_id, this.layer.layer_id, input).toPromise()
       .then(layer => {

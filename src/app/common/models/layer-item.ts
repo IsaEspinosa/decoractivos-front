@@ -9,4 +9,7 @@ export interface LayerItem {
   name: string;
   preview: string;
   image_simulator: string;
+  additional_info: {
+    Formato: string,
+  };
 }

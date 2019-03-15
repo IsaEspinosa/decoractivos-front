@@ -9,7 +9,7 @@ import {MatCardModule} from '@angular/material/card';
 import {
   MatButtonModule, MatFormFieldModule, MatInputModule,
   MatSelectModule, MatIconModule, MatTooltipModule,
-  MatAutocompleteModule, MatSnackBarModule
+  MatAutocompleteModule, MatSnackBarModule, MatListModule,
 } from '@angular/material';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -28,6 +28,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './interceptors/AuthInterceptor';
 import {ErrorInterceptor} from './interceptors/ErrorInterceptor';
 import {ResponseTransformInterceptor} from './interceptors/ResponseTransformInterceptor';
+
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import {ResponseTransformInterceptor} from './interceptors/ResponseTransformInte
     MatIconModule,
     MatTooltipModule,
     MatSnackBarModule,
+    MatListModule,
     DragDropModule,
     ImageCropperModule,
   ],

@@ -1,12 +1,16 @@
 <div class="container-fluid">
   <div class="row">
     <div class="sidebar col-md-3">
-      <app-simulator-sidebar [layers]="layersInSidebar" (updateLayer)="updateLayer($event)"
-                             (resetLayers)="resetLayers()"></app-simulator-sidebar>
+      <app-simulator-sidebar [layers]="layersInSidebar" (updateLayer)="updateLayer($event)"></app-simulator-sidebar>
     </div>
-    <div class="page offset-md-3 col-md-9">
-      <app-simulator-panel [environment]="environment" [layers]="layersInSimulator"
-                           [isLoading]="loaded !== layers.length" (loadedLayer)="loadedLayer()">
+    <div class="page col-md-9">
+      <app-simulator-panel
+        [environment]="environment"
+        [layers]="layersInSimulator"
+        [isLoading]="loaded !== layers.length"
+        (loadedLayer)="loadedLayer()"
+        (resetLayers)="resetLayers()"
+      >
 
       </app-simulator-panel>
     </div>

@@ -13,7 +13,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class SimulatorSidebarComponent implements OnInit {
 
   @Output('updateLayer') updateLayerEmitter = new EventEmitter<LayerItem>();
-  @Output('resetLayers') resetLayersEmitter = new EventEmitter<any>();
 
   public selectedLayer: Layer;
   public selectedCategory: ItemCategory;
@@ -51,12 +50,7 @@ export class SimulatorSidebarComponent implements OnInit {
     this.filteredProducts = layer.items.filter((item) => item.category_id === category.category_id);
   }
 
-  resetLayers() {
-    this.resetLayersEmitter.emit();
-  }
-
   selectProduct(product) {
     this.updateLayerEmitter.emit(product);
   }
-
 }

@@ -1,58 +1,68 @@
 <div class="row justify-content-center">
+  <button class="back-button" mat-mini-fab color="primary" routerLink="/ambientes"
+          matTooltip="Ir al listado de Ambientes">
+    <i class="material-icons">
+      arrow_back
+    </i>
+  </button>
   <div class="logo col-md-4">
     <a routerLink="/">
       <img src="assets/img/logo_no_title.png">
     </a>
   </div>
 </div>
-<div class="main-controls row justify-content-center">
-  <div class="col-5">
-    <div class="row justify-content-between">
-      <div class="col-auto back">
-        <a routerLink="/ambientes">
-          <app-icon matTooltip="Volver" icon="back"></app-icon>
-        </a>
-      </div>
-      <div class="col-auto clean">
-        <a (click)="resetLayers()">
-          <app-icon matTooltip="Limpiar" icon="broom"></app-icon>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="simulator-controls row justify-content-center">
   <div class="col-md-11">
-    <div class="row  justify-content-center product-selector">
-      <mat-form-field class="col-md-10">
-        <mat-select placeholder="Seleccione un Producto" [value]="selectedLayer"
-                    (selectionChange)="changeLayer($event.value)">
-          <mat-option *ngFor="let layer of layers" [value]="layer">
-            {{layer.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="row justify-content-center product-selector">
+      <mat-label class="col-md-8">
+        Seleccione un producto:
+      </mat-label>
+      <mat-card class="col-md-8">
+        <mat-nav-list>
+          <mat-list-item
+            *ngFor="let layer of layers"
+            (click)="changeLayer(layer)"
+            [ngClass]="{'selected': layer === selectedLayer}"
+          >
+            <span
+              matLine
+              [matTooltip]="layer.name"
+              matTooltipPosition="right"
+            >{{layer.name}}</span>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-card>
     </div>
     <div class="row  justify-content-center category-filter"
          *ngIf="selectedLayer && selectedLayer.categories.length > 0">
-      <mat-form-field class="col-md-10">
-        <mat-select placeholder="Seleccione una Categoria" [value]="selectedCategory"
-                    (selectionChange)="changeCategory(selectedLayer, $event.value)">
-          <mat-option *ngFor="let category of selectedLayer.categories" [value]="category">
-            {{category.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <mat-label class="col-md-8">
+        Seleccione una categoría:
+      </mat-label>
+      <mat-card class="col-md-8">
+        <mat-nav-list>
+          <mat-list-item
+            *ngFor="let category of selectedLayer.categories"
+            (click)="changeCategory(selectedLayer, category)"
+            [ngClass]="{'selected': category === selectedCategory}"
+            matTooltipPosition="right"
+          >
+            <span
+              matLine
+              [matTooltip]="category.name"
+              matTooltipPosition="right"
+            > {{category.name}} </span>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-card>
     </div>
     <div class="row product-list">
       <div class="col-md-12">
         <div class="row  align-items-center justify-content-start">
           <div class="col-md-4 product" *ngFor="let product of filteredProducts" (click)="selectProduct(product)">
-            <div class="image"><img [src]="product.preview"></div>
+            <div class="image"><img [src]="product.preview"><div class="format">{{product.additional_info.Formato}}</div></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-min-footer></app-min-footer>

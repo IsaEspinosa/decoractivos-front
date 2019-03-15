@@ -13,6 +13,8 @@ export class SimulatorPanelComponent implements OnInit {
   @Input() environment: Environment;
   @Input() isLoading: boolean;
   @Output() loadedLayer = new EventEmitter();
+  @Output('resetLayers') resetLayersEmitter = new EventEmitter<any>();
+
   private _layers: Array<any>;
 
 
@@ -29,6 +31,10 @@ export class SimulatorPanelComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  resetLayers() {
+    this.resetLayersEmitter.emit();
   }
 
 }
