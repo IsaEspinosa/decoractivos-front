@@ -12,8 +12,9 @@
   box-sizing: border-box;
 }
 
-body, html {
-  font-family: 'Open Sans', sans-serif;
+body,
+html {
+  font-family: "Open Sans", sans-serif;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   color: #777;
@@ -31,7 +32,8 @@ h2 {
   font-size: 30px;
 }
 
-h3, h4 {
+h3,
+h4 {
   color: #222;
   font-size: 18px;
   font-weight: 300;
@@ -53,13 +55,15 @@ p.intro {
 a {
   color: #555;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: none;
     color: #000;
   }
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -107,7 +111,11 @@ hr {
   margin-top: 20px;
 }
 
-.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active {
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active {
   color: #555;
   background-color: #deddd26b;
   border-color: #121d1f;
@@ -153,7 +161,7 @@ textarea.form-control {
   }
   &.transition {
     transition-timing-function: ease-out;
-    @content
+    @content;
   }
 }
 
@@ -219,16 +227,33 @@ i.dec-icon {
   }
 }
 
+button {
+  > span {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    > i {
+      margin-right: 2px;
+    }
+  }
+}
+
 .back-button {
   position: absolute !important;
   left: 5%;
   top: 20px;
 }
 
-.mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+.mat-fab.mat-primary,
+.mat-flat-button.mat-primary,
+.mat-mini-fab.mat-primary,
+.mat-raised-button.mat-primary {
   background-color: #d5696e;
 }
 
-.mat-fab.mat-warn, .mat-flat-button.mat-warn, .mat-mini-fab.mat-warn, .mat-raised-button.mat-warn{
+.mat-fab.mat-warn,
+.mat-flat-button.mat-warn,
+.mat-mini-fab.mat-warn,
+.mat-raised-button.mat-warn {
   background-color: #761717;
 }

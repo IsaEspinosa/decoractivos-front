@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { User, UserLoginResponse } from '../models/user';
-import { map } from 'rxjs/internal/operators';
-import { AuthService } from './auth.service';
-import { Environment } from '../models/environment';
-import { BaseService } from './base.service';
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
+import { User, UserLoginResponse } from "../models/user";
+import { map } from "rxjs/internal/operators";
+import { AuthService } from "./auth.service";
+import { BaseService } from "./base.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService extends BaseService {
   static API_USER_RESOURCE = `${environment.apiUrl}/users`;
@@ -28,8 +27,8 @@ export class UserService extends BaseService {
     return this.authService.currentUser;
   }
 
-  getList(query = {}): Observable<Array<Environment>> {
-    return this.http.get<Array<Environment>>(UserService.API_USER_RESOURCE, {
+  getList(query = {}): Observable<Array<User>> {
+    return this.http.get<Array<User>>(UserService.API_USER_RESOURCE, {
       params: this.parseParams(query)
     });
   }

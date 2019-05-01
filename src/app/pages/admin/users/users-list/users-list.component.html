@@ -1,9 +1,35 @@
 <header class="row justify-content-center">
   <div class="col-md-11">
     <a routerLink="/admin" matTooltip="Ir al Admin">
-      <img class="logo" src="./assets/img/logo_no_title.png">
+      <img class="logo" src="./assets/img/logo_no_title.png" />
     </a>
     <h2 class="text-left">Lista de Usuarios</h2>
   </div>
 </header>
-<app-table [columns]="columns" [dataSource]="dataSource" [query]="query" (page)="onPageTable($event)"></app-table>
+<section id="user-list">
+  <button
+    class="back-button"
+    mat-mini-fab
+    color="primary"
+    routerLink="/admin"
+    matTooltip="Volver al Admin"
+  >
+    <i class="material-icons">
+      arrow_back
+    </i>
+  </button>
+  <mat-card>
+    <button mat-raised-button color="primary" matTooltip="Crear Usuario" routerLink="/usuarios/crear">
+      <i class="material-icons">
+        add_circle
+      </i>
+      Crear Usuario
+    </button>
+    <app-table
+      [columnSettings]="columnSettings"
+      [dataSource]="dataSource"
+      [query]="query"
+      (page)="onPageTable($event)"
+    ></app-table>
+  </mat-card>
+</section>

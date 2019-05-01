@@ -1,34 +1,26 @@
-<section>
-  <mat-card>
-    <table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource">
+  <!-- Position Column -->
+  <ng-container
+    [matColumnDef]="col"
+    *ngFor="let col of columnSettings.columnList"
+  >
+    <th mat-header-cell *matHeaderCellDef>
+      {{columnSettings.settings[col].title}}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{element[col]}}
+    </td>
+  </ng-container>
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No.</th>
-        <td mat-cell *matCellDef="let element"> {{element.position}}</td>
-      </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnSettings.columnList"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnSettings.columnList;"></tr>
+</table>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name</th>
-        <td mat-cell *matCellDef="let element"> {{element.name}}</td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight</th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}}</td>
-      </ng-container>
-
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol</th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}}</td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="columns"></tr>
-      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" (page)="onPage($event)" showFirstLastButtons></mat-paginator>
-  </mat-card>
-</section>
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  (page)="onPage($event)"
+  [pageIndex]="query.page-1"
+  [pageSize]="query.limit"
+  [length]="query.count"
+  showFirstLastButtons
+></mat-paginator>
