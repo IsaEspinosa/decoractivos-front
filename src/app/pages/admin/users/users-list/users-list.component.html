@@ -1,0 +1,9 @@
+<header class="row justify-content-center">
+  <div class="col-md-11">
+    <a routerLink="/admin" matTooltip="Ir al Admin">
+      <img class="logo" src="./assets/img/logo_no_title.png">
+    </a>
+    <h2 class="text-left">Lista de Usuarios</h2>
+  </div>
+</header>
+<app-table [columns]="columns" [dataSource]="dataSource" [query]="query" (page)="onPageTable($event)"></app-table>

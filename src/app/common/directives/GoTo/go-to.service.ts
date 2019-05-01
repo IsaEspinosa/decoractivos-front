@@ -1,14 +1,12 @@
-import {ElementRef, Injectable} from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoToService {
-
   private readonly targets: Object = {};
 
-  constructor() {
-  }
+  constructor() {}
 
   setTarget(key: string, value: ElementRef): void {
     this.targets[key] = value;
@@ -21,5 +19,4 @@ export class GoToService {
   removeTarget(key: string): void {
     delete this.targets[key];
   }
-
 }

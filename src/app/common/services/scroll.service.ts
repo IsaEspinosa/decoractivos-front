@@ -1,15 +1,13 @@
-import {Injectable} from '@angular/core';
-import {ScrollbarComponent} from "ngx-scrollbar";
+import { Injectable } from '@angular/core';
+import { ScrollbarComponent } from 'ngx-scrollbar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScrollService {
-
   private scrollRef: ScrollbarComponent;
 
-  constructor() {
-  }
+  constructor() {}
 
   set instance(scroll: ScrollbarComponent) {
     if (!scroll && this.scrollRef) {

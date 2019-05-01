@@ -1,16 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {Environment} from '../../../common/models/environment';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EnvironmentType} from '../../../common/models/environment-type';
-import {EnvironmentService} from '../../../common/services/environment.service';
-import {CreateEnvironmentTypeComponent} from '../environment-type-create/environment-type-create.component';
-import {FormService} from '../../../common/services/forms.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ActivatedRoute, Router} from '@angular/router';
-import {forkJoin} from 'rxjs';
-import {flatMap, tap, first} from 'rxjs/operators';
-import {Layer} from '../../../common/models/layer';
-
+import { Component, OnInit } from '@angular/core';
+import { Environment } from '../../../common/models/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EnvironmentType } from '../../../common/models/environment-type';
+import { EnvironmentService } from '../../../common/services/environment.service';
+import { CreateEnvironmentTypeComponent } from '../environment-type-create/environment-type-create.component';
+import { FormService } from '../../../common/services/forms.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
+import { flatMap, tap, first } from 'rxjs/operators';
+import { Layer } from '../../../common/models/layer';
 
 @Component({
   selector: 'app-create-environment-page',
@@ -18,7 +17,6 @@ import {Layer} from '../../../common/models/layer';
   styleUrls: ['./environment-create.component.scss']
 })
 export class EditEnvironmentPageComponent implements OnInit {
-
   public environment: Environment;
   public environmentForm: FormGroup;
   public environmentTypes: Array<EnvironmentType>;
@@ -29,13 +27,13 @@ export class EditEnvironmentPageComponent implements OnInit {
   public fs: FormService;
   public imageChangedEvent: any = null;
 
-
-  constructor(protected environmentService: EnvironmentService,
-              private fb: FormBuilder,
-              private modalService: NgbModal,
-              private route: ActivatedRoute,
-              private router: Router) {
-  }
+  constructor(
+    protected environmentService: EnvironmentService,
+    private fb: FormBuilder,
+    private modalService: NgbModal,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.environmentForm = this.fb.group({
@@ -44,8 +42,9 @@ export class EditEnvironmentPageComponent implements OnInit {
       environment_type_id: [null, Validators.required]
     });
 
-    this.environmentForm.get('environment_type_id').valueChanges
-      .subscribe(val => {
+    this.environmentForm
+      .get('environment_type_id')
+      .valueChanges.subscribe(val => {
         if (typeof val === 'object' && val.action === 'add') {
           this.openAddModal(CreateEnvironmentTypeComponent);
         }
@@ -53,41 +52,43 @@ export class EditEnvironmentPageComponent implements OnInit {
 
     this.fs = new FormService(this.environmentForm, this);
 
-    forkJoin(
-      this.loadEnvironmentTypes(),
-      this.loadEnvironment()
-    )
-      .subscribe(([types, environment]) => {
-        const currentType = types.find(type => type.environment_type_id === environment.environment_type_id);
+    forkJoin(this.loadEnvironmentTypes(), this.loadEnvironment()).subscribe(
+      ([types, environment]) => {
+        const currentType = types.find(
+          type => type.environment_type_id === environment.environment_type_id
+        );
         this.f.environment_type_id.setValue(currentType);
-      });
+      }
+    );
   }
 
   loadEnvironmentTypes() {
     return this.environmentService
       .getTypes({
-        orderBy: [
-          ['name', 'asc']
-        ]
+        orderBy: [['name', 'asc']]
       })
       .pipe(
-        tap(environmentTypes => this.environmentTypesFiltered = this.environmentTypes = environmentTypes)
+        tap(
+          environmentTypes =>
+            (this.environmentTypesFiltered = this.environmentTypes = environmentTypes)
+        )
       );
   }
 
   loadEnvironment() {
-    return this.route.params
-      .pipe(
-        first(),
-        flatMap(params => {
-          const id = this.environmentService.extractIdFromSlug(params.environment_slug);
-          return this.environmentService.getOne(id);
-        }),
-        tap(environment => {
-          this.environment = <Environment>environment;
-          this.f.name.setValue(environment.name);
-        })
-      );
+    return this.route.params.pipe(
+      first(),
+      flatMap(params => {
+        const id = this.environmentService.extractIdFromSlug(
+          params.environment_slug
+        );
+        return this.environmentService.getOne(id);
+      }),
+      tap(environment => {
+        this.environment = <Environment>environment;
+        this.f.name.setValue(environment.name);
+      })
+    );
   }
 
   get f() {
@@ -113,8 +114,7 @@ export class EditEnvironmentPageComponent implements OnInit {
         backdrop: 'static',
         centered: true
       })
-      .result
-      .then(result => {
+      .result.then(result => {
         this.loadEnvironmentTypes();
         this.environmentForm.get('environment_type_id').setValue(result);
       });
@@ -131,12 +131,13 @@ export class EditEnvironmentPageComponent implements OnInit {
 
     setTimeout(() => {
       if (!element || !element.value) {
-        return this.environmentTypesFiltered = this.environmentTypes;
+        return (this.environmentTypesFiltered = this.environmentTypes);
       }
       const value = element.value.toLowerCase().trim();
 
-      return this.environmentTypesFiltered = this.environmentTypes
-        .filter(type => type.name.toLowerCase().includes(value));
+      return (this.environmentTypesFiltered = this.environmentTypes.filter(
+        type => type.name.toLowerCase().includes(value)
+      ));
     });
   }
 
@@ -151,13 +152,18 @@ export class EditEnvironmentPageComponent implements OnInit {
 
     const input = new FormData();
     input.append('name', this.environmentForm.get('name').value);
-    input.append('environment_type_id', this.environmentForm.get('environment_type_id').value.environment_type_id);
+    input.append(
+      'environment_type_id',
+      this.environmentForm.get('environment_type_id').value.environment_type_id
+    );
 
     if (this.environmentForm.get('preview').dirty) {
       input.append('preview', this.environmentForm.get('preview').value);
     }
 
-    return this.environmentService.put(this.environment.environment_id, input).toPromise()
+    return this.environmentService
+      .put(this.environment.environment_id, input)
+      .toPromise()
       .then(environment => this.reload())
       .catch(response => this.fs.manageErrors(response));
   }
@@ -167,6 +173,4 @@ export class EditEnvironmentPageComponent implements OnInit {
   }
 }
 
-export const EditEnvironmentInternalComponents = [
-  EditEnvironmentPageComponent,
-];
+export const EditEnvironmentInternalComponents = [EditEnvironmentPageComponent];

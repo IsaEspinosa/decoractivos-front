@@ -8,9 +8,8 @@ describe('EnvironmentListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EnvironmentListComponent ]
-    })
-    .compileComponents();
+      declarations: [EnvironmentListComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

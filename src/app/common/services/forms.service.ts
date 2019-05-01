@@ -1,9 +1,7 @@
-import {FormGroup, FormControl} from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 export class FormService {
-
-  constructor(private formGroup: FormGroup, private additionalFormInfo: any) {
-  }
+  constructor(private formGroup: FormGroup, private additionalFormInfo: any) {}
 
   markFormGroup(markAs: string, formGroup?: FormGroup) {
     const form = formGroup || this.formGroup;
@@ -30,20 +28,23 @@ export class FormService {
   }
 
   checkValidity(field) {
-    return (this.additionalFormInfo.submitted || this.f[field].touched) && this.f[field].invalid;
+    return (
+      (this.additionalFormInfo.submitted || this.f[field].touched) &&
+      this.f[field].invalid
+    );
   }
 
   populateErrorForms(errors) {
-    Object.keys(errors)
-      .forEach(error => {
-        this.f[error].setErrors(
-          errors[error].reduce((accum, validation) => {
-            return {
-              ...accum,
-              [validation]: true
-            };
-          }, {}));
-      });
+    Object.keys(errors).forEach(error => {
+      this.f[error].setErrors(
+        errors[error].reduce((accum, validation) => {
+          return {
+            ...accum,
+            [validation]: true
+          };
+        }, {})
+      );
+    });
   }
 
   manageErrors(response) {

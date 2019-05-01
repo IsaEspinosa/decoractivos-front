@@ -1,16 +1,21 @@
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {Component, OnInit} from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 import Compressor from 'compressorjs';
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
-import {EnvironmentService} from '../../../../../common/services/environment.service';
-import {FormService} from '../../../../../common/services/forms.service';
-import {Environment} from '../../../../../common/models/environment';
-import {Layer} from '../../../../../common/models/layer';
-import {ItemCategory} from '../../../../../common/models/item-category';
-import {LayerItem} from '../../../../../common/models/layer-item';
-import {SnackService} from '../../../../../common/services/snack.service';
+import { EnvironmentService } from '../../../../../common/services/environment.service';
+import { FormService } from '../../../../../common/services/forms.service';
+import { Environment } from '../../../../../common/models/environment';
+import { Layer } from '../../../../../common/models/layer';
+import { ItemCategory } from '../../../../../common/models/item-category';
+import { LayerItem } from '../../../../../common/models/layer-item';
+import { SnackService } from '../../../../../common/services/snack.service';
 
 @Component({
   templateUrl: './item-create.component.html',
@@ -31,18 +36,21 @@ export class ItemCreateComponent implements OnInit {
   public previewImage: string = null;
   public isDraggingPreview = false;
 
-
-  constructor(protected environmentService: EnvironmentService,
-              protected fb: FormBuilder,
-              protected sanitizer: DomSanitizer,
-              protected snackBar: SnackService,
-              public modal: NgbActiveModal) {
-  }
+  constructor(
+    protected environmentService: EnvironmentService,
+    protected fb: FormBuilder,
+    protected sanitizer: DomSanitizer,
+    protected snackBar: SnackService,
+    public modal: NgbActiveModal
+  ) {}
 
   ngOnInit() {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
-      category_id: ['', (control: FormControl) => this.categoryIdValidator(control)],
+      category_id: [
+        '',
+        (control: FormControl) => this.categoryIdValidator(control)
+      ],
       preview: [null, this.imageValidator('preview')],
       image_simulator: [null, this.imageValidator('simulator')]
     });
@@ -54,14 +62,19 @@ export class ItemCreateComponent implements OnInit {
   imageValidator(image) {
     return (control: FormControl) => {
       if (control.value || this[`${image}Image`]) return null;
-      return {required: true};
+      return { required: true };
     };
   }
 
   categoryIdValidator(control: FormControl) {
     if (!this.layer.categories.length && !control.value) return null;
     const category = control.value;
-    if (typeof category === 'string' || !this.layer.categories.includes(category)) return {unselected: true};
+    if (
+      typeof category === 'string' ||
+      !this.layer.categories.includes(category)
+    ) {
+      return { unselected: true };
+    }
     return null;
   }
 
@@ -80,11 +93,15 @@ export class ItemCreateComponent implements OnInit {
         success: result => {
           this.productForm.get(field).setValue(result);
           this.productForm.get(field).markAsDirty();
-          this[`${componentProp}Image`] = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(result));
+          this[
+            `${componentProp}Image`
+          ] = this.sanitizer.bypassSecurityTrustResourceUrl(
+            URL.createObjectURL(result)
+          );
         },
         error: err => {
           this.snackBar.snackError(err);
-        },
+        }
       });
     }
   }
@@ -102,11 +119,12 @@ export class ItemCreateComponent implements OnInit {
   filterTypes(element) {
     setTimeout(() => {
       if (!element || !element.value) {
-        return this.categories = this.layer.categories.slice();
+        return (this.categories = this.layer.categories.slice());
       }
       const value = element.value.toLowerCase().trim();
-      return this.categories = this.layer.categories
-        .filter(category => category.name.toLowerCase().includes(value));
+      return (this.categories = this.layer.categories.filter(category =>
+        category.name.toLowerCase().includes(value)
+      ));
     });
   }
 
@@ -126,8 +144,13 @@ export class ItemCreateComponent implements OnInit {
       input.append('category_id', category_id);
     }
     input.append('preview', this.productForm.get('preview').value);
-    input.append('image_simulator', this.productForm.get('image_simulator').value);
-    return this.environmentService.postItem(this.environment.environment_id, this.layer.layer_id, input).toPromise()
+    input.append(
+      'image_simulator',
+      this.productForm.get('image_simulator').value
+    );
+    return this.environmentService
+      .postItem(this.environment.environment_id, this.layer.layer_id, input)
+      .toPromise()
       .then(response => this.modal.close(response))
       .catch(response => {
         this.submitted = false;

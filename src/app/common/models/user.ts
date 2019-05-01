@@ -10,8 +10,12 @@ export interface User {
 }
 
 export class SystemUser implements User {
-  constructor(public user_id = null, public username = null, public email = null, public password = null) {
-  }
+  constructor(
+    public user_id = null,
+    public username = null,
+    public email = null,
+    public password = null
+  ) {}
 }
 
 export interface UserLoginResponse {

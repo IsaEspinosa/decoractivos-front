@@ -1,13 +1,23 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 import Compressor from 'compressorjs';
-import {EnvironmentService} from '../../../../../common/services/environment.service';
-import {FormService} from '../../../../../common/services/forms.service';
-import {Environment} from '../../../../../common/models/environment';
-import {Layer} from '../../../../../common/models/layer';
-import {DomSanitizer} from '@angular/platform-browser';
-import {SnackService} from '../../../../../common/services/snack.service';
-
+import { EnvironmentService } from '../../../../../common/services/environment.service';
+import { FormService } from '../../../../../common/services/forms.service';
+import { Environment } from '../../../../../common/models/environment';
+import { Layer } from '../../../../../common/models/layer';
+import { DomSanitizer } from '@angular/platform-browser';
+import { SnackService } from '../../../../../common/services/snack.service';
 
 @Component({
   selector: 'app-admin-layer-without-products',
@@ -15,11 +25,10 @@ import {SnackService} from '../../../../../common/services/snack.service';
   styleUrls: ['./layer-without-products.component.scss']
 })
 export class LayerWithoutProductsComponent implements OnChanges {
-
   // tslint:disable-next-line
-  @Input('environment') environment: Environment;
+  @Input("environment") environment: Environment;
   // tslint:disable-next-line
-  @Input('layer') originalLayer: Layer;
+  @Input("layer") originalLayer: Layer;
   @Output() close = new EventEmitter<any>();
   @Output() removeLayer = new EventEmitter<Array<Layer>>();
   @Output() update = new EventEmitter<Layer>();
@@ -33,11 +42,12 @@ export class LayerWithoutProductsComponent implements OnChanges {
   public image: any;
   public editMode = false;
 
-  constructor(protected environmentService: EnvironmentService,
-              private sanitizer: DomSanitizer,
-              private snackBar: SnackService,
-              private fb: FormBuilder) {
-  }
+  constructor(
+    protected environmentService: EnvironmentService,
+    private sanitizer: DomSanitizer,
+    private snackBar: SnackService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnChanges() {
     this.editMode = false;
@@ -54,8 +64,9 @@ export class LayerWithoutProductsComponent implements OnChanges {
       name: [this.layer.name, Validators.required],
       image: [null, (control: FormControl) => this.checkImageValid(control)]
     });
-    this.layerForm.get('name').valueChanges
-      .subscribe(val => this.layer.name = val);
+    this.layerForm
+      .get('name')
+      .valueChanges.subscribe(val => (this.layer.name = val));
 
     this.fs = new FormService(this.layerForm, this);
   }
@@ -77,11 +88,13 @@ export class LayerWithoutProductsComponent implements OnChanges {
         success: result => {
           this.layerForm.get('image').setValue(result);
           this.layerForm.get('image').markAsDirty();
-          this.image = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(result));
+          this.image = this.sanitizer.bypassSecurityTrustResourceUrl(
+            URL.createObjectURL(result)
+          );
         },
         error: err => {
           this.snackBar.snackError(err);
-        },
+        }
       });
     }
   }
@@ -106,7 +119,9 @@ export class LayerWithoutProductsComponent implements OnChanges {
     const image = this.layerForm.get('image').value;
     if (image) input.append('image', image);
 
-    return this.environmentService.putLayer(this.environment.environment_id, this.layer.layer_id, input).toPromise()
+    return this.environmentService
+      .putLayer(this.environment.environment_id, this.layer.layer_id, input)
+      .toPromise()
       .then(layer => {
         this.submitted = false;
         this.editMode = false;
@@ -116,7 +131,9 @@ export class LayerWithoutProductsComponent implements OnChanges {
   }
 
   remove() {
-    return this.environmentService.removeLayer(this.environment.environment_id, this.layer.layer_id).toPromise()
+    return this.environmentService
+      .removeLayer(this.environment.environment_id, this.layer.layer_id)
+      .toPromise()
       .then(layers => {
         this.removeLayer.emit(layers);
         this.close.emit();

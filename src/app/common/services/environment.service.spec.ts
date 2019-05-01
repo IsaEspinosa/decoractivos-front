@@ -9,7 +9,10 @@ describe('EnvironmentService', () => {
     });
   });
 
-  it('should be created', inject([EnvironmentService], (service: EnvironmentService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [EnvironmentService],
+    (service: EnvironmentService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

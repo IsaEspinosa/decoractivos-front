@@ -10,5 +10,5 @@ export const gridBreakpoints = {
   xl: 1200
 };
 
-export const authTokenKey = "auth_token";
-export const roleKey = "user_role";
+export const authTokenKey = 'auth_token';
+export const roleKey = 'user_role';

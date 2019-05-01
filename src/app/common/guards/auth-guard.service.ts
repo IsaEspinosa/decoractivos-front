@@ -1,17 +1,24 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ActivatedRouteSnapshot, CanActivate, NavigationExtras, Router, RouterStateSnapshot} from '@angular/router';
-import {AuthService} from '../services/auth.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  NavigationExtras,
+  Router,
+  RouterStateSnapshot
+} from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthService) {}
 
-  constructor(private authService: AuthService) {
-  }
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
     const url: string = state.url;
     const routeData: any = route.data;
     const role = routeData.role;
@@ -22,7 +29,9 @@ export class AuthGuard implements CanActivate {
     if (requiredRoles.includes('all')) return true;
 
     if (this.authService.isLoggedIn()) {
-      if (requiredRoles.some(role => this.authService.hasRole(role))) return true;
+      if (requiredRoles.some(role => this.authService.hasRole(role))) {
+        return true;
+      }
       return this.redirectMainAndReturn();
     }
 

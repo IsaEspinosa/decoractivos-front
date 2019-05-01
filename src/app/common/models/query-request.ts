@@ -3,7 +3,8 @@
  */
 
 export interface QueryRequest {
-  limit?: number,
-  page?: number,
-  where?: object
+  count?: number;
+  limit?: number;
+  page?: number;
+  where?: object;
 }

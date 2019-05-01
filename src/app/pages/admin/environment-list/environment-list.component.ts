@@ -1,15 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable, of} from 'rxjs/index';
-import {Environment} from '../../../common/models/environment';
-import {EnvironmentType} from '../../../common/models/environment-type';
-import {EnvironmentService} from '../../../common/services/environment.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs/index';
+import { Environment } from '../../../common/models/environment';
+import { EnvironmentType } from '../../../common/models/environment-type';
+import { EnvironmentService } from '../../../common/services/environment.service';
 
 @Component({
   templateUrl: './environment-list.component.html',
   styleUrls: ['./environment-list.component.scss']
 })
 export class EnvironmentListPageComponent implements OnInit {
-
   public environments: Observable<Array<Environment>>;
   public environmentTypes: Observable<Array<EnvironmentType>>;
   public selectedEnvType: EnvironmentType = null;
@@ -18,17 +17,13 @@ export class EnvironmentListPageComponent implements OnInit {
     page: 1,
     where: null
   };
-  public isLoading: boolean = false;
+  public isLoading = false;
 
-
-  constructor(protected environmentService: EnvironmentService) {
-  }
+  constructor(protected environmentService: EnvironmentService) {}
 
   ngOnInit() {
     this.environmentTypes = this.environmentService.getTypes({
-      orderBy: [
-        ['name', 'asc']
-      ]
+      orderBy: [['name', 'asc']]
     });
     this.selectEnvironmentType(null);
   }
@@ -43,20 +38,23 @@ export class EnvironmentListPageComponent implements OnInit {
     this.isLoading = true;
     setTimeout(() => {
       this.environments = this.environmentService.getList(this.query);
-      this.environments.subscribe(() => setTimeout(() => this.isLoading = false, 500));
+      this.environments.subscribe(() =>
+        setTimeout(() => (this.isLoading = false), 500)
+      );
     }, 500);
   }
 
   isEnvironmentActive(environment: Environment) {
-    return !this.selectedEnvType || environment.environment_type_id === this.selectedEnvType.environment_type_id;
+    return (
+      !this.selectedEnvType ||
+      environment.environment_type_id ===
+        this.selectedEnvType.environment_type_id
+    );
   }
 
   isCategoryActive(type: EnvironmentType) {
     return this.selectedEnvType === type;
   }
-
 }
 
-export const EnvironmentListInternalComponents = [
-  EnvironmentListPageComponent,
-];
+export const EnvironmentListInternalComponents = [EnvironmentListPageComponent];

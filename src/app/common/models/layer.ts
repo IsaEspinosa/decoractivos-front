@@ -1,5 +1,5 @@
-import {LayerItem} from "./layer-item";
-import {ItemCategory} from "./item-category";
+import { LayerItem } from './layer-item';
+import { ItemCategory } from './item-category';
 /**
  * Created by garusis on 7/06/18.
  */

@@ -1,9 +1,15 @@
 /**
  * Created by garusis on 4/06/18.
  */
-import {Directive, ElementRef, HostListener, Input, Renderer2} from '@angular/core';
-import {ScrollService} from "../../services/scroll.service";
-import {GoToService} from "./go-to.service";
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  Renderer2
+} from '@angular/core';
+import { ScrollService } from '../../services/scroll.service';
+import { GoToService } from './go-to.service';
 
 @Directive({
   selector: '[go-to]'
@@ -11,8 +17,13 @@ import {GoToService} from "./go-to.service";
 export class GoToDirective {
   @Input('go-to') goTo: string;
 
-  constructor(private renderer: Renderer2, private elr: ElementRef, private scrollService: ScrollService, private gotoService: GoToService) {
-    renderer.setAttribute(elr.nativeElement, "href", "javascript:void(0)");
+  constructor(
+    private renderer: Renderer2,
+    private elr: ElementRef,
+    private scrollService: ScrollService,
+    private gotoService: GoToService
+  ) {
+    renderer.setAttribute(elr.nativeElement, 'href', 'javascript:void(0)');
   }
 
   @HostListener('click', ['$event'])

@@ -1,0 +1,16 @@
+@import "../../../../styles/variables.scss";
+
+section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px;
+}
+
+mat-card {
+  width: 80%;
+  border-top: none;
+}
+
+
+

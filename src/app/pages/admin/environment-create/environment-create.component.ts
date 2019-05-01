@@ -1,14 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Environment} from '../../../common/models/environment';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EnvironmentType} from '../../../common/models/environment-type';
-import {EnvironmentService} from '../../../common/services/environment.service';
-import {CreateEnvironmentTypeComponent} from '../environment-type-create/environment-type-create.component';
-import {FormService} from '../../../common/services/forms.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Router} from '@angular/router';
-import {tap} from 'rxjs/operators';
-import {MatAutocomplete, MatAutocompleteTrigger} from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Environment } from '../../../common/models/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EnvironmentType } from '../../../common/models/environment-type';
+import { EnvironmentService } from '../../../common/services/environment.service';
+import { CreateEnvironmentTypeComponent } from '../environment-type-create/environment-type-create.component';
+import { FormService } from '../../../common/services/forms.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
+import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 
 @Component({
   selector: 'app-create-environment-page',
@@ -16,7 +16,6 @@ import {MatAutocomplete, MatAutocompleteTrigger} from '@angular/material';
   styleUrls: ['./environment-create.component.scss']
 })
 export class CreateEnvironmentPageComponent implements OnInit {
-
   public environment: Environment = new Environment();
   public environmentForm: FormGroup;
   public environmentTypes: Array<EnvironmentType>;
@@ -29,11 +28,12 @@ export class CreateEnvironmentPageComponent implements OnInit {
 
   @ViewChild(MatAutocompleteTrigger) autoTrigger: MatAutocompleteTrigger;
 
-  constructor(protected environmentService: EnvironmentService,
-              private fb: FormBuilder,
-              private modalService: NgbModal,
-              private router: Router) {
-  }
+  constructor(
+    protected environmentService: EnvironmentService,
+    private fb: FormBuilder,
+    private modalService: NgbModal,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadEnvironmentTypes();
@@ -43,8 +43,9 @@ export class CreateEnvironmentPageComponent implements OnInit {
       environment_type_id: [null, Validators.required]
     });
 
-    this.environmentForm.get('environment_type_id').valueChanges
-      .subscribe(val => {
+    this.environmentForm
+      .get('environment_type_id')
+      .valueChanges.subscribe(val => {
         if (typeof val === 'object' && val.action === 'add') {
           this.openAddModal(CreateEnvironmentTypeComponent);
         }
@@ -56,12 +57,13 @@ export class CreateEnvironmentPageComponent implements OnInit {
   loadEnvironmentTypes() {
     return this.environmentService
       .getTypes({
-        orderBy: [
-          ['name', 'asc']
-        ]
+        orderBy: [['name', 'asc']]
       })
       .pipe(
-        tap(environmentTypes => this.environmentTypesFiltered = this.environmentTypes = environmentTypes)
+        tap(
+          environmentTypes =>
+            (this.environmentTypesFiltered = this.environmentTypes = environmentTypes)
+        )
       )
       .subscribe();
   }
@@ -82,8 +84,7 @@ export class CreateEnvironmentPageComponent implements OnInit {
         backdrop: 'static',
         centered: true
       })
-      .result
-      .then(result => {
+      .result.then(result => {
         this.loadEnvironmentTypes();
         this.environmentForm.get('environment_type_id').setValue(result);
         this.autoTrigger.closePanel();
@@ -107,12 +108,13 @@ export class CreateEnvironmentPageComponent implements OnInit {
 
     setTimeout(() => {
       if (!element || !element.value) {
-        return this.environmentTypesFiltered = this.environmentTypes;
+        return (this.environmentTypesFiltered = this.environmentTypes);
       }
       const value = element.value.toLowerCase().trim();
 
-      return this.environmentTypesFiltered = this.environmentTypes
-        .filter(type => type.name.toLowerCase().includes(value));
+      return (this.environmentTypesFiltered = this.environmentTypes.filter(
+        type => type.name.toLowerCase().includes(value)
+      ));
     });
   }
 
@@ -127,14 +129,21 @@ export class CreateEnvironmentPageComponent implements OnInit {
     const input = new FormData();
     input.append('name', this.environmentForm.get('name').value);
     input.append('preview', this.environmentForm.get('preview').value);
-    input.append('environment_type_id', this.environmentForm.get('environment_type_id').value.environment_type_id);
+    input.append(
+      'environment_type_id',
+      this.environmentForm.get('environment_type_id').value.environment_type_id
+    );
 
-    return this.environmentService.post(input).toPromise()
-      .then(environment => this.router.navigate([`/admin/ambientes/${environment.slug}/editar`]))
+    return this.environmentService
+      .post(input)
+      .toPromise()
+      .then(environment =>
+        this.router.navigate([`/admin/ambientes/${environment.slug}/editar`])
+      )
       .catch(response => this.fs.manageErrors(response));
   }
 }
 
 export const CreateEnvironmentInternalComponents = [
-  CreateEnvironmentPageComponent,
+  CreateEnvironmentPageComponent
 ];

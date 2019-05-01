@@ -8,9 +8,8 @@ describe('LandingEnvironmentCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingEnvironmentCardComponent ]
-    })
-    .compileComponents();
+      declarations: [LandingEnvironmentCardComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

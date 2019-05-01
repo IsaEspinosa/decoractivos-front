@@ -8,9 +8,8 @@ describe('CreateEnvironmentPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EnvironmentsComponent ]
-    })
-    .compileComponents();
+      declarations: [EnvironmentsComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

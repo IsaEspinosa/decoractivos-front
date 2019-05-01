@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FooterComponent} from "../footer/footer.component";
+import { Component, OnInit } from '@angular/core';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-min-footer',
@@ -8,6 +8,6 @@ import {FooterComponent} from "../footer/footer.component";
 })
 export class MinFooterComponent extends FooterComponent {
   constructor() {
-    super()
+    super();
   }
 }

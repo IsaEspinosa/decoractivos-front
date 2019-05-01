@@ -1,5 +1,10 @@
-import {HttpHandler, HttpInterceptor, HttpRequest, HttpParams} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpParams
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 /**
  * Created by garusis on 8/06/18.

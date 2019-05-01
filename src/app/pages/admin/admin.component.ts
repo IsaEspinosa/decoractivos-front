@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
 export class AdminPageComponent implements OnInit {
-
   public pages: any = null;
   public isLoading = true;
 
@@ -18,7 +17,7 @@ export class AdminPageComponent implements OnInit {
       },
       {
         name: 'Usuarios',
-        link: '/admin',
+        link: '/admin/usuarios',
         icon: 'assets/img/icons/users.svg'
       },
       {
@@ -35,11 +34,8 @@ export class AdminPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => this.isLoading = false, 1000);
+    setTimeout(() => (this.isLoading = false), 1000);
   }
-
 }
 
-export const AdminPageInternalComponents = [
-  AdminPageComponent,
-];
+export const AdminPageInternalComponents = [AdminPageComponent];

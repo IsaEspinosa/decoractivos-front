@@ -1,24 +1,30 @@
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {Component, OnInit} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
-import {EnvironmentService} from '../../../../../common/services/environment.service';
-import {FormService} from '../../../../../common/services/forms.service';
-import {SnackService} from '../../../../../common/services/snack.service';
-import {ItemCreateComponent} from './item-create.component';
+import { EnvironmentService } from '../../../../../common/services/environment.service';
+import { FormService } from '../../../../../common/services/forms.service';
+import { SnackService } from '../../../../../common/services/snack.service';
+import { ItemCreateComponent } from './item-create.component';
 
 @Component({
   templateUrl: './item-create.component.html',
   styleUrls: ['./item-create.component.scss']
 })
 export class ItemEditComponent extends ItemCreateComponent implements OnInit {
-
-  constructor(protected environmentService: EnvironmentService,
-              protected fb: FormBuilder,
-              protected sanitizer: DomSanitizer,
-              protected snackBar: SnackService,
-              public modal: NgbActiveModal) {
+  constructor(
+    protected environmentService: EnvironmentService,
+    protected fb: FormBuilder,
+    protected sanitizer: DomSanitizer,
+    protected snackBar: SnackService,
+    public modal: NgbActiveModal
+  ) {
     super(environmentService, fb, sanitizer, snackBar, modal);
   }
 
@@ -26,8 +32,13 @@ export class ItemEditComponent extends ItemCreateComponent implements OnInit {
     this.productForm = this.fb.group({
       name: [this.item.name, Validators.required],
       category_id: [
-        this.item.category_id ? this.layer.categories
-          .find(category => category.category_id.toString() === this.item.category_id.toString()) : null,
+        this.item.category_id
+          ? this.layer.categories.find(
+              category =>
+                category.category_id.toString() ===
+                this.item.category_id.toString()
+            )
+          : null,
         (control: FormControl) => this.categoryIdValidator(control)
       ],
       preview: [null, this.imageValidator('preview')],
@@ -68,7 +79,14 @@ export class ItemEditComponent extends ItemCreateComponent implements OnInit {
     if (imageSimulator) {
       input.append('image_simulator', imageSimulator);
     }
-    return this.environmentService.putItem(this.environment.environment_id, this.layer.layer_id, this.item.item_id, input).toPromise()
+    return this.environmentService
+      .putItem(
+        this.environment.environment_id,
+        this.layer.layer_id,
+        this.item.item_id,
+        input
+      )
+      .toPromise()
       .then(response => this.modal.close(response))
       .catch(response => {
         this.submitted = false;

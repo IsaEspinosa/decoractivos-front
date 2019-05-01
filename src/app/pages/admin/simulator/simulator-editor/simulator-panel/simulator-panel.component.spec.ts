@@ -8,9 +8,8 @@ describe('SimulatorPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarComponent ]
-    })
-    .compileComponents();
+      declarations: [SidebarComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

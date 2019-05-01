@@ -4,5 +4,5 @@
 
 export class EnvironmentType {
   name: string;
-  environment_type_id: number
+  environment_type_id: number;
 }

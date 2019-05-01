@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
-import {Observable} from "rxjs/index";
-import {EnvironmentType} from "../../../common/models/environment-type";
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/index';
+import { EnvironmentType } from '../../../common/models/environment-type';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,24 +8,20 @@ import {EnvironmentType} from "../../../common/models/environment-type";
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  @Input() environmentTypes: Observable<Array<EnvironmentType>>;
+  @Output() selected = new EventEmitter<EnvironmentType>();
+  private selectedEnvType: EnvironmentType = null;
 
-  @Input() environmentTypes: Observable<Array<EnvironmentType>>
-  @Output() selected = new EventEmitter<EnvironmentType>()
-  private selectedEnvType: EnvironmentType = null
+  constructor() {}
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   selectEnvironmentType(selected: EnvironmentType) {
-    this.selectedEnvType = selected
-    this.selected.emit(selected)
+    this.selectedEnvType = selected;
+    this.selected.emit(selected);
   }
 
   isCategoryActive(type: EnvironmentType) {
-    return this.selectedEnvType === type
+    return this.selectedEnvType === type;
   }
-
 }

@@ -8,9 +8,8 @@ describe('LandingPortfolioComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingPortfolioComponent ]
-    })
-    .compileComponents();
+      declarations: [LandingPortfolioComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

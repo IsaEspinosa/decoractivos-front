@@ -10,6 +10,6 @@ export interface LayerItem {
   preview: string;
   image_simulator: string;
   additional_info: {
-    Formato: string,
+    Formato: string;
   };
 }

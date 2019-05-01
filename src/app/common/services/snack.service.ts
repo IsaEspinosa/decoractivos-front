@@ -1,18 +1,19 @@
-import {Injectable} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
-import {ErrorSnackComponent} from '../components/error-snack/error-snack.component';
-import {SuccessSnackComponent} from '../components/success-snack/success-snack.component';
+import { ErrorSnackComponent } from '../components/error-snack/error-snack.component';
+import { SuccessSnackComponent } from '../components/success-snack/success-snack.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SnackService {
+  constructor(private snackBar: MatSnackBar) {}
 
-  constructor(private snackBar: MatSnackBar) {
-  }
-
-  snackError(err: any, message = 'Un error interno ha ocurrido.<br/>Por favor intentelo nuevamente en unos segundos.') {
+  snackError(
+    err: any,
+    message = 'Un error interno ha ocurrido.<br/>Por favor intentelo nuevamente en unos segundos.'
+  ) {
     this.snackBar.openFromComponent(ErrorSnackComponent, {
       duration: 6000,
       data: message,
@@ -32,5 +33,4 @@ export class SnackService {
       panelClass: 'success-snack'
     });
   }
-
 }

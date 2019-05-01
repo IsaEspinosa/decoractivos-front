@@ -8,9 +8,8 @@ describe('MinFooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MinFooterComponent ]
-    })
-    .compileComponents();
+      declarations: [MinFooterComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Environment} from "../../../common/models/environment";
+import { Component, Input, OnInit } from '@angular/core';
+import { Environment } from '../../../common/models/environment';
 
 @Component({
   selector: 'app-landing-environment-card',
@@ -7,13 +7,9 @@ import {Environment} from "../../../common/models/environment";
   styleUrls: ['./landing-environment-card.component.scss']
 })
 export class LandingEnvironmentCardComponent implements OnInit {
-
   @Input() environment: Environment;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Observable, Observer, Subject} from 'rxjs';
-import {NavigationExtras, Router} from '@angular/router';
-import {authTokenKey, roleKey} from '../constants';
-import {User} from '../models/user';
+import { Injectable } from '@angular/core';
+import { Observable, Observer, Subject } from 'rxjs';
+import { NavigationExtras, Router } from '@angular/router';
+import { authTokenKey, roleKey } from '../constants';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,7 @@ export class AuthService {
   private _currentUser: Subject<User> = new Subject();
   private pendingLogin = false;
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
   get currentUser() {
     return this._currentUser.asObservable();
@@ -60,7 +59,7 @@ export class AuthService {
 
     this.pendingLogin = true;
     const navigationExtras: NavigationExtras = {
-      queryParams: {redirect_url}
+      queryParams: { redirect_url }
     };
 
     this.accessToken = null;

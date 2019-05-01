@@ -8,9 +8,8 @@ describe('LandingHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingHeaderComponent ]
-    })
-    .compileComponents();
+      declarations: [LandingHeaderComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

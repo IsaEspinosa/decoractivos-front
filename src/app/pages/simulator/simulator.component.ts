@@ -1,15 +1,15 @@
-import {omit} from 'lodash';
-import {flatMap} from 'rxjs/operators';
-import {Component, OnInit} from '@angular/core';
-import {forkJoin, Observable} from 'rxjs/index';
-import {ActivatedRoute, Router} from '@angular/router';
+import { omit } from 'lodash';
+import { flatMap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { forkJoin, Observable } from 'rxjs/index';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {SimulatorSidebarComponent} from './simulator-sidebar/simulator-sidebar.component';
-import {EnvironmentService} from '../../common/services/environment.service';
-import {Environment} from '../../common/models/environment';
-import {Layer} from '../../common/models/layer';
-import {SimulatorPanelComponent} from './simulator-panel/simulator-panel.component';
-import {LayerItem} from '../../common/models/layer-item';
+import { SimulatorSidebarComponent } from './simulator-sidebar/simulator-sidebar.component';
+import { EnvironmentService } from '../../common/services/environment.service';
+import { Environment } from '../../common/models/environment';
+import { Layer } from '../../common/models/layer';
+import { SimulatorPanelComponent } from './simulator-panel/simulator-panel.component';
+import { LayerItem } from '../../common/models/layer-item';
 
 @Component({
   selector: 'app-simulator',
@@ -17,23 +17,25 @@ import {LayerItem} from '../../common/models/layer-item';
   styleUrls: ['./simulator.component.scss']
 })
 export class SimulatorComponent implements OnInit {
-
   public environment: Environment = new Environment();
   public _layers: Array<Layer> = [];
   public layersInSimulator: Array<any> = [];
   public layersInSidebar: Array<Layer> = [];
   public loaded = 0;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private environmentService: EnvironmentService) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private environmentService: EnvironmentService
+  ) {}
 
   ngOnInit() {
     this.route.params
       .pipe(
         flatMap(params => {
-          const id = this.environmentService.extractIdFromSlug(params.environment_slug);
+          const id = this.environmentService.extractIdFromSlug(
+            params.environment_slug
+          );
           return forkJoin([
             this.environmentService.getOne(id),
             this.environmentService.getLayers(id)
@@ -47,9 +49,13 @@ export class SimulatorComponent implements OnInit {
   }
 
   resetLayers() {
-    this.layersInSimulator = this.layers.map((layer) => {
-      const newLayer = <any>omit(layer, ['items', 'default_item', 'customizable']);
-      newLayer.currentItem = layer.items.find(item => item.item_id === layer.default_item);
+    this.layersInSimulator = this.layers.map(layer => {
+      const newLayer = <any>(
+        omit(layer, ['items', 'default_item', 'customizable'])
+      );
+      newLayer.currentItem = layer.items.find(
+        item => item.item_id === layer.default_item
+      );
       return newLayer;
     });
   }
@@ -58,7 +64,7 @@ export class SimulatorComponent implements OnInit {
     layers = layers.sort((prev, next) => prev.layer_index - next.layer_index);
     this._layers = layers;
 
-    this.layersInSidebar = layers.filter((layer) => layer.customizable);
+    this.layersInSidebar = layers.filter(layer => layer.customizable);
     this.resetLayers();
   }
 
@@ -68,7 +74,9 @@ export class SimulatorComponent implements OnInit {
 
   updateLayer(item: LayerItem) {
     this.loaded--;
-    const layer = this.layersInSimulator.find((layer) => layer.layer_id === item.layer_id);
+    const layer = this.layersInSimulator.find(
+      layer => layer.layer_id === item.layer_id
+    );
     layer.currentItem = item;
     this.layersInSimulator = this.layersInSimulator.slice();
   }
@@ -76,7 +84,6 @@ export class SimulatorComponent implements OnInit {
   loadedLayer() {
     this.loaded++;
   }
-
 }
 
 export const SimulatorInternalComponents = [

@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/index';
-import {Environment} from '../../../../../common/models/environment';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/index';
+import { Environment } from '../../../../../common/models/environment';
 
 @Component({
   selector: 'app-admin-simulator-panel',
@@ -8,12 +8,10 @@ import {Environment} from '../../../../../common/models/environment';
   styleUrls: ['./simulator-panel.component.scss']
 })
 export class SimulatorPanelComponent implements OnInit {
-
   @Input() environment: Environment;
   @Input() isLoading: boolean;
   @Output() loadedLayer = new EventEmitter();
   private _layers: Array<any>;
-
 
   @Input() set layers(layers: Array<any>) {
     if (!layers) return;
@@ -24,10 +22,7 @@ export class SimulatorPanelComponent implements OnInit {
     return this._layers;
   }
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

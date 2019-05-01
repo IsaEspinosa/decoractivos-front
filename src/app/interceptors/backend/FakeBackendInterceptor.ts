@@ -1,23 +1,36 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from "@angular/common/http";
-import {Observable} from 'rxjs/index';
-import {delay} from "rxjs/operators";
-import {chain} from 'lodash'
-
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpParams,
+  HttpRequest
+} from '@angular/common/http';
+import { Observable } from 'rxjs/index';
+import { delay } from 'rxjs/operators';
+import { chain } from 'lodash';
 
 /**
  * Created by garusis on 8/06/18.
  */
 export abstract class FakeBackendInterceptor implements HttpInterceptor {
+  protected abstract requestInterceptor(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>>;
 
-  protected abstract requestInterceptor(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
-
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const observable: Observable<HttpEvent<any>> = this.requestInterceptor(request, next);
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    const observable: Observable<HttpEvent<any>> = this.requestInterceptor(
+      request,
+      next
+    );
     return observable ? observable.pipe(delay(500)) : next.handle(request);
   }
 
   static find(list, field, value) {
-    return list.find((item) => item[field] === parseInt(value))
+    return list.find(item => item[field] === parseInt(value));
   }
 
   static filter(list, where = {}, page = 1, limit = list.length) {
