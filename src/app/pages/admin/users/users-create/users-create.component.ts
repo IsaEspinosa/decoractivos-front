@@ -68,6 +68,8 @@ export class CreateUserPageComponent implements OnInit {
 
     const input = new FormData();
     input.append("name", this.userForm.get("name").value);
+    input.append("email", this.userForm.get("email").value);
+    input.append("username", this.userForm.get("email").value);
     input.append("preview", this.userForm.get("preview").value);
     input.append(
       "environment_type_id",
