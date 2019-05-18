@@ -1,0 +1,67 @@
+@import "../../../../../styles/variables.scss";
+@import "../../../../../styles/utils";
+
+header.main {
+  margin-top: 15px;
+  font-weight: bolder;
+  .logo {
+    height: 90px;
+  }
+  h2 {
+    position: relative;
+    margin: 0 22px 6px;
+    font-size: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      background: #000000;
+      width: 200px;
+      height: 1px;
+    }
+  }
+}
+
+.create-form {
+  position: relative;
+  margin-top: 30px;
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+    .user-fields-group {
+      position: relative;
+      padding: 24px;
+      margin-top: 24px;
+      &:not(:last-child) {
+        &:after {
+          content: "";
+          background: #dbdbdb;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 1px;
+          width: 100%;
+        }
+      }
+      > .row {
+        margin-left: -10px;
+        margin-right: -10px;
+        .input {
+          margin: 10px;
+          position: relative;
+          display: flex;
+          width: 240px;
+          flex-direction: column;
+          mat-form-field {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

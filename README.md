@@ -1,5 +1,22 @@
 # DecoractivosFront
 
+# Install
+
+## Requirements
+
+* Node v10.13
+* Angular CLI v6 `npm install -g @angular/cli@6.0.8`
+* [Yarn](https://yarnpkg.com/es-ES/docs/install)
+* Nodemon `yarn add global nodemon`
+
+## Get started
+* Open a terminal
+* Clone this repo and run `cd path/to/clonned/repo` 
+* Run `yarn`
+* run `yarn start`
+* Set the enviroment variables in *src/environments/environment.ts*
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
 
 ## Development server

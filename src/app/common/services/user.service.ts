@@ -3,9 +3,10 @@ import { Observable, of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { User, UserLoginResponse } from "../models/user";
-import { map } from "rxjs/internal/operators";
+import { map, tap } from "rxjs/internal/operators";
 import { AuthService } from "./auth.service";
 import { BaseService } from "./base.service";
+import { SnackService } from "./snack.service";
 
 @Injectable({
   providedIn: "root"
@@ -13,7 +14,11 @@ import { BaseService } from "./base.service";
 export class UserService extends BaseService {
   static API_USER_RESOURCE = `${environment.apiUrl}/users`;
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private snackBar: SnackService
+  ) {
     super();
     this.getCurrentUser(true);
   }
@@ -37,6 +42,16 @@ export class UserService extends BaseService {
     return this.http.get<any>(`${UserService.API_USER_RESOURCE}/count`, {
       params: this.parseParams(where)
     });
+  }
+
+  post(nUser: FormData): Observable<User> {
+    return this.http
+      .post<User>(UserService.API_USER_RESOURCE, nUser)
+      .pipe(
+        tap(() =>
+          this.snackBar.snackSuccess("El Usuario se ha creado exitosamente")
+        )
+      );
   }
 
   login(loginData) {

@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-import { environment } from '../../../environments/environment';
-import { Environment } from '../models/environment';
-import { EnvironmentType } from '../models/environment-type';
-import { Layer } from '../models/layer';
-import { BaseService } from './base.service';
-import { SnackService } from './snack.service';
-import { tap } from 'rxjs/operators';
+import { environment } from "../../../environments/environment";
+import { Environment } from "../models/environment";
+import { EnvironmentType } from "../models/environment-type";
+import { Layer } from "../models/layer";
+import { BaseService } from "./base.service";
+import { SnackService } from "./snack.service";
+import { tap } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class EnvironmentService extends BaseService {
   static API_ENVIRONMENT_RESOURCE = `${environment.apiUrl}/environments`;
@@ -24,7 +24,7 @@ export class EnvironmentService extends BaseService {
   }
 
   extractIdFromSlug(slug: string) {
-    return slug.replace(/^[a-zA-ZñÑ\-\d]+\-(\d+)$/, '$1');
+    return slug.replace(/^[a-zA-ZñÑ\-\d]+\-(\d+)$/, "$1");
   }
 
   getList(query = {}): Observable<Array<Environment>> {
@@ -44,7 +44,7 @@ export class EnvironmentService extends BaseService {
       )
       .pipe(
         tap(() =>
-          this.snackBar.snackSuccess('El Ambiente se ha creado exitosamente')
+          this.snackBar.snackSuccess("El Ambiente se ha creado exitosamente")
         )
       );
   }
@@ -60,7 +60,7 @@ export class EnvironmentService extends BaseService {
       .pipe(
         tap(() =>
           this.snackBar.snackSuccess(
-            'El Ambiente se ha actualizado exitosamente'
+            "El Ambiente se ha actualizado exitosamente"
           )
         )
       );
@@ -88,7 +88,7 @@ export class EnvironmentService extends BaseService {
       )
       .pipe(
         tap(() =>
-          this.snackBar.snackSuccess('La Capa se ha creado exitosamente')
+          this.snackBar.snackSuccess("La Capa se ha creado exitosamente")
         )
       );
   }
@@ -112,7 +112,7 @@ export class EnvironmentService extends BaseService {
       )
       .pipe(
         tap(() =>
-          this.snackBar.snackSuccess('La Capa se ha actualizado exitosamente')
+          this.snackBar.snackSuccess("La Capa se ha actualizado exitosamente")
         )
       );
   }
@@ -126,7 +126,7 @@ export class EnvironmentService extends BaseService {
       )
       .pipe(
         tap(() =>
-          this.snackBar.snackSuccess('La Capa se ha eliminado exitosamente')
+          this.snackBar.snackSuccess("La Capa se ha eliminado exitosamente")
         )
       );
   }
@@ -141,7 +141,7 @@ export class EnvironmentService extends BaseService {
       )
       .pipe(
         tap(() =>
-          this.snackBar.snackSuccess('La Categoria se ha creado exitosamente.')
+          this.snackBar.snackSuccess("La Categoria se ha creado exitosamente.")
         )
       );
   }
@@ -157,7 +157,7 @@ export class EnvironmentService extends BaseService {
       .pipe(
         tap(() =>
           this.snackBar.snackSuccess(
-            'La Categoria ha sido actualizada exitosamente.'
+            "La Categoria ha sido actualizada exitosamente."
           )
         )
       );
@@ -171,7 +171,7 @@ export class EnvironmentService extends BaseService {
         }/${environment_id}/layers/${layer_id}/categories/${category_id}`
       )
       .pipe(
-        tap(() => this.snackBar.snackSuccess('La Categoria ha sido eliminada.'))
+        tap(() => this.snackBar.snackSuccess("La Categoria ha sido eliminada."))
       );
   }
 
@@ -185,7 +185,7 @@ export class EnvironmentService extends BaseService {
       )
       .pipe(
         tap(() =>
-          this.snackBar.snackSuccess('El Producto se ha creado exitosamente.')
+          this.snackBar.snackSuccess("El Producto se ha creado exitosamente.")
         )
       );
   }
@@ -200,7 +200,7 @@ export class EnvironmentService extends BaseService {
       )
       .pipe(
         tap(() =>
-          this.snackBar.snackSuccess('El Producto se ha creado exitosamente.')
+          this.snackBar.snackSuccess("El Producto se ha creado exitosamente.")
         )
       );
   }

@@ -1,68 +1,69 @@
-import { LandingComponent } from '../pages/landing/landing.component';
-import { SimulatorComponent } from '../pages/simulator/simulator.component';
-import { EnvironmentsComponent } from '../pages/environments/environments.component';
-import { EnvironmentListPageComponent } from '../pages/admin/environment-list/environment-list.component';
-import { CreateEnvironmentPageComponent } from '../pages/admin/environment-create/environment-create.component';
-import { EditEnvironmentPageComponent } from '../pages/admin/environment-create/environment-edit.component';
-import { SimulatorEditorPageComponent } from '../pages/admin/simulator/simulator-editor/simulator-editor.component';
-import { AuthGuard } from '../common/guards/auth-guard.service';
-import { LoginComponent } from '../pages/login/login.component';
-import { AdminPageComponent } from '../pages/admin/admin.component';
-import { UsersListPageComponent } from '../pages/admin/users/users-list/users-list.component';
+import { LandingComponent } from "../pages/landing/landing.component";
+import { SimulatorComponent } from "../pages/simulator/simulator.component";
+import { EnvironmentsComponent } from "../pages/environments/environments.component";
+import { EnvironmentListPageComponent } from "../pages/admin/environment-list/environment-list.component";
+import { CreateEnvironmentPageComponent } from "../pages/admin/environment-create/environment-create.component";
+import { EditEnvironmentPageComponent } from "../pages/admin/environment-create/environment-edit.component";
+import { SimulatorEditorPageComponent } from "../pages/admin/simulator/simulator-editor/simulator-editor.component";
+import { AuthGuard } from "../common/guards/auth-guard.service";
+import { LoginComponent } from "../pages/login/login.component";
+import { AdminPageComponent } from "../pages/admin/admin.component";
+import { UsersListPageComponent } from "../pages/admin/users/users-list/users-list.component";
+import { CreateUserPageComponent } from "../pages/admin/users/users-create/users-create.component";
 
 /**
  * Created by garusis on 2/06/18.
  */
 export const PagesRoutes = [
   {
-    path: '',
-    data: { role: 'all' },
+    path: "",
+    data: { role: "all" },
     component: LandingComponent,
-    pathMatch: 'full'
+    pathMatch: "full"
   },
   {
-    path: 'login',
+    path: "login",
     component: LoginComponent,
     canActivate: [AuthGuard],
-    data: { role: 'guest' },
-    pathMatch: 'full'
+    data: { role: "guest" },
+    pathMatch: "full"
   },
   {
-    path: 'ambientes',
+    path: "ambientes",
     canActivate: [AuthGuard],
-    data: { roles: ['admin', 'client'] },
+    data: { roles: ["admin", "client"] },
     component: EnvironmentsComponent,
-    pathMatch: 'full'
+    pathMatch: "full"
   },
   {
-    path: 'admin',
+    path: "admin",
     canActivate: [AuthGuard],
-    data: { roles: ['admin'] },
+    data: { roles: ["admin"] },
     children: [
       {
-        path: '',
+        path: "",
         component: AdminPageComponent
       },
       {
-        path: 'ambientes',
+        path: "ambientes",
         children: [
           {
-            path: '',
+            path: "",
             component: EnvironmentListPageComponent
           },
           {
-            path: 'crear',
+            path: "crear",
             component: CreateEnvironmentPageComponent
           },
           {
-            path: ':environment_slug',
+            path: ":environment_slug",
             children: [
               {
-                path: '',
+                path: "",
                 component: SimulatorEditorPageComponent
               },
               {
-                path: 'editar',
+                path: "editar",
                 component: EditEnvironmentPageComponent
               }
             ]
@@ -70,21 +71,25 @@ export const PagesRoutes = [
         ]
       },
       {
-        path: 'usuarios',
+        path: "usuarios",
         children: [
           {
-            path: '',
+            path: "",
             component: UsersListPageComponent
+          },
+          {
+            path: "crear",
+            component: CreateUserPageComponent
           }
         ]
       }
     ]
   },
   {
-    path: 'simulador/:environment_slug',
+    path: "simulador/:environment_slug",
     canActivate: [AuthGuard],
-    data: { roles: ['admin', 'client'] },
+    data: { roles: ["admin", "client"] },
     component: SimulatorComponent,
-    pathMatch: 'full'
+    pathMatch: "full"
   }
 ];

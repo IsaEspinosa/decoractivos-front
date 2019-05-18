@@ -1,0 +1,187 @@
+<header class="row justify-content-center main">
+  <div class="col-md-11">
+    <a routerLink="/admin" matTooltip="Ir al Admin">
+      <img class="logo" src="./assets/img/logo_no_title.png" />
+    </a>
+    <h2 class="text-left">Crear Usuario</h2>
+  </div>
+</header>
+<div class="row create-form justify-content-center">
+  <button
+    class="back-button"
+    mat-mini-fab
+    color="primary"
+    routerLink="/admin/usuarios"
+    matTooltip="Ir al listado de Usuarios"
+  >
+    <i class="material-icons">
+      arrow_back
+    </i>
+  </button>
+  <div class="col-md-10">
+    <mat-card>
+      <form [formGroup]="userForm" (ngSubmit)="!submitted && onSubmit()">
+        <mat-card-content>
+          <div class="user-fields-group">
+            <label>Información del Usuario</label>
+            <div class="row">
+              <div class="input">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Nombre Completo del Cliente"
+                    type="text"
+                    formControlName="name"
+                    required
+                  />
+                  <mat-error *ngIf="fs.checkValidity('name')">
+                    <div *ngIf="f.name.errors.required">
+                      Debe ingresar el nombre completo del cliente.
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="input">
+                <mat-form-field>
+                  <mat-select
+                    disableOptionCentering
+                    formControlName="document_type"
+                    placeholder="Documento de Identificacion"
+                    required
+                  >
+                    <mat-option
+                      *ngFor="let type of documentTypes"
+                      [value]="type.value"
+                    >
+                      {{ type.label }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="fs.checkValidity('document_type')">
+                    <div *ngIf="f.document_type.errors.required">
+                      Debe seleccionar un tipo de documento
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="input">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="N° Documento"
+                    type="text"
+                    formControlName="document_number"
+                    required
+                  />
+                  <mat-error *ngIf="fs.checkValidity('document_number')">
+                    <div *ngIf="f.document_number.errors.required">
+                      El usuario debe tener un numero de documento
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="user-fields-group">
+            <label>Información de la Empresa</label>
+            <div class="row">
+              <div class="input">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Empresa"
+                    type="text"
+                    formControlName="company"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="input">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="NIT"
+                    type="text"
+                    formControlName="company_nit"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="user-fields-group">
+            <label>Información de la Sesión</label>
+            <div class="row">
+              <div class="input">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Max. Sesiones activas"
+                    type="text"
+                    formControlName="max_sessions"
+                    required
+                  />
+                  <mat-error *ngIf="fs.checkValidity('max_sessions')">
+                    <div *ngIf="f.max_sessions.errors.required">
+                      Debe indicar el numero maximo de sesiones activas.
+                    </div>
+                    <div *ngIf="f.max_sessions.errors.min">
+                      Debe habilitar por lo menos una sesión.
+                    </div>
+                    <div *ngIf="f.max_sessions.errors.pattern">
+                      El valor ingresado debe ser un numero
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="input">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    placeholder="Fin de Contrato"
+                    formControlName="expire_date"
+                    required
+                    [min]="currentDate"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker
+                    #picker
+                    [startAt]="currentDate"
+                  ></mat-datepicker>
+                  <mat-error *ngIf="fs.checkValidity('expire_date')">
+                    <div *ngIf="f.expire_date.errors.required">
+                      Debe seleccionar una fecha.
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+        <div class="row create-form justify-content-center">
+          <div class="col-md-10">
+            <mat-card-actions align="end">
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="submitted || userForm.pristine"
+                type="submit"
+              >
+                Guardar
+              </button>
+              <button
+                mat-raised-button
+                [disabled]="submitted"
+                routerLink="/admin/usuarios"
+                type="button"
+              >
+                Cancelar
+              </button>
+            </mat-card-actions>
+          </div>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

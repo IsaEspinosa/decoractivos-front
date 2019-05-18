@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EnvironmentsComponent } from './environments.component';
 
-describe('CreateEnvironmentPageComponent', () => {
+describe('CreateUserPageComponent', () => {
   let component: EnvironmentsComponent;
   let fixture: ComponentFixture<EnvironmentsComponent>;
 

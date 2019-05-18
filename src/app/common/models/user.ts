@@ -2,7 +2,7 @@
  * Created by garusis on 7/06/18.
  */
 
-export interface User {
+export class User {
   user_id: number;
   username: string;
   email: string;
@@ -10,6 +10,15 @@ export interface User {
 }
 
 export class SystemUser implements User {
+  constructor(
+    public user_id = null,
+    public username = null,
+    public email = null,
+    public password = null
+  ) {}
+}
+
+export class ClientUser implements User {
   constructor(
     public user_id = null,
     public username = null,

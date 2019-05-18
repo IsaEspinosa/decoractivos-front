@@ -1,19 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Environment } from '../../../common/models/environment';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EnvironmentType } from '../../../common/models/environment-type';
-import { EnvironmentService } from '../../../common/services/environment.service';
-import { CreateEnvironmentTypeComponent } from '../environment-type-create/environment-type-create.component';
-import { FormService } from '../../../common/services/forms.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
-import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Environment } from "../../../common/models/environment";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { EnvironmentType } from "../../../common/models/environment-type";
+import { EnvironmentService } from "../../../common/services/environment.service";
+import { CreateEnvironmentTypeComponent } from "../environment-type-create/environment-type-create.component";
+import { FormService } from "../../../common/services/forms.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Router } from "@angular/router";
+import { tap } from "rxjs/operators";
+import { MatAutocomplete, MatAutocompleteTrigger } from "@angular/material";
 
 @Component({
-  selector: 'app-create-environment-page',
-  templateUrl: './environment-create.component.html',
-  styleUrls: ['./environment-create.component.scss']
+  selector: "app-create-environment-page",
+  templateUrl: "./environment-create.component.html",
+  styleUrls: ["./environment-create.component.scss"]
 })
 export class CreateEnvironmentPageComponent implements OnInit {
   public environment: Environment = new Environment();
@@ -38,15 +38,15 @@ export class CreateEnvironmentPageComponent implements OnInit {
   ngOnInit() {
     this.loadEnvironmentTypes();
     this.environmentForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ["", Validators.required],
       preview: [null, Validators.required],
       environment_type_id: [null, Validators.required]
     });
 
     this.environmentForm
-      .get('environment_type_id')
+      .get("environment_type_id")
       .valueChanges.subscribe(val => {
-        if (typeof val === 'object' && val.action === 'add') {
+        if (typeof val === "object" && val.action === "add") {
           this.openAddModal(CreateEnvironmentTypeComponent);
         }
       });
@@ -57,7 +57,7 @@ export class CreateEnvironmentPageComponent implements OnInit {
   loadEnvironmentTypes() {
     return this.environmentService
       .getTypes({
-        orderBy: [['name', 'asc']]
+        orderBy: [["name", "asc"]]
       })
       .pipe(
         tap(
@@ -73,32 +73,32 @@ export class CreateEnvironmentPageComponent implements OnInit {
   }
 
   imageCropped($event) {
-    this.environmentForm.get('preview').setValue($event.file);
-    this.environmentForm.get('preview').markAsDirty();
+    this.environmentForm.get("preview").setValue($event.file);
+    this.environmentForm.get("preview").markAsDirty();
   }
 
   openAddModal(content) {
     this.modalService
       .open(content, {
-        ariaLabelledBy: 'modal-basic-title',
-        backdrop: 'static',
+        ariaLabelledBy: "modal-basic-title",
+        backdrop: "static",
         centered: true
       })
       .result.then(result => {
         this.loadEnvironmentTypes();
-        this.environmentForm.get('environment_type_id').setValue(result);
+        this.environmentForm.get("environment_type_id").setValue(result);
         this.autoTrigger.closePanel();
       });
   }
 
   removeImage() {
     this.imageChangedEvent = null;
-    this.environmentForm.get('preview').setValue(null);
-    this.environmentForm.get('preview').markAsPristine();
+    this.environmentForm.get("preview").setValue(null);
+    this.environmentForm.get("preview").markAsPristine();
   }
 
   getTypeName(type) {
-    return !type || type === 'add' ? '' : type.name;
+    return !type || type === "add" ? "" : type.name;
   }
 
   filterTypes(element) {
@@ -127,11 +127,11 @@ export class CreateEnvironmentPageComponent implements OnInit {
     }
 
     const input = new FormData();
-    input.append('name', this.environmentForm.get('name').value);
-    input.append('preview', this.environmentForm.get('preview').value);
+    input.append("name", this.environmentForm.get("name").value);
+    input.append("preview", this.environmentForm.get("preview").value);
     input.append(
-      'environment_type_id',
-      this.environmentForm.get('environment_type_id').value.environment_type_id
+      "environment_type_id",
+      this.environmentForm.get("environment_type_id").value.environment_type_id
     );
 
     return this.environmentService

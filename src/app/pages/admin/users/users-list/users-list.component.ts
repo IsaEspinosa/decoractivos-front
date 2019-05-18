@@ -40,7 +40,6 @@ export class UsersListPageComponent implements OnInit {
     });
     this.userService.getList(this.query).subscribe(data => {
       this.dataSource = new MatTableDataSource<User>(data);
-      console.log(data);
     });
   }
 
