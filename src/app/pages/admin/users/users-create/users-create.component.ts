@@ -73,7 +73,7 @@ export class CreateUserPageComponent implements OnInit {
       this.userForm.get("environment_type_id").value.environment_type_id
     );
 
-    return
+
 
     return this.userService
       .post(input)
