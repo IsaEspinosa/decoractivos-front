@@ -43,6 +43,24 @@
               </div>
               <div class="input">
                 <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Email"
+                    type="email"
+                    formControlName="email"
+                    required
+                  />
+                  <mat-error *ngIf="fs.checkValidity('email')">
+                    <div *ngIf="f.email.errors.required">
+                      Debe ingresar el correo del cliente.
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input">
+                <mat-form-field>
                   <mat-select
                     disableOptionCentering
                     formControlName="document_type"

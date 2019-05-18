@@ -42,6 +42,7 @@ export class CreateUserPageComponent implements OnInit {
       document_number: ["", Validators.required],
       company: [""],
       company_nit: [""],
+      email: ["", Validators.required],
       max_sessions: [
         "",
         [Validators.required, Validators.min(1), Validators.pattern(/\d+/)]
@@ -59,7 +60,7 @@ export class CreateUserPageComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.fs.markFormGroupTouched();
-    console.log(this.userForm)
+    console.log(this.userForm);
     if (this.userForm.invalid) {
       this.submitted = false;
       return;
@@ -72,8 +73,6 @@ export class CreateUserPageComponent implements OnInit {
       "environment_type_id",
       this.userForm.get("environment_type_id").value.environment_type_id
     );
-
-
 
     return this.userService
       .post(input)
