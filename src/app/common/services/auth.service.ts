@@ -1,19 +1,27 @@
-import { Injectable } from '@angular/core';
-import { Observable, Observer, Subject } from 'rxjs';
-import { NavigationExtras, Router } from '@angular/router';
-import { authTokenKey, roleKey } from '../constants';
-import { User } from '../models/user';
+import io from "socket.io-client";
+import { Injectable } from "@angular/core";
+import { Observable, Observer, Subject } from "rxjs";
+import { NavigationExtras, Router } from "@angular/router";
+import { authTokenKey, roleKey } from "../constants";
+import { User } from "../models/user";
+import { environment } from "../../../environments/environment";
+
+const authErrors = ["max-session-token"];
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
-  private _token: string = localStorage[authTokenKey] || null;
+  static API_SOCKET_RESOURCE = `${environment.apiUrl}`;
+  private _token: string;
   private _roles = JSON.parse(localStorage[roleKey] || '["guest"]');
   private _currentUser: Subject<User> = new Subject();
   private pendingLogin = false;
+  private socket;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.accessToken = localStorage[authTokenKey] || null;
+  }
 
   get currentUser() {
     return this._currentUser.asObservable();
@@ -36,18 +44,31 @@ export class AuthService {
   }
 
   get accessToken() {
-    return this._token;
+    return localStorage[authTokenKey];
   }
 
   set accessToken(token: string) {
     if (token) {
       this.pendingLogin = false;
       localStorage[authTokenKey] = this._token = token;
+      this.initSocket();
     } else {
       delete localStorage[authTokenKey];
-      this.roles = ['guest'];
+      this.roles = ["guest"];
       this.currentUser = null;
     }
+  }
+
+  initSocket() {
+    this.socket = io(`${AuthService.API_SOCKET_RESOURCE}?token=${this._token}`);
+
+    this.socket.on("error", error => {
+      if (authErrors.includes(error)) {
+        console.log(error);
+        //this.accessToken = null;
+        this.redirectLogin("/");
+      }
+    });
   }
 
   isLoggedIn(): boolean {
@@ -63,16 +84,16 @@ export class AuthService {
     };
 
     this.accessToken = null;
-    this.router.navigate(['/login'], navigationExtras);
+    this.router.navigate(["/login"], navigationExtras);
   }
 
   redirectMain() {
-    if (this.roles.includes('client')) {
-      this.router.navigate(['/ambientes']);
-    } else if (this.roles.includes('admin')) {
-      this.router.navigate(['/admin']);
+    if (this.roles.includes("client")) {
+      this.router.navigate(["/ambientes"]);
+    } else if (this.roles.includes("admin")) {
+      this.router.navigate(["/admin"]);
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(["/"]);
     }
   }
 

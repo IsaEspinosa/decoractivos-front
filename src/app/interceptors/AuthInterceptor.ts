@@ -2,12 +2,12 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest
-} from '@angular/common/http';
-import { Location } from '@angular/common';
-import { AuthService } from '../common/services/auth.service';
-import { Injectable } from '@angular/core';
-import { throwError, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+} from "@angular/common/http";
+import { Location } from "@angular/common";
+import { AuthService } from "../common/services/auth.service";
+import { Injectable } from "@angular/core";
+import { throwError, of } from "rxjs";
+import { catchError } from "rxjs/operators";
 
 /**
  * Created by garusis on 8/06/18.
@@ -35,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const authReq = req.clone({
       headers: req.headers.set(
-        'Authorization',
+        "Authorization",
         `Bearer ${this.authService.accessToken}`
       )
     });
