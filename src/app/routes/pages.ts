@@ -7,9 +7,11 @@ import { EditEnvironmentPageComponent } from "../pages/admin/environment-create/
 import { SimulatorEditorPageComponent } from "../pages/admin/simulator/simulator-editor/simulator-editor.component";
 import { AuthGuard } from "../common/guards/auth-guard.service";
 import { LoginComponent } from "../pages/login/login.component";
+import { PasswordSetupComponent } from "../pages/password-setup/password-setup.component";
 import { AdminPageComponent } from "../pages/admin/admin.component";
 import { UsersListPageComponent } from "../pages/admin/users/users-list/users-list.component";
 import { CreateUserPageComponent } from "../pages/admin/users/users-create/users-create.component";
+import { TokenGuard } from "../common/guards/guest-guard.service";
 
 /**
  * Created by garusis on 2/06/18.
@@ -27,6 +29,17 @@ export const PagesRoutes = [
     canActivate: [AuthGuard],
     data: { role: "guest" },
     pathMatch: "full"
+  },
+  {
+    path: "usuarios",
+    canActivate: [TokenGuard],
+    data: { role: "guest" },
+    children: [
+      {
+        path: "configurar-contrasena",
+        component: PasswordSetupComponent
+      }
+    ]
   },
   {
     path: "ambientes",

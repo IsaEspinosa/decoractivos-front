@@ -70,18 +70,17 @@ export class CreateUserPageComponent implements OnInit {
     input.append("name", this.userForm.get("name").value);
     input.append("email", this.userForm.get("email").value);
     input.append("username", this.userForm.get("email").value);
-    input.append("preview", this.userForm.get("preview").value);
-    input.append(
-      "environment_type_id",
-      this.userForm.get("environment_type_id").value.environment_type_id
-    );
+    input.append("document_type", this.userForm.get("document_type").value);
+    input.append("document_number", this.userForm.get("document_number").value);
+    input.append("company", this.userForm.get("company").value);
+    input.append("company_nit", this.userForm.get("company_nit").value);
+    input.append("expire_date", this.userForm.get("expire_date").value);
+    input.append("max_sessions", this.userForm.get("max_sessions").value);
 
     return this.userService
       .post(input)
       .toPromise()
-      .then(user =>
-        this.router.navigate([`/admin/ambientes/${user.username}/editar`])
-      )
+      .then(user => this.router.navigate([`/admin/usuarios/`]))
       .catch(response => this.fs.manageErrors(response));
   }
 }

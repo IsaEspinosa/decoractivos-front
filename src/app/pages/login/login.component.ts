@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { catchError, map } from 'rxjs/internal/operators';
-import { UserService } from '../../common/services/user.service';
-import { SystemUser } from '../../common/models/user';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormService } from '../../common/services/forms.service';
-import { AuthService } from '../../common/services/auth.service';
+import { Component, OnInit } from "@angular/core";
+import { catchError, map } from "rxjs/internal/operators";
+import { UserService } from "../../common/services/user.service";
+import { SystemUser } from "../../common/models/user";
+import { ActivatedRoute, Router } from "@angular/router";
+import { FormService } from "../../common/services/forms.service";
+import { AuthService } from "../../common/services/auth.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
   public user: SystemUser = new SystemUser();

@@ -54,17 +54,31 @@ export class UserService extends BaseService {
       );
   }
 
+  putCurrent(nUser: FormData): Observable<User> {
+    return this.http
+      .post<User>(`${UserService.API_USER_RESOURCE}/current/update`, nUser)
+      .pipe(
+        tap(() =>
+          this.snackBar.snackSuccess(
+            "El Usuario se ha actualizado exitosamente"
+          )
+        )
+      );
+  }
+
   login(loginData) {
     return this.http
       .post(`${UserService.API_USER_RESOURCE}/login`, loginData)
       .pipe(
-        map((userLogin: UserLoginResponse) => {
-          if (!userLogin) return;
-          this.authService.accessToken = userLogin.access_token;
-          this.authService.currentUser = userLogin.user;
-          return userLogin.user;
-        })
+        map((userLogin: UserLoginResponse) => this.processLogin(userLogin))
       );
+  }
+
+  processLogin(userLogin) {
+    if (!userLogin) return;
+    this.authService.accessToken = userLogin.access_token;
+    this.authService.currentUser = userLogin.user;
+    return userLogin.user;
   }
 
   logout() {

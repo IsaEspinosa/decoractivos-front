@@ -6,7 +6,7 @@ import { authTokenKey, roleKey } from "../constants";
 import { User } from "../models/user";
 import { environment } from "../../../environments/environment";
 
-const authErrors = ["max-session-token"];
+const authErrors = ["max-session-user"];
 
 @Injectable({
   providedIn: "root"
@@ -56,6 +56,7 @@ export class AuthService {
       delete localStorage[authTokenKey];
       this.roles = ["guest"];
       this.currentUser = null;
+      if (this.socket) this.socket.close();
     }
   }
 
@@ -64,8 +65,7 @@ export class AuthService {
 
     this.socket.on("error", error => {
       if (authErrors.includes(error)) {
-        console.log(error);
-        //this.accessToken = null;
+        this.accessToken = null;
         this.redirectLogin("/");
       }
     });
@@ -80,7 +80,9 @@ export class AuthService {
 
     this.pendingLogin = true;
     const navigationExtras: NavigationExtras = {
-      queryParams: { redirect_url }
+      queryParams: /\/usuarios\/\w*-contrasena\?/.test(redirect_url)
+        ? {}
+        : { redirect_url }
     };
 
     this.accessToken = null;

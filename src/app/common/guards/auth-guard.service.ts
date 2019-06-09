@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import {
   ActivatedRouteSnapshot,
   CanActivate,
   NavigationExtras,
   Router,
   RouterStateSnapshot
-} from '@angular/router';
-import { AuthService } from '../services/auth.service';
+} from "@angular/router";
+import { AuthService } from "../services/auth.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService) {}
@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
 
     if (!requiredRoles) return this.redirectMainAndReturn();
 
-    if (requiredRoles.includes('all')) return true;
+    if (requiredRoles.includes("all")) return true;
 
     if (this.authService.isLoggedIn()) {
       if (requiredRoles.some(role => this.authService.hasRole(role))) {
