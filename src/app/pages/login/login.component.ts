@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.fs.markFormGroupTouched();
     this.userService
-      .login({ username: this.user.username, password: this.user.password })
+      .login({ username: this.formLogin.get("username").value, password: this.formLogin.get("password").value })
       .subscribe(
         () => {
           this.route.queryParams.subscribe((params: any) => {

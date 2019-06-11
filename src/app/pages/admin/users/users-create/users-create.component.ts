@@ -79,7 +79,6 @@ export class CreateUserPageComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.fs.markFormGroupTouched();
-    console.log(this.userForm);
     if (this.userForm.invalid) {
       this.submitted = false;
       return;
