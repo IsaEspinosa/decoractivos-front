@@ -23,7 +23,7 @@
       <form [formGroup]="userForm" (ngSubmit)="!submitted && onSubmit()">
         <mat-card-content>
           <div class="user-fields-group">
-            <label>Información del Usuario</label>
+            <label>Información del usuario</label>
             <div class="row">
               <div class="input">
                 <mat-form-field>
@@ -36,6 +36,9 @@
                   />
                   <mat-error *ngIf="fs.checkValidity('name')">
                     <div *ngIf="f.name.errors.required">
+                      Debe ingresar el nombre completo del cliente.
+                    </div>
+                    <div *ngIf="f.name.errors.pattern">
                       Debe ingresar el nombre completo del cliente.
                     </div>
                   </mat-error>
@@ -53,6 +56,12 @@
                   <mat-error *ngIf="fs.checkValidity('email')">
                     <div *ngIf="f.email.errors.required">
                       Debe ingresar el correo del cliente.
+                    </div>
+                    <div *ngIf="f.email.errors.pattern">
+                      El Email tiene un formato invalido
+                    </div>
+                    <div *ngIf="f.email.errors.unique">
+                      Ya existe otro usuario con este email.
                     </div>
                   </mat-error>
                 </mat-form-field>
@@ -92,7 +101,10 @@
                   />
                   <mat-error *ngIf="fs.checkValidity('document_number')">
                     <div *ngIf="f.document_number.errors.required">
-                      El usuario debe tener un numero de documento
+                      El usuario debe tener un número de documento
+                    </div>
+                    <div *ngIf="f.document_number.errors.pattern">
+                      El usuario debe tener un número de documento
                     </div>
                   </mat-error>
                 </mat-form-field>
@@ -100,7 +112,7 @@
             </div>
           </div>
           <div class="user-fields-group">
-            <label>Información de la Empresa</label>
+            <label>Información de la empresa</label>
             <div class="row">
               <div class="input">
                 <mat-form-field>
@@ -110,6 +122,11 @@
                     type="text"
                     formControlName="company"
                   />
+                  <mat-error *ngIf="fs.checkValidity('company')">
+                    <div *ngIf="f.company.errors.pattern">
+                      El Nombre de la Empresa no pueden ser solo caracteres vacios.
+                    </div>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="input">
@@ -120,12 +137,17 @@
                     type="text"
                     formControlName="company_nit"
                   />
+                  <mat-error *ngIf="fs.checkValidity('company_nit')">
+                    <div *ngIf="f.company_nit.errors.pattern">
+                      El NIT tiene un formato invalido
+                    </div>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
           </div>
           <div class="user-fields-group">
-            <label>Información de la Sesión</label>
+            <label>Información de la sesión</label>
             <div class="row">
               <div class="input">
                 <mat-form-field>
@@ -138,13 +160,13 @@
                   />
                   <mat-error *ngIf="fs.checkValidity('max_sessions')">
                     <div *ngIf="f.max_sessions.errors.required">
-                      Debe indicar el numero maximo de sesiones activas.
+                      Debe indicar el número maximo de sesiones activas.
                     </div>
                     <div *ngIf="f.max_sessions.errors.min">
                       Debe habilitar por lo menos una sesión.
                     </div>
                     <div *ngIf="f.max_sessions.errors.pattern">
-                      El valor ingresado debe ser un numero
+                      El valor ingresado debe ser un número
                     </div>
                   </mat-error>
                 </mat-form-field>

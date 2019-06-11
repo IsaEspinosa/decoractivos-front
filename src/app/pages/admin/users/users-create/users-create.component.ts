@@ -1,5 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
+} from "@angular/forms";
 import { FormService } from "../../../../common/services/forms.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Router } from "@angular/router";
@@ -37,12 +42,20 @@ export class CreateUserPageComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.fb.group({
-      name: ["", Validators.required],
+      name: ["", [Validators.required, this.validateEmptyField]],
       document_type: [null, Validators.required],
-      document_number: ["", Validators.required],
-      company: [""],
-      company_nit: [""],
-      email: ["", Validators.required],
+      document_number: ["", [Validators.required, this.validateEmptyField]],
+      company: ["", this.validateEmptyField],
+      company_nit: ["", Validators.pattern(/\d+/)],
+      email: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          )
+        ]
+      ],
       max_sessions: [
         "",
         [Validators.required, Validators.min(1), Validators.pattern(/\d+/)]
@@ -51,6 +64,12 @@ export class CreateUserPageComponent implements OnInit {
     });
 
     this.fs = new FormService(this.userForm, this);
+  }
+
+  validateEmptyField(control: FormControl) {
+    if (control.value && control.value.trim().length === 0)
+      return { pattern: true };
+    return null;
   }
 
   get f() {

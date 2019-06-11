@@ -18,10 +18,10 @@ export class UsersListPageComponent implements OnInit {
   };
 
   public columnSettings: ColumnSetting = {
-    columnList: ["user_id", "username", "email"],
+    columnList: ["user_id", "name", "email"],
     settings: {
       user_id: { title: "Id" },
-      username: { title: "Usuario" },
+      name: { title: "Nombre" },
       email: { title: "Email" }
     }
   };
