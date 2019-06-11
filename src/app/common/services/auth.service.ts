@@ -5,6 +5,7 @@ import { NavigationExtras, Router } from "@angular/router";
 import { authTokenKey, roleKey } from "../constants";
 import { User } from "../models/user";
 import { environment } from "../../../environments/environment";
+import { SnackService } from "./snack.service";
 
 const authErrors = ["max-session-user"];
 
@@ -19,7 +20,7 @@ export class AuthService {
   private pendingLogin = false;
   private socket;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private snackBar: SnackService) {
     this.accessToken = localStorage[authTokenKey] || null;
   }
 
@@ -48,6 +49,7 @@ export class AuthService {
   }
 
   set accessToken(token: string) {
+    if (this.socket) this.socket.close();
     if (token) {
       this.pendingLogin = false;
       localStorage[authTokenKey] = this._token = token;
@@ -56,7 +58,6 @@ export class AuthService {
       delete localStorage[authTokenKey];
       this.roles = ["guest"];
       this.currentUser = null;
-      if (this.socket) this.socket.close();
     }
   }
 
@@ -67,6 +68,10 @@ export class AuthService {
       if (authErrors.includes(error)) {
         this.accessToken = null;
         this.redirectLogin("/");
+        this.snackBar.snackSuccess(
+          "Ha excedido la cantidad máxima de sesiones autorizadas",
+          { verticalPosition: "top" }
+        );
       }
     });
   }

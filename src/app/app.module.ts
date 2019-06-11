@@ -20,7 +20,8 @@ import {
   MatSortModule,
   MatTableModule,
   MatDividerModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatPaginatorIntl
 } from "@angular/material";
 import {
   MatMomentDateModule,
@@ -50,6 +51,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthInterceptor } from "./interceptors/AuthInterceptor";
 import { ErrorInterceptor } from "./interceptors/ErrorInterceptor";
 import { ResponseTransformInterceptor } from "./interceptors/ResponseTransformInterceptor";
+import { MatPaginatorProvider } from "./common/services/MatPaginatorProvider";
 
 @NgModule({
   declarations: [
@@ -109,7 +111,8 @@ import { ResponseTransformInterceptor } from "./interceptors/ResponseTransformIn
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE]
     },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    { provide: MatPaginatorIntl, useClass: MatPaginatorProvider }
   ],
   bootstrap: [AppComponent]
 })

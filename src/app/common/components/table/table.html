@@ -17,6 +17,7 @@
 </table>
 
 <mat-paginator
+  itemsPerPageLabel="Elementos por pagina"
   [pageSizeOptions]="[5, 10, 20]"
   (page)="onPage($event)"
   [pageIndex]="query.page-1"

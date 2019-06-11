@@ -49,7 +49,7 @@ export class UserService extends BaseService {
       .post<User>(UserService.API_USER_RESOURCE, nUser)
       .pipe(
         tap(() =>
-          this.snackBar.snackSuccess("El Usuario se ha creado exitosamente")
+          this.snackBar.snackSuccess("El usuario se ha creado exitosamente")
         )
       );
   }
@@ -60,7 +60,7 @@ export class UserService extends BaseService {
       .pipe(
         tap(() =>
           this.snackBar.snackSuccess(
-            "El Usuario se ha actualizado exitosamente"
+            "El usuario se ha actualizado exitosamente"
           )
         )
       );

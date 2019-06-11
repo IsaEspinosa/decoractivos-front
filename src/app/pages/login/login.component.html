@@ -4,32 +4,49 @@
       <mat-card class="example-card">
         <div class="text-center img">
           <a routerLink="/">
-            <img mat-card-image src="assets/img/logo.png" alt="Decoractivos">
+            <img mat-card-image src="assets/img/logo.png" alt="Decoractivos" />
           </a>
         </div>
-        <form (ngSubmit)="login()" #formLogin="ngForm">
+        <form [formGroup]="formLogin" (ngSubmit)="!submitted && login()">
           <mat-card-content>
             <mat-form-field>
-              <input matInput placeholder="Ingrese su Usuario" type="text" [(ngModel)]="user.username" required
-                     name="username" #username="ngModel">
-              <mat-error
-                *ngIf="(formLogin.submitted || username.touched) && username.invalid">
-                <div *ngIf="username.errors.required">Este campo es requerido</div>
+              <input
+                matInput
+                placeholder="Ingrese su Usuario"
+                type="text"
+                required
+                formControlName="username"
+              />
+              <mat-error *ngIf="fs.checkValidity('username')">
+                <div *ngIf="f.username.errors.required">
+                  El campo contraseña no puede estar vacio
+                </div>
+                <div *ngIf="f.username.errors.invalid">
+                  El usuario o la contraseña no son validos
+                </div>
               </mat-error>
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="Ingrese su Contraseña" type="password" [(ngModel)]="user.password"
-                     required name="password" #password="ngModel">
-              <mat-error *ngIf="(formLogin.submitted || password.touched) && password.invalid ">
-                <div *ngIf="password.errors.required">Este campo es requerido</div>
+              <input
+                matInput
+                placeholder="Ingrese su Contraseña"
+                type="password"
+                required
+                formControlName="password"
+              />
+              <mat-error *ngIf="fs.checkValidity('password')">
+                <div *ngIf="f.password.errors.required">
+                  El campo contraseña no puede estar vacio
+                </div>
               </mat-error>
             </mat-form-field>
             <!--<button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>-->
             <!--<button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>-->
-
           </mat-card-content>
           <mat-card-actions align="end">
-            <button mat-raised-button color="primary" type="submit">Ingresar</button>
+            <button mat-raised-button color="primary" type="submit">
+              Ingresar
+            </button>
           </mat-card-actions>
         </form>
       </mat-card>

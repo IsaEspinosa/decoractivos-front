@@ -29,7 +29,7 @@
                 <mat-form-field>
                   <input
                     matInput
-                    placeholder="Nombre Completo del Cliente"
+                    placeholder="Nombre completo del cliente"
                     type="text"
                     formControlName="name"
                     required
@@ -58,7 +58,7 @@
                       Debe ingresar el correo del cliente.
                     </div>
                     <div *ngIf="f.email.errors.pattern">
-                      El Email tiene un formato invalido
+                      El Email tiene un formato inválido
                     </div>
                     <div *ngIf="f.email.errors.unique">
                       Ya existe otro usuario con este email.
@@ -124,7 +124,7 @@
                   />
                   <mat-error *ngIf="fs.checkValidity('company')">
                     <div *ngIf="f.company.errors.pattern">
-                      El Nombre de la Empresa no pueden ser solo caracteres vacios.
+                      El nombre de la empresa no puede ser sólo caracteres vacíos.
                     </div>
                   </mat-error>
                 </mat-form-field>
@@ -139,7 +139,7 @@
                   />
                   <mat-error *ngIf="fs.checkValidity('company_nit')">
                     <div *ngIf="f.company_nit.errors.pattern">
-                      El NIT tiene un formato invalido
+                      El NIT tiene un formato inválido
                     </div>
                   </mat-error>
                 </mat-form-field>
@@ -160,7 +160,7 @@
                   />
                   <mat-error *ngIf="fs.checkValidity('max_sessions')">
                     <div *ngIf="f.max_sessions.errors.required">
-                      Debe indicar el número maximo de sesiones activas.
+                      Debe indicar el número máximo de sesiones activas.
                     </div>
                     <div *ngIf="f.max_sessions.errors.min">
                       Debe habilitar por lo menos una sesión.

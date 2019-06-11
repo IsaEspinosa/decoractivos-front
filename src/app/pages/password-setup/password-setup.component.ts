@@ -30,7 +30,7 @@ export class PasswordSetupComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.fb.group({
-      password: ["", [Validators.required, Validators.minLength(6)]],
+      password: ["", [Validators.required, Validators.minLength(6), this.validateEmptyField]],
       password_confirm: [
         null,
         [
@@ -48,6 +48,12 @@ export class PasswordSetupComponent implements OnInit {
     // @ts-ignore
     if (control.root.controls.password.value === control.value) return null;
     return { match: true };
+  }
+
+  validateEmptyField(control: FormControl) {
+    if (control.value && control.value.trim().length === 0)
+      return { required: true };
+    return null;
   }
 
   get f() {
