@@ -13,11 +13,12 @@
   form {
     .mat-form-field {
       width: 100%;
+      margin-bottom: 20px!important;
       input {
         margin-bottom: 10px;
       }
-      span.mat-form-field-label-wrapper {
-        line-height: 16px!important;
+      mat-error {
+        font-size: 14px;
       }
     }
   }

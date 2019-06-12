@@ -40,16 +40,19 @@ export class LoginComponent implements OnInit {
     return this.formLogin.controls;
   }
 
-  loginError(error) {
-    if (error.status === 401) {
-      this.fs.populateErrorForms({ username: ["invalid"] });
+  loginError(response) {
+    if (response.status === 401) {
+      this.fs.populateErrorForms(response.error);
     }
   }
 
   login() {
     this.fs.markFormGroupTouched();
     this.userService
-      .login({ username: this.formLogin.get("username").value, password: this.formLogin.get("password").value })
+      .login({
+        username: this.formLogin.get("username").value,
+        password: this.formLogin.get("password").value
+      })
       .subscribe(
         () => {
           this.route.queryParams.subscribe((params: any) => {

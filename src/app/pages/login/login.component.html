@@ -24,6 +24,9 @@
                 <div *ngIf="f.username.errors.invalid">
                   El usuario o la contraseña no son válidos
                 </div>
+                <div *ngIf="f.username.errors.expired">
+                  Su contrato ha expirado. Contáctenos nuevamente.
+                </div>
               </mat-error>
             </mat-form-field>
             <mat-form-field>
