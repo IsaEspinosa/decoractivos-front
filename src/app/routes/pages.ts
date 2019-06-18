@@ -12,6 +12,7 @@ import { AdminPageComponent } from "../pages/admin/admin.component";
 import { UsersListPageComponent } from "../pages/admin/users/users-list/users-list.component";
 import { CreateUserPageComponent } from "../pages/admin/users/users-create/users-create.component";
 import { TokenGuard } from "../common/guards/guest-guard.service";
+import { UnpaidGuard } from "../common/guards/unpaid-guard.service";
 
 /**
  * Created by garusis on 2/06/18.
@@ -92,6 +93,7 @@ export const PagesRoutes = [
           },
           {
             path: "crear",
+            canActivate: [UnpaidGuard],
             component: CreateUserPageComponent
           }
         ]
