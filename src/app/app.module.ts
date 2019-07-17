@@ -50,6 +50,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthInterceptor } from "./interceptors/AuthInterceptor";
 import { ErrorInterceptor } from "./interceptors/ErrorInterceptor";
 import { ResponseTransformInterceptor } from "./interceptors/ResponseTransformInterceptor";
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { ResponseTransformInterceptor } from "./interceptors/ResponseTransformIn
     IconComponent,
     ...GoToDeclarations,
     ...PagesComponents,
-    ...EntryComponents
+    ...EntryComponents,
+    ResetPasswordComponent,
+    ChangePasswordComponent
   ],
   entryComponents: [...EntryComponents],
   imports: [

@@ -17,6 +17,12 @@ export class SystemUser implements User {
     public password = null
   ) {}
 }
+export class ResetPassword {
+  constructor(
+    public password1=null,
+    public password2=null
+  ){}
+}
 
 export class ClientUser implements User {
   constructor(
@@ -30,4 +36,8 @@ export class ClientUser implements User {
 export interface UserLoginResponse {
   access_token: string;
   user: User;
+}
+
+export interface UserForgotPassword {
+  message: string;
 }

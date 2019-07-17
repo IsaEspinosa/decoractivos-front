@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { User, UserLoginResponse } from "../models/user";
+import { User, UserLoginResponse, UserForgotPassword } from "../models/user";
 import { map, tap } from "rxjs/internal/operators";
 import { AuthService } from "./auth.service";
 import { BaseService } from "./base.service";
@@ -63,6 +63,18 @@ export class UserService extends BaseService {
           this.authService.accessToken = userLogin.access_token;
           this.authService.currentUser = userLogin.user;
           return userLogin.user;
+        })
+      );
+  }
+
+  forgotPassword(email)
+  {
+    return this.http
+      .post(`${UserService.API_USER_RESOURCE}/forgot-password`, email)
+      .pipe(
+        map((message: UserForgotPassword) => {
+          if (!message) return;
+          return message;
         })
       );
   }

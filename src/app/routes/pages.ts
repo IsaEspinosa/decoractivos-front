@@ -7,6 +7,8 @@ import { EditEnvironmentPageComponent } from "../pages/admin/environment-create/
 import { SimulatorEditorPageComponent } from "../pages/admin/simulator/simulator-editor/simulator-editor.component";
 import { AuthGuard } from "../common/guards/auth-guard.service";
 import { LoginComponent } from "../pages/login/login.component";
+import { ResetPasswordComponent} from "../pages/reset-password/reset-password.component";
+import { ChangePasswordComponent} from "../pages/change-password/change-password.component";
 import { AdminPageComponent } from "../pages/admin/admin.component";
 import { UsersListPageComponent } from "../pages/admin/users/users-list/users-list.component";
 import { CreateUserPageComponent } from "../pages/admin/users/users-create/users-create.component";
@@ -26,6 +28,20 @@ export const PagesRoutes = [
     component: LoginComponent,
     canActivate: [AuthGuard],
     data: { role: "guest" },
+    pathMatch: "full"
+  },
+  {
+    path: "forgot-password",
+    component: ResetPasswordComponent,
+    canActivate: [AuthGuard],
+    data: { role: "all" },
+    pathMatch: "full"
+  },
+  {
+    path: "change-password/:token",
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
+    data: { role: "all" },
     pathMatch: "full"
   },
   {
